@@ -8,13 +8,13 @@ export const metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-800">
+    <div className="min-h-screen flex flex-col bg-[#F4F7FB] text-[#0A2A4F]">
       <Navbar />
 
       <main className="flex-1 max-w-4xl mx-auto px-6 py-32 space-y-10">
         <div>
-          <h1 className="text-3xl font-bold text-black mb-2">Privacy Policy</h1>
-          <p className="text-sm text-gray-500">Last Updated: March 11, 2026</p>
+          <h1 className="text-3xl font-bold text-[#0A2A4F] mb-2">Privacy Policy</h1>
+          <p className="text-sm text-[#0A2A4F]/50">Last Updated: March 11, 2026</p>
         </div>
 
         <p className="text-gray-700 leading-relaxed">
@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
           </ul>
           <p className="mt-3">
             To exercise these rights, contact us at{" "}
-            <a href="mailto:privacy@tryautoquote.com" className="text-violet-600 underline hover:text-violet-800">
+            <a href="mailto:privacy@tryautoquote.com" className="text-[#2B5BA8] hover:underline transition">
               privacy@tryautoquote.com
             </a>.
           </p>
@@ -104,7 +104,7 @@ export default function PrivacyPolicy() {
           <p className="mt-3">
             TryAutoQuote<br />
             Email:{" "}
-            <a href="mailto:privacy@tryautoquote.com" className="text-violet-600 underline hover:text-violet-800">
+            <a href="mailto:privacy@tryautoquote.com" className="text-[#2B5BA8] hover:underline transition">
               privacy@tryautoquote.com
             </a>
           </p>
@@ -119,8 +119,8 @@ export default function PrivacyPolicy() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="space-y-3">
-      <h2 className="text-xl font-bold text-black">{title}</h2>
-      <div className="space-y-3 text-gray-700 leading-relaxed">{children}</div>
+      <h2 className="text-xl font-bold text-[#0A2A4F]">{title}</h2>
+      <div className="space-y-3 text-[#0A2A4F]/70 leading-relaxed">{children}</div>
     </section>
   );
 }

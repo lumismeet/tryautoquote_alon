@@ -63,29 +63,29 @@ const features = [
   {
     icon: ShieldCheck,
     title: "Free, always",
-    text: "The service is free and you are never obligated to buy the presented policy.",
+    text: "The service is free and you are never obligated to buy the presented policy. No hidden fees, no credit card required. Just real rates from real carriers, at no cost to you.",
   },
   {
     icon: PhoneOff,
     title: "No spam calls",
-    text: "Compare quotes without a flood of follow-up calls — you decide who to talk to.",
+    text: "Compare quotes without a flood of follow-up calls. You decide who to talk to. We never sell your phone number to telemarketers. Your contact details stay between you and the carrier you choose.",
   },
   {
     icon: Zap,
     title: "Real-time matching",
-    text: "Your details are compared live against a database connected to dozens of top carriers.",
+    text: "Your details are compared live against a database connected to dozens of top insurance carriers. The quotes you see reflect actual current rates, not ballpark estimates generated days later.",
   },
   {
     icon: BadgeCheck,
     title: "Carriers you recognize",
-    text: "Get matched with established providers you actually know, willing to insure you.",
+    text: "Get matched with established providers you actually know, willing to insure you. No obscure names, only trusted carriers with strong reputations and solid claims track records.",
   },
 ];
 
 const checklist = [
   "Personalized results specific to you and your vehicle",
   "Only carriers that are actually willing to insure you",
-  "Free service — never an obligation to buy the presented policy",
+  "Free service - never an obligation to buy the presented policy",
 ];
 
 const steps = [
@@ -93,19 +93,19 @@ const steps = [
     number: "01",
     icon: ClipboardList,
     title: "A little Information",
-    text: "Provide some basic information about yourself and your vehicle. This allows us to generate customized, personalized results.",
+    text: "Provide some basic details about yourself and your vehicle. This takes about 2 minutes and lets us generate personalized, accurate results and not generic quotes. The service is free and you are never obligated to buy anything.",
   },
   {
     number: "02",
     icon: Car,
     title: "A bit of Magic",
-    text: "Our smart matching engine sifts through thousands of possible insurance policies and only presents you with relevant and valid options.",
+    text: "Our matching engine compares your profile in real time against dozens of top carriers. You'll see the best available rates for your area side by side. No waiting, no back-and-forth with agents. The quotes reflect actual current rates, not ballpark estimates.",
   },
   {
     number: "03",
     icon: DollarSign,
     title: "A Lot of Savings",
-    text: "You have the freedom to choose the specific policy you feel suits you the most from the matching policies we provide.",
+    text: "Review your options and choose the policy that fits your budget and coverage needs. If you're ready, you can purchase directly through the carrier. If not, just walk away with no pressure, no follow-up calls.",
   },
 ];
 
@@ -126,7 +126,7 @@ const testimonials = [
   },
   {
     highlight: "No catch, no spam",
-    text: "Was skeptical at first — I figured there'd be a catch or they'd just spam me with calls. Neither happened. Got matched with a provider I actually recognized and the rate was lower than what I had.",
+    text: "Was skeptical at first. I figured there'd be a catch or they'd just spam me with calls. Neither happened. Got matched with a provider I actually recognized and the rate was lower than what I had.",
     name: "Tom Vasquez",
     location: "Tampa, FL",
     image: "/person3.png",
@@ -138,6 +138,7 @@ const navLinks = [
   { label: "How it works", href: "#how-it-works" },
   { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "/contact" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -150,8 +151,24 @@ export default function LandingV2() {
   const focusZip = () => {
     if (!zipRef.current) return;
     zipRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-    setTimeout(() => zipRef.current?.focus(), 400);
+    setTimeout(() => {
+      const input = zipRef.current;
+      if (!input) return;
+      input.focus();
+      input.style.transition = "box-shadow 0.3s ease";
+      input.style.boxShadow = "0 0 0 2px rgba(56, 182, 201, 0.6)";
+      setTimeout(() => {
+        input.style.boxShadow = "0 0 0 2px rgba(56, 182, 201, 0)";
+      }, 900);
+    }, 400);
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("quote") === "1") {
+      setTimeout(focusZip, 300);
+    }
+  }, []);
 
   return (
     <div
@@ -345,7 +362,7 @@ function HeroSection({
 
             <p className="mt-6 text-[#0A2A4F]/60 max-w-md leading-relaxed">
               Answer a few quick questions and we&apos;ll find the best auto
-              insurance rates available in your area — no commitment required.
+              insurance rates available in your area. No commitment required.
             </p>
 
             {/* Zip CTA (replaces template's Get Started + video) */}
@@ -553,7 +570,7 @@ function StepsSection() {
           How does TryAutoQuote work?
         </h2>
         <p className="text-[#0A2A4F]/60 max-w-2xl mx-auto mb-14">
-          Three steps between you and a better rate — the whole thing takes
+          Three steps between you and a better rate, the whole thing takes
           minutes, not hours.
         </p>
 
@@ -640,7 +657,7 @@ function TestimonialsDark() {
             </h2>
             <p className="text-white/60 leading-relaxed">
               Thousands of drivers trust TryAutoQuote to find them the best
-              auto insurance rates available — here&apos;s what a few of them
+              auto insurance rates available. Here&apos;s what a few of them
               told us.
             </p>
           </div>
@@ -845,7 +862,7 @@ function FooterV3() {
             </p>
             <p className="text-sm leading-relaxed text-white/55 max-w-xs">
               Your one-stop shop for auto-insurance. Compare personalized rates
-              from dozens of top carriers in real time — free, with no
+              from dozens of top carriers in real time - free, with no
               obligation to buy.
             </p>
           </div>
@@ -854,31 +871,12 @@ function FooterV3() {
           <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3 text-sm text-white/55">
-              <li>
-                <a href="#why-us" className="hover:text-white transition">
-                  Why us
-                </a>
-              </li>
-              <li>
-                <a href="#how-it-works" className="hover:text-white transition">
-                  How it works
-                </a>
-              </li>
-              <li>
-                <a href="#reviews" className="hover:text-white transition">
-                  Reviews
-                </a>
-              </li>
-              <li>
-                <Link href="/privacy-policy" className="hover:text-white transition">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms-of-use" className="hover:text-white transition">
-                  Terms of Use
-                </Link>
-              </li>
+              <li><a href="#why-us" className="hover:text-white transition">Why us</a></li>
+              <li><a href="#how-it-works" className="hover:text-white transition">How it works</a></li>
+              <li><a href="#reviews" className="hover:text-white transition">Reviews</a></li>
+              <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
+              <li><Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link></li>
+              <li><Link href="/terms-of-use" className="hover:text-white transition">Terms of Use</Link></li>
             </ul>
           </div>
 
