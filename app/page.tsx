@@ -1,567 +1,268 @@
 "use client";
 
-import Image from "next/image"
-import Navbar from "@/components/Navbar"
-import Link from "next/link"
-import { ClipboardList, Car, DollarSign, ChevronLeft, ChevronRight } from "lucide-react"
-import { Star } from "lucide-react"
-import FAQ from "@/components/FAQ"
-import Footer from "@/components/footer"
+import Image from "next/image";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
+import {
+  ShieldCheck,
+  PhoneOff,
+  Zap,
+  BadgeCheck,
+  CheckCircle2,
+  ClipboardList,
+  Car,
+  DollarSign,
+  Star,
+  Menu,
+  X,
+  ChevronDown,
+  Mail,
+} from "lucide-react";
+
+import FAQAccordion from "@/components/FAQAccordion";
 import { useForm } from "@/context/FormContext";
-import LOGO from "../public/logo-test1.png"
-import USMap from "@/components/USMap";
-import CarValueSlider from "@/components/CarValueSlider";
+
+/* ------------------------------------------------------------------ */
+/* Fonts                                                                */
+/* ------------------------------------------------------------------ */
+
+const display = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
+});
+
+const body = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
+
+/* ------------------------------------------------------------------ */
+/* Brand tokens (Guard.In structure, TryAutoQuote palette)              */
+/* gradient accent: blue #2B5BA8 → teal #38B6C9                         */
+/* dark band: navy #0A2A4F                                              */
+/* ------------------------------------------------------------------ */
+
+const GRADIENT = "bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9]";
+
+/* ------------------------------------------------------------------ */
+/* Content                                                              */
+/* ------------------------------------------------------------------ */
+
+const heroStats = [
+  { stat: "Dozens", label: "Top carriers compared" },
+  { stat: "Minutes", label: "To compare & switch" },
+  { stat: "100%", label: "Free, no obligation" },
+];
+
+const features = [
+  {
+    icon: ShieldCheck,
+    title: "Free, always",
+    text: "The service is free and you are never obligated to buy the presented policy.",
+  },
+  {
+    icon: PhoneOff,
+    title: "No spam calls",
+    text: "Compare quotes without a flood of follow-up calls — you decide who to talk to.",
+  },
+  {
+    icon: Zap,
+    title: "Real-time matching",
+    text: "Your details are compared live against a database connected to dozens of top carriers.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "Carriers you recognize",
+    text: "Get matched with established providers you actually know, willing to insure you.",
+  },
+];
+
+const checklist = [
+  "Personalized results specific to you and your vehicle",
+  "Only carriers that are actually willing to insure you",
+  "Free service — never an obligation to buy the presented policy",
+];
+
+const steps = [
+  {
+    number: "01",
+    icon: ClipboardList,
+    title: "A little Information",
+    text: "Provide some basic information about yourself and your vehicle. This allows us to generate customized, personalized results.",
+  },
+  {
+    number: "02",
+    icon: Car,
+    title: "A bit of Magic",
+    text: "Our smart matching engine sifts through thousands of possible insurance policies and only presents you with relevant and valid options.",
+  },
+  {
+    number: "03",
+    icon: DollarSign,
+    title: "A Lot of Savings",
+    text: "You have the freedom to choose the specific policy you feel suits you the most from the matching policies we provide.",
+  },
+];
 
 const testimonials = [
   {
+    highlight: "Saving $58 a month",
     text: "I'd been on the same plan for 4 years and honestly had no idea I was overpaying. Took me maybe 10 minutes to compare and switch. Saving $58 a month now.",
     name: "Derek Okafor",
     location: "Columbus, OH",
     image: "/person1.png",
   },
   {
+    highlight: "Actually painless",
     text: "I hate dealing with insurance stuff, so I kept putting it off. This actually made it painless. Got 3 solid quotes, picked one, done. Wish I'd done it sooner.",
     name: "Amanda Reyes",
     location: "Phoenix, AZ",
     image: "/person2.png",
   },
   {
+    highlight: "No catch, no spam",
     text: "Was skeptical at first — I figured there'd be a catch or they'd just spam me with calls. Neither happened. Got matched with a provider I actually recognized and the rate was lower than what I had.",
     name: "Tom Vasquez",
     location: "Tampa, FL",
     image: "/person3.png",
   },
-]
+];
 
+const navLinks = [
+  { label: "Why us", href: "#why-us" },
+  { label: "How it works", href: "#how-it-works" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "FAQ", href: "#faq" },
+];
 
-type NavbarProps = {
-  onQuoteClick: () => void;
-};
+/* ------------------------------------------------------------------ */
+/* Page                                                                 */
+/* ------------------------------------------------------------------ */
 
-
-
-type HeroSectionProps = {
-  zipRef: React.RefObject<HTMLInputElement | null>;
-};
-
-export default function Home() {
+export default function LandingV2() {
   const zipRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
 
   const focusZip = () => {
     if (!zipRef.current) return;
-
-  zipRef.current.scrollIntoView({
-    behavior: "smooth",
-    block: "center",
-  });
-
-  // Delay focus so it doesn't cancel smooth scroll
-  setTimeout(() => {
-    zipRef.current?.focus();
-  }, 400);
+    zipRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    setTimeout(() => zipRef.current?.focus(), 400);
   };
 
-  const sendTonew = () => {
-    router.push("/quote/1_map");
-  }
   return (
-    <div className="relative min-h-screen w-full text-black bg-[#EBF2FB]">
-      <div className="relative z-10">
-        <Navbar onQuoteClick={focusZip} />
-        <HeroSection zipRef={zipRef} />
-        <HowItWorks />
-        {/* <Partners /> */}
-        <CarValueSlider onCtaClick={focusZip} />
-        <Testimonials />
-        <ParaWorks />
-        <CtaSection onQuoteClick={focusZip} />
-        <FAQ />
-        <USMap onMapClick={sendTonew} />
-        <CtaSection2 />
-        <Footer />
-      </div>
+    <div
+      className={`${display.variable} ${body.variable} [font-family:var(--font-body)] min-h-screen w-full bg-white text-[#0A2A4F]`}
+    >
+      <NavbarV3 onQuoteClick={focusZip} />
+      <HeroSection zipRef={zipRef} />
+      <WhyBetter />
+      <StrategySection />
+      <StepsSection />
+      <TestimonialsDark />
+      <FAQAccordion />
+      <GradientCta />
+      <FooterV3 />
     </div>
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* Navbar — Guard.In style: logo left, centered links, pill CTA right   */
+/* ------------------------------------------------------------------ */
 
-function HeroSection({ zipRef }: HeroSectionProps) {
-  const [zipcode, setZipcode] = useState("");
-  const [loading] = useState(false);
-  const [errors, setError] = useState("");
-  const { updateForm } = useForm();
-  const router = useRouter();
-
-  const handleSubmit = () => {
-    setError("");
-    const trimmedZip = zipcode.trim();
-
-    if (!trimmedZip) {
-      setError("No zipcode found");
-      return;
-    }
-    const regex = /^[0-9]{5}$/;
-    if (!regex.test(trimmedZip)) {
-      setError("Invalid zip");
-      return;
-    }
-
-    updateForm({
-      zipcode: zipcode,
-    });
-    router.push("/quote/1");
-  };
+function NavbarV3({ onQuoteClick }: { onQuoteClick: () => void }) {
+  const [open, setOpen] = useState(false);
 
   return (
-    <section className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-20 pt-16 md:pt-20 lg:pt-28 pb-16 md:pb-20 lg:pb-28">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-        {/* Text Content */}
-        <div className="text-center md:text-left">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold max-w-3xl mx-auto md:mx-0">
-            Your one-stop shop for auto-insurance
-          </h1>
-
-          {/* Input + Button */}
-          <div className="mt-8 flex flex-col sm:flex-row w-full max-w-xl mx-auto md:mx-0">
-            <input
-              type="text"
-              value={zipcode}
-              ref={zipRef}
-              onChange={(e) => setZipcode(e.target.value)}
-              placeholder="Enter zipcode"
-              className="flex-1 px-6 py-4 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none text-black bg-white focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200 transition"
-            />
-
-            <button
-              onClick={handleSubmit}
-              disabled={loading}
-              className="mt-3 sm:mt-0 sm:ml-0 bg-[#2B5BA8] text-white hover:bg-[#E8732A] transition px-8 py-4 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none font-semibold cursor-pointer"
-            >
-              {loading ? "Loading..." : "Get a Quote →"}
-            </button>
-          </div>
-
-          {/* Error Message */}
-          <p className="text-red-700 mt-2 min-h-[24px]">{errors}</p>
-        </div>
-
-        {/* Illustration */}
-        <div className="flex justify-center md:justify-end mt-10 md:mt-0">
-          <div className="relative w-[220px] sm:w-[280px] md:w-[320px] h-[220px] sm:h-[280px] md:h-[320px]">
-            <Image
-              src="/ill_hero_blue.svg"
-              alt="Illustration"
-              fill
-              className="object-contain rounded-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-function HowItWorks() {
-  return (
-    <section className="bg-white py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-20 text-center">
-
-        <div className="grid md:grid-cols-3 gap-12">
-
-          {/* Step 1 */}
-          <div className="flex flex-col items-center">
-            <ClipboardList className="w-12 h-12 text-[#2B5BA8] mb-6" />
-
-            <h3 className="text-lg font-semibold mb-3 text-gray-900">
-              A little Information
-            </h3>
-
-            <p className="text-gray-600 max-w-xs">
-              Provide some basic information about yourself and your vehicle
-              (This will allow us to generate customized personalized results).
-            </p>
-          </div>
-
-          {/* Step 2 */}
-          <div className="flex flex-col items-center">
-            <Car className="w-12 h-12 text-[#2B5BA8] mb-6" />
-
-            <h3 className="text-lg font-semibold mb-3 text-gray-900">
-              A bit of Magic
-            </h3>
-
-            <p className="text-gray-600 max-w-xs">
-              Our Smart matching engine will sift through thousands of possible
-              insurance policies and only present you with relevant and valid options.
-            </p>
-          </div>
-
-          {/* Step 3 */}
-          <div className="flex flex-col items-center">
-            <DollarSign className="w-12 h-12 text-[#2B5BA8] mb-6" />
-
-            <h3 className="text-lg font-semibold mb-3 text-gray-900">
-              A Lot of Savings
-            </h3>
-
-            <p className="text-gray-600 max-w-xs">
-              You have the freedom to choose the specific policy you feel suits
-              you the most from a list of matching policies we provide.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-  )
-}
-
-// function Partners(){
-//   return(
-
-//     < section className = "bg-white py-24" >
-//       <div className="max-w-7xl mx-auto px-20 text-center">
-
-//         <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-12">
-//           We partner with the top providers
-//         </h2>
-
-//         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-
-//           {/* Logo 1 */}
-//           <div className="bg-gray-300 h-16 rounded-md"></div>
-
-//           {/* Logo 2 */}
-//           <div className="bg-gray-300 h-16 rounded-md"></div>
-
-//           {/* Logo 3 */}
-//           <div className="bg-gray-300 h-16 rounded-md"></div>
-
-//           {/* Logo 4 */}
-//           <div className="bg-gray-300 h-16 rounded-md"></div>
-
-//         </div>
-
-//       </div>
-// </section >
-//   )
-
-// }
-
-// function Testimonials(){
-//   return(
-//     <section className="py-24 bg-[#EBF2FB]">
-//   <div className="max-w-7xl mx-auto px-20 text-center">
-
-//     {/* Heading */}
-//     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-//       What our customers say…
-//     </h2>
-
-//     <p className="text-gray-600 max-w-2xl mx-auto mb-16">
-//       Thousands of drivers trust tryautoquote to find them the best auto insurance rates available.
-//     </p>
-
-//     {/* Testimonials Grid */}
-//     <div className="grid md:grid-cols-2 gap-10">
-
-//       {/* Card */}
-//       <div className="relative bg-[#2B5BA8] text-white rounded-2xl p-10 overflow-hidden">
-
-//         {/* Decorative circles */}
-//         <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#378ADD] rounded-full opacity-40" />
-//         <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#378ADD] rounded-full opacity-40" />
-
-//         <div className="relative z-10">
-//           <p className="text-lg leading-relaxed mb-6">
-//             “This platform helped me compare policies in minutes.
-//             I saved over $600 a year without any hassle.”
-//           </p>
-
-//           {/* Stars */}
-//           <div className="flex gap-1 mb-6">
-//             {[...Array(5)].map((_, i) => (
-//               <Star key={i} size={18} fill="yellow" color="yellow" />
-//             ))}
-//           </div>
-
-//           {/* Profile */}
-//           <div className="flex items-center gap-4">
-//             <Image
-//               src="/person.png"
-//               alt="Customer"
-//               width={60}
-//               height={60}
-//               className="rounded-full border-4 border-white object-cover"
-//             />
-//             <div>
-//               <h4 className="font-semibold">Reginald Miles</h4>
-//               <p className="text-sm opacity-80">Verified Customer</p>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Duplicate Card */}
-//       <div className="relative bg-[#2B5BA8] text-white rounded-2xl p-10 overflow-hidden">
-
-//         <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#378ADD] rounded-full opacity-40" />
-//         <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#378ADD] rounded-full opacity-40" />
-
-//         <div className="relative z-10">
-
-//           <p className="text-lg leading-relaxed mb-6">
-//             “Super easy process. I entered my details and instantly got matched
-//             with affordable insurance providers.”
-//           </p>
-
-//           <div className="flex gap-1 mb-6">
-//             {[...Array(5)].map((_, i) => (
-//               <Star key={i} size={18} fill="yellow" color="yellow" />
-//             ))}
-//           </div>
-
-//           <div className="flex items-center gap-4">
-//             <Image
-//               src="/person.png"
-//               alt="Customer"
-//               width={60}
-//               height={60}
-//               className="rounded-full border-4 border-white object-cover"
-//             />
-//             <div>
-//               <h4 className="font-semibold">Sarah Johnson</h4>
-//               <p className="text-sm opacity-80">Verified Customer</p>
-//             </div>
-//           </div>
-
-//         </div>
-//       </div>
-
-//     </div>
-//   </div>
-// </section>
-    
-//   )
-
-// }
-
-
-function Testimonials() {
-  const [current, setCurrent] = useState(0)
-
-  const prevSlide = () => {
-    setCurrent((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
-    )
-  }
-
-  const nextSlide = () => {
-    setCurrent((prev) =>
-      prev === testimonials.length - 1 ? 0 : prev + 1
-    )
-  }
-
-  return (
-    <section className="py-24 bg-[#EBF2FB]">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          What our customers say…
-        </h2>
-
-        <p className="text-gray-600 mb-16">
-          Thousands of drivers trust tryautoquote to find them the best auto insurance rates available.
-        </p>
-
-        {/* Wrapper for Arrows + Card */}
-        <div className="relative flex items-center justify-center mx-8">
-
-          {/* LEFT ARROW */}
-          <button
-            onClick={prevSlide}
-            className="
-              absolute 
-              -left-6 md:-left-16 lg:-left-20
-              bg-white text-[#0C2340]
-              p-2 md:p-4
-              rounded-full shadow-lg
-              hover:text-white hover:bg-[#0C2340]
-              transition
-              cursor-pointer
-              z-10
-            "
-          >
-            <ChevronLeft className="w-4 h-4 md:w-6 md:h-6" />
-          </button>
-
-          {/* CARD */}
-          <div className="relative bg-[#2B5BA8] text-white rounded-2xl p-12 max-w-3xl w-full overflow-hidden">
-            {/* Decorative Circles */}
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#378ADD] rounded-full opacity-40" />
-            <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#378ADD] rounded-full opacity-40" />
-
-            <div className="relative z-10 transition-all duration-500 ease-in-out">
-
-              <p className="text-lg leading-relaxed mb-6">
-                "{testimonials[current].text}"
-              </p>
-
-              {/* Stars */}
-              <div className="flex justify-center gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={18} fill="yellow" color="yellow" />
-                ))}
-              </div>
-
-              {/* Profile */}
-              <div className="flex items-center justify-center gap-4">
-                <Image
-                  key={testimonials[current].image}
-                  src={testimonials[current].image}
-                  alt={testimonials[current].name}
-                  width={60}
-                  height={60}
-                  className="rounded-full border-4 border-white object-cover"
-                />
-                <div className="text-left">
-                  <h4 className="font-semibold">
-                    {testimonials[current].name}
-                  </h4>
-                  <p className="text-sm opacity-70">
-                    {testimonials[current].location}
-                  </p>
-                  <p className="text-sm opacity-80">
-                    Verified Customer
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* RIGHT ARROW */}
-          <button
-            onClick={nextSlide}
-            className="
-              absolute 
-              -right-6 md:-right-16 lg:-right-20
-              bg-white text-[#0C2340]
-              p-2 md:p-4
-              rounded-full shadow-lg
-              hover:text-white hover:bg-[#0C2340]
-              transition
-              cursor-pointer
-            "
-          >
-            <ChevronRight className="w-4 h-4 md:w-6 md:h-6" />
-          </button>
-
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function ParaWorks() {
-  return (
-    <section className="bg-[#042C53] py-16 md:py-20 text-white">
-      <div className="max-w-7xl mx-auto px-6 md:px-20 grid md:grid-cols-2 gap-16 items-center">
-
-        {/* LEFT SIDE */}
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
-            <span className="border-b-4 border-[#2B5BA8] pb-1">
-              How does
-            </span>
-            <br />
-            <span className="border-b-4 border-[#2B5BA8] pb-1">
-              TryAutoQuote work?
-            </span>
-          </h2>
-
-          <div className="space-y-6 text-sm md:text-base leading-relaxed text-[#EBF2FB]">
-            <p>
-              We take all the information you provide regarding yourself and your
-              vehicle and compare it in real time to our live database connected
-              to dozens of top insurance carriers. This results in a list of
-              policies that are specific to your personal circumstances and are
-              from carriers that are willing to insure you.
-            </p>
-
-            <p>
-              Why is it so important to have personalized results? Because many
-              of us spend countless hours filling endless documentation just to
-              find out there is no relevant policy or getting declined for
-              insurance. Our platform makes sure you are presented with the top
-              options in one place.
-            </p>
-
-            <p className="font-semibold text-white">
-              The service is free and you are never obligated to buy
-              the presented policy.
-            </p>
-          </div>
-        </div>
-
-        {/* RIGHT SIDE */}
-        <div className="flex justify-center md:justify-end">
-          <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-[300px] md:h-[300px]">
-            <Image
-              src="/logo_try.svg"
-              alt="TryAutoQuote"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
-function CtaSection({ onQuoteClick }: { onQuoteClick: () => void }) {
-  return (
-    <section className="bg-[#042C53] text-white py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-6 md:px-20 grid md:grid-cols-2 gap-16 items-center">
-
-        {/* LEFT SIDE — Illustration */}
-        <div className="flex justify-center md:justify-start">
-          <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-[440px] md:h-[440px]">
-            <Image
-              src="/webinar/pana.svg"
-              alt="Illustration"
-              fill
-              className="object-contain rounded-2xl"
-            />
-          </div>
-        </div>
-
-        {/* RIGHT SIDE — Content */}
-        <div className="text-center md:text-left">
-          <h2 className="text-3xl md:text-4xl font-bold leading-snug mb-8">
-            Learn how you can get the Best Deals And Start Saving:
-          </h2>
-
-          <button
+    <header className="sticky top-0 z-50 bg-[#F4F7FB]/90 backdrop-blur border-b border-[#0A2A4F]/5">
+      <nav className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 h-16 md:h-[72px] flex items-center justify-between gap-6">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
+          <span className="text-xl font-extrabold tracking-tight text-[#0A2A4F]">
+            TryAuto<span className="text-[#38B6C9]">.Quote</span>
+          </span>
+        </Link>
+
+        {/* Centered links */}
+        <ul className="hidden md:flex items-center gap-8 mx-auto">
+          {navLinks.map((link, i) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className={`text-sm font-medium transition rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2B5BA8] ${
+                  i === 0
+                    ? "text-[#2B5BA8]"
+                    : "text-[#0A2A4F]/70 hover:text-[#2B5BA8]"
+                }`}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Dark pill CTA */}
+        <button
           onClick={onQuoteClick}
-          className="bg-[#2B5BA8] hover:bg-[#E8732A] transition px-12 sm:px-16 md:px-20 py-4 rounded-lg font-semibold text-white shadow-lg cursor-pointer">
-            Get a Quote →
-          </button>
-        </div>
+          className="hidden md:inline-flex bg-[#0A2A4F] hover:bg-[#E8732A] transition text-white text-sm font-semibold px-7 py-2.5 rounded-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2B5BA8]"
+        >
+          Get a Quote
+        </button>
 
-      </div>
-    </section>
+        <button
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="md:hidden p-2 text-[#0A2A4F] rounded focus-visible:outline-2 focus-visible:outline-[#2B5BA8]"
+        >
+          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </nav>
+
+      {open && (
+        <div className="md:hidden border-t border-[#0A2A4F]/10 bg-white px-6 py-4">
+          <ul className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block text-base font-medium text-[#0A2A4F]/80 hover:text-[#2B5BA8] transition"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  onQuoteClick();
+                }}
+                className="w-full bg-[#0A2A4F] hover:bg-[#E8732A] transition text-white font-semibold px-6 py-3 rounded-full cursor-pointer"
+              >
+                Get a Quote
+              </button>
+            </li>
+          </ul>
+        </div>
+      )}
+    </header>
   );
 }
 
-function CtaSection2(){
+/* ------------------------------------------------------------------ */
+/* Reusable zip form                                                    */
+/* ------------------------------------------------------------------ */
+
+function ZipForm({
+  zipRef,
+  onLight = true,
+}: {
+  zipRef?: React.RefObject<HTMLInputElement | null>;
+  onLight?: boolean;
+}) {
   const [zipcode, setZipcode] = useState("");
   const [error, setError] = useState("");
   const { updateForm } = useForm();
@@ -570,89 +271,586 @@ function CtaSection2(){
   const handleSubmit = () => {
     setError("");
     const trimmedZip = zipcode.trim();
-    if (!trimmedZip) { setError("Please enter a zipcode"); return; }
-    if (!/^[0-9]{5}$/.test(trimmedZip)) { setError("Invalid zip"); return; }
-    updateForm({ zipcode });
+
+    if (!trimmedZip) {
+      setError("Please enter a zipcode");
+      return;
+    }
+    if (!/^[0-9]{5}$/.test(trimmedZip)) {
+      setError("Invalid zip");
+      return;
+    }
+
+    updateForm({ zipcode: trimmedZip });
     router.push("/quote/1");
   };
 
-  return(
-   <section className="bg-gray-100 py-16 md:py-20">
-  <div className="max-w-7xl mx-auto px-20 grid md:grid-cols-2 gap-16 items-center text-center">
-
-    {/* LEFT SIDE — Get a Quote */}
-    <div className="flex flex-col items-center">
-
-      {/* Illustration Placeholder */}
-      <div className="relative w-[248px] h-[148px] md:w-[320px] md:h-[220px]">
-            <Image
-              src="/ill_comp_blue.svg"
-              alt="Illustration"
-              fill
-              className="object-contain rounded-2xl"
-            />
-          </div>
-
-      <h3 className="text-2xl font-bold mb-4 text-gray-900">
-        Get a Free Quote
-      </h3>
-
-      <p className="text-gray-600 max-w-md mb-8">
-        Answer a few quick questions and we&apos;ll find the best auto insurance
-        rates available in your area — no commitment required.
+  return (
+    <div className="w-full max-w-md">
+      <div className="flex flex-col sm:flex-row rounded-2xl sm:rounded-full p-1.5 gap-1.5 bg-white shadow-lg shadow-[#0A2A4F]/10 border border-[#0A2A4F]/10">
+        <input
+          type="text"
+          inputMode="numeric"
+          value={zipcode}
+          ref={zipRef}
+          onChange={(e) => setZipcode(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+          placeholder="Enter zipcode"
+          aria-label="Zipcode"
+          className="flex-1 px-5 py-3.5 rounded-xl sm:rounded-full text-[#0A2A4F] bg-transparent placeholder:text-[#0A2A4F]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2B5BA8]/40"
+        />
+        <button
+          onClick={handleSubmit}
+          className={`${GRADIENT} hover:opacity-90 transition text-white font-semibold px-7 py-3.5 rounded-xl sm:rounded-full cursor-pointer whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2A4F]`}
+        >
+          Get Started ↗
+        </button>
+      </div>
+      <p
+        role="status"
+        className={`mt-2 min-h-[24px] text-sm ${
+          onLight ? "text-red-600" : "text-red-300"
+        }`}
+      >
+        {error}
       </p>
-
-      {/* Zip + Button */}
-          <div className="flex flex-col sm:flex-row w-full max-w-full sm:max-w-md mx-auto">
-
-            <input
-              type="text"
-              value={zipcode}
-              onChange={(e) => setZipcode(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-              placeholder="Enter zipcode"
-              className="flex-1 px-4 py-3 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none border border-gray-300 focus:outline-none w-full mb-2 sm:mb-0"
-            />
-
-            <button
-              onClick={handleSubmit}
-              className="bg-[#2B5BA8] hover:bg-[#E8732A] transition px-6 py-3 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none text-white font-semibold w-full sm:w-auto cursor-pointer"
-            >
-              Get a Quote →
-            </button>
-
-          </div>
-          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-
-
     </div>
+  );
+}
 
-    {/* RIGHT SIDE — Call an Agent */}
-    <div className="flex flex-col items-center">
-      {/* Illustration Placeholder */}
-      <div className="relative w-[248px] h-[148px] md:w-[320px] md:h-[220px]">
-            <Image
-              src="/ill_mobile_blue.svg"
-              alt="Illustration"
-              fill
-              className="object-contain rounded-2xl"
-            />
+/* ------------------------------------------------------------------ */
+/* Hero — badge, headline, zip CTA, stats row, circular collage right   */
+/* ------------------------------------------------------------------ */
+
+function HeroSection({
+  zipRef,
+}: {
+  zipRef: React.RefObject<HTMLInputElement | null>;
+}) {
+  return (
+    <section className="bg-[#F4F7FB]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-14 md:pt-20 pb-16 md:pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+          {/* Text */}
+          <div>
+            <span className="inline-block text-xs font-semibold text-[#0A2A4F]/70 border border-[#0A2A4F]/15 bg-white rounded-full px-4 py-1.5 mb-6">
+              Auto insurance, simplified
+            </span>
+
+            <h1 className="[font-family:var(--font-display)] text-4xl sm:text-5xl lg:text-[56px] font-extrabold leading-[1.08] text-[#0A2A4F]">
+              Your one-stop shop for auto-insurance.
+            </h1>
+
+            <p className="mt-6 text-[#0A2A4F]/60 max-w-md leading-relaxed">
+              Answer a few quick questions and we&apos;ll find the best auto
+              insurance rates available in your area — no commitment required.
+            </p>
+
+            {/* Zip CTA (replaces template's Get Started + video) */}
+            <div className="mt-8">
+              <ZipForm zipRef={zipRef} />
+              <a
+                href="#how-it-works"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#0A2A4F] hover:text-[#2B5BA8] transition"
+              >
+                <span
+                  className={`${GRADIENT} w-8 h-8 rounded-full flex items-center justify-center text-white`}
+                >
+                  <ChevronDown className="w-4 h-4" />
+                </span>
+                See how it works
+              </a>
+            </div>
+
+            {/* Stats row */}
+            <dl className="mt-10 grid grid-cols-3 gap-6 max-w-md">
+              {heroStats.map((s) => (
+                <div key={s.stat}>
+                  <dt className="sr-only">{s.label}</dt>
+                  <dd className="[font-family:var(--font-display)] text-2xl md:text-3xl font-bold text-[#0A2A4F]">
+                    {s.stat}
+                  </dd>
+                  <dd className="mt-1 text-xs text-[#0A2A4F]/55">{s.label}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
-      <h3 className="text-2xl font-bold mb-4 text-gray-900">
-        Know your options? Call an Agent
-      </h3>
+          {/* Circular collage with ring arc */}
+          <div className="relative flex justify-center md:justify-end">
+            <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px]">
+              {/* Ring arc */}
+              <div
+                aria-hidden
+                className="absolute -inset-6 rounded-full border-2 border-[#0A2A4F]/10 [clip-path:inset(0_0_45%_0)]"
+              />
+              {/* Big circle */}
+              <div className="absolute inset-0 rounded-full bg-[#EBF2FB] border-8 border-white shadow-xl overflow-hidden flex items-center justify-center">
+                <div className="relative w-3/4 h-3/4">
+                  <Image
+                    src="/ill_hero_blue.svg"
+                    alt="Driver comparing auto insurance quotes"
+                    fill
+                    priority
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+              {/* Small overlapping circle */}
+              <div className="absolute -bottom-6 left-2 w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-white border-8 border-white shadow-lg overflow-hidden flex items-center justify-center">
+                <div className="relative w-3/4 h-3/4">
+                  <Image
+                    src="/ill_comp_blue.svg"
+                    alt="Insurance policy comparison"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-      <p className="text-gray-600 max-w-md mb-6">
-        Have questions or want personalized guidance? Our licensed insurance
-        specialists are here to walk you through your options. Please feel free to email us
+/* ------------------------------------------------------------------ */
+/* Why We're Better — dark navy band with 4 white cards                 */
+/* ------------------------------------------------------------------ */
+
+function WhyBetter() {
+  return (
+    <section id="why-us" className="bg-[#0A2A4F] py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
+        {/* Three dots accent */}
+        <div aria-hidden className="flex justify-center gap-1.5 mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#38B6C9]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
+        </div>
+
+        <h2 className="[font-family:var(--font-display)] text-3xl md:text-4xl font-bold text-white mb-4">
+          Why we&apos;re better than others
+        </h2>
+        <p className="text-white/60 max-w-2xl mx-auto mb-12">
+          Many of us spend countless hours filling endless documentation just
+          to find out there is no relevant policy. Our platform makes sure you
+          are presented with the top options in one place.
+        </p>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+          {features.map((f) => {
+            const Icon = f.icon;
+            return (
+              <div
+                key={f.title}
+                className="bg-white rounded-2xl p-7 shadow-lg hover:-translate-y-1 transition motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              >
+                <div
+                  className={`${GRADIENT} w-12 h-12 rounded-xl flex items-center justify-center text-white mb-5`}
+                >
+                  <Icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-semibold text-[#0A2A4F] mb-2">{f.title}</h3>
+                <p className="text-sm leading-relaxed text-[#0A2A4F]/60">
+                  {f.text}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Strategy — image collage left, heading + checklist right             */
+/* ------------------------------------------------------------------ */
+
+function StrategySection() {
+  return (
+    <section className="bg-white py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Collage: one large card + two small cards */}
+          <div className="space-y-4">
+            <div className="bg-[#EBF2FB] rounded-2xl border-4 border-white shadow-lg p-8 flex items-center justify-center">
+              <div className="relative w-full h-[200px] md:h-[240px]">
+                <Image
+                  src="/ill_hero_blue.svg"
+                  alt="Drivers finding the right coverage"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-[#F4F7FB] rounded-2xl border-4 border-white shadow-lg p-5 flex items-center justify-center">
+                <div className="relative w-full h-[110px] md:h-[130px]">
+                  <Image
+                    src="/ill_comp_blue.svg"
+                    alt="Comparing policies"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+              <div className="bg-[#F4F7FB] rounded-2xl border-4 border-white shadow-lg p-5 flex items-center justify-center">
+                <div className="relative w-full h-[110px] md:h-[130px]">
+                  <Image
+                    src="/ill_mobile_blue.svg"
+                    alt="Getting a quote on mobile"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Copy + checklist */}
+          <div>
+            <h2 className="[font-family:var(--font-display)] text-3xl md:text-4xl font-bold text-[#0A2A4F] leading-tight mb-6">
+              Personalized results, from carriers willing to insure you
+            </h2>
+            <p className="text-[#0A2A4F]/60 leading-relaxed mb-8">
+              We take all the information you provide regarding yourself and
+              your vehicle and compare it in real time to our live database
+              connected to dozens of top insurance carriers. The result is a
+              list of policies specific to your personal circumstances.
+            </p>
+
+            <ul className="space-y-4">
+              {checklist.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 mt-0.5 shrink-0 text-[#38B6C9]" />
+                  <span className="text-sm md:text-base font-medium text-[#0A2A4F]">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Steps — "How Claim Insurance" → numbered 01/02/03 gradient circles   */
+/* ------------------------------------------------------------------ */
+
+function StepsSection() {
+  return (
+    <section id="how-it-works" className="bg-[#F4F7FB] py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
+        <h2 className="[font-family:var(--font-display)] text-3xl md:text-4xl font-bold text-[#0A2A4F] mb-4">
+          How does TryAutoQuote work?
+        </h2>
+        <p className="text-[#0A2A4F]/60 max-w-2xl mx-auto mb-14">
+          Three steps between you and a better rate — the whole thing takes
+          minutes, not hours.
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+          {steps.map((s) => {
+            const Icon = s.icon;
+            return (
+              <div key={s.number} className="flex flex-col items-center">
+                {/* Gradient numbered circle */}
+                <div
+                  className={`${GRADIENT} w-16 h-16 rounded-full border-4 border-white shadow-lg flex items-center justify-center mb-[-32px] relative z-10`}
+                >
+                  <span className="[font-family:var(--font-display)] text-white font-bold">
+                    {s.number}
+                  </span>
+                </div>
+
+                {/* Card */}
+                <div className="bg-white rounded-2xl shadow-md pt-12 pb-8 px-7 w-full">
+                  <Icon className="w-7 h-7 mx-auto mb-4 text-[#2B5BA8]" />
+                  <h3 className="font-semibold text-[#0A2A4F] mb-3">
+                    {s.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-[#0A2A4F]/60">
+                    {s.text}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Testimonials — dark band, heading left, cards right                  */
+/* ------------------------------------------------------------------ */
+
+function TestimonialsDark() {
+  const [current, setCurrent] = useState(0);
+
+  // show two cards at a time on desktop, one on mobile
+  const visible = [
+    testimonials[current],
+    testimonials[(current + 1) % testimonials.length],
+  ];
+
+  return (
+    <section id="reviews" className="bg-[#0A2A4F] py-16 md:py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="grid lg:grid-cols-[1fr_1.6fr] gap-12 items-center">
+          {/* Heading */}
+          <div className="text-white">
+            <h2 className="[font-family:var(--font-display)] text-3xl md:text-4xl font-bold leading-tight mb-6">
+              What our customers say
+            </h2>
+            <p className="text-white/60 leading-relaxed">
+              Thousands of drivers trust TryAutoQuote to find them the best
+              auto insurance rates available — here&apos;s what a few of them
+              told us.
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {visible.map((t, i) => (
+                <article
+                  key={t.name}
+                  className={`bg-white rounded-2xl p-6 shadow-xl ${
+                    i === 1 ? "hidden sm:block" : ""
+                  }`}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <Image
+                      src={t.image}
+                      alt={t.name}
+                      width={44}
+                      height={44}
+                      className="rounded-full object-cover w-11 h-11"
+                    />
+                    <div>
+                      <h3 className="font-semibold text-[#0A2A4F] text-sm">
+                        {t.name}
+                      </h3>
+                      <p className="text-xs text-[#0A2A4F]/50">{t.location}</p>
+                    </div>
+                  </div>
+
+                  <p
+                    className={`text-sm font-bold mb-2 bg-clip-text text-transparent ${GRADIENT}`}
+                  >
+                    {t.highlight}
+                  </p>
+
+                  <p className="text-sm leading-relaxed text-[#0A2A4F]/70 mb-4">
+                    &ldquo;{t.text}&rdquo;
+                  </p>
+
+                  <div className="flex gap-1" aria-label="5 out of 5 stars">
+                    {[...Array(5)].map((_, j) => (
+                      <Star key={j} size={14} fill="#FFC93C" color="#FFC93C" />
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* Dots */}
+            <div className="flex gap-2 mt-8 justify-center sm:justify-start">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                  className={`h-2 rounded-full transition-all cursor-pointer ${
+                    i === current ? "w-6 bg-[#38B6C9]" : "w-2 bg-white/25"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Gradient CTA band — template's newsletter strip → zip quote strip    */
+/* ------------------------------------------------------------------ */
+
+function GradientCta() {
+  return (
+    <section className={`${GRADIENT} py-12 md:py-16`}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 grid md:grid-cols-2 gap-8 items-center">
+        <div className="text-white">
+          <h2 className="[font-family:var(--font-display)] text-2xl md:text-3xl font-bold mb-3">
+            Ready to start saving?
+          </h2>
+          <p className="text-white/80 text-sm md:text-base max-w-md">
+            Enter your zipcode and compare personalized rates from top carriers
+            in minutes. Free, no obligation, no spam calls.
+          </p>
+        </div>
+
+        <div className="md:justify-self-end w-full md:max-w-md">
+          <GradientZip />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GradientZip() {
+  const [zipcode, setZipcode] = useState("");
+  const [error, setError] = useState("");
+  const { updateForm } = useForm();
+  const router = useRouter();
+
+  const handleSubmit = () => {
+    setError("");
+    const trimmedZip = zipcode.trim();
+    if (!trimmedZip) {
+      setError("Please enter a zipcode");
+      return;
+    }
+    if (!/^[0-9]{5}$/.test(trimmedZip)) {
+      setError("Invalid zip");
+      return;
+    }
+    updateForm({ zipcode: trimmedZip });
+    router.push("/quote/1");
+  };
+
+  return (
+    <div>
+      <p className="text-white text-sm font-semibold mb-2">Your zipcode</p>
+      <div className="flex flex-col sm:flex-row rounded-2xl sm:rounded-full p-1.5 gap-1.5 bg-white/20 backdrop-blur border border-white/30">
+        <input
+          type="text"
+          inputMode="numeric"
+          value={zipcode}
+          onChange={(e) => setZipcode(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+          placeholder="Enter zipcode"
+          aria-label="Zipcode"
+          className="flex-1 px-5 py-3 rounded-xl sm:rounded-full bg-transparent text-white placeholder:text-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+        />
+        <button
+          onClick={handleSubmit}
+          className="bg-[#0A2A4F] hover:bg-[#E8732A] transition text-white font-semibold px-7 py-3 rounded-xl sm:rounded-full cursor-pointer whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Get a Quote
+        </button>
+      </div>
+      <p role="status" className="mt-2 min-h-[20px] text-sm text-white">
+        {error}
       </p>
-
-      
     </div>
+  );
+}
 
-  </div>
-</section>
+/* ------------------------------------------------------------------ */
+/* Footer — 4-column Guard.In layout + compliance disclaimer            */
+/* ------------------------------------------------------------------ */
 
-  )
+function FooterV3() {
+  return (
+    <footer className="bg-[#06203D] text-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {/* Brand */}
+          <div>
+            <p className="text-xl font-extrabold tracking-tight mb-4">
+              TryAuto<span className="text-[#38B6C9]">.Quote</span>
+            </p>
+            <p className="text-sm leading-relaxed text-white/55 max-w-xs">
+              Your one-stop shop for auto-insurance. Compare personalized rates
+              from dozens of top carriers in real time — free, with no
+              obligation to buy.
+            </p>
+          </div>
+
+          {/* Quick links */}
+          <div>
+            <h3 className="font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-3 text-sm text-white/55">
+              <li>
+                <a href="#why-us" className="hover:text-white transition">
+                  Why us
+                </a>
+              </li>
+              <li>
+                <a href="#how-it-works" className="hover:text-white transition">
+                  How it works
+                </a>
+              </li>
+              <li>
+                <a href="#reviews" className="hover:text-white transition">
+                  Reviews
+                </a>
+              </li>
+              <li>
+                <Link href="/privacy" className="hover:text-white transition">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-white transition">
+                  Terms of Use
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="font-semibold mb-4">Contact Us</h3>
+            <ul className="space-y-3 text-sm text-white/55">
+              <li>
+                <a
+                  href="mailto:support@tryautoquote.com"
+                  className="inline-flex items-center gap-2 hover:text-white transition"
+                >
+                  <Mail className="w-4 h-4 text-[#38B6C9]" />
+                  support@tryautoquote.com
+                </a>
+              </li>
+              <li className="text-white/40">
+                Our licensed insurance specialists are here to walk you through
+                your options.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr className="my-10 border-white/10" />
+
+        <p className="text-xs leading-relaxed text-white/40 max-w-5xl">
+          TryAutoQuote.com is an independent, advertising-supported comparison
+          website. The products and offers that appear on this website are from
+          third-party insurance partners and advertisers from which
+          TryAutoQuote.com may receive compensation. This compensation may
+          influence which products we feature, how they are presented, and
+          where they appear on the page. TryAutoQuote.com is not a licensed
+          insurance provider or broker. Content on this site is provided for
+          informational purposes only and does not constitute insurance advice.
+          Available rates and offers vary by location, driving history, and
+          other factors and are subject to change without notice. Not all
+          products or offers are available in all states.
+        </p>
+
+        <p className="mt-8 text-xs text-white/35 text-center">
+          © 2026 TryAutoQuote. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+  );
 }
