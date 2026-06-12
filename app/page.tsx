@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Bricolage_Grotesque, Inter } from "next/font/google";
 import {
@@ -18,6 +18,8 @@ import {
   Menu,
   X,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Mail,
 } from "lucide-react";
 
@@ -594,12 +596,38 @@ function StepsSection() {
 
 function TestimonialsDark() {
   const [current, setCurrent] = useState(0);
+  const total = testimonials.length;
 
-  // show two cards at a time on desktop, one on mobile
-  const visible = [
-    testimonials[current],
-    testimonials[(current + 1) % testimonials.length],
-  ];
+  const touchStartX = useRef<number | null>(null);
+  const touchDeltaX = useRef(0);
+
+  const goTo = (i: number) => setCurrent(((i % total) + total) % total);
+  const next = () => goTo(current + 1);
+  const prev = () => goTo(current - 1);
+
+  // Auto-advance every 6s; pause on hover via state
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => setCurrent((c) => (c + 1) % total), 6000);
+    return () => clearInterval(id);
+  }, [paused, total]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchDeltaX.current = 0;
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+  };
+  const onTouchEnd = () => {
+    const threshold = 50;
+    if (touchDeltaX.current > threshold) prev();
+    else if (touchDeltaX.current < -threshold) next();
+    touchStartX.current = null;
+    touchDeltaX.current = 0;
+  };
 
   return (
     <section id="reviews" className="bg-[#0A2A4F] py-16 md:py-24 overflow-hidden">
@@ -617,49 +645,93 @@ function TestimonialsDark() {
             </p>
           </div>
 
-          {/* Cards */}
-          <div>
-            <div className="grid sm:grid-cols-2 gap-6">
-              {visible.map((t, i) => (
-                <article
-                  key={t.name}
-                  className={`bg-white rounded-2xl p-6 shadow-xl ${
-                    i === 1 ? "hidden sm:block" : ""
-                  }`}
+          {/* Slider */}
+          <div
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            <div className="relative">
+              {/* Arrows */}
+              <button
+                onClick={prev}
+                aria-label="Previous testimonial"
+                className="hidden md:flex absolute -left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition cursor-pointer backdrop-blur"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={next}
+                aria-label="Next testimonial"
+                className="hidden md:flex absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition cursor-pointer backdrop-blur"
+              >
+                <ChevronRight size={20} />
+              </button>
+
+              {/* Viewport */}
+              <div
+                className="overflow-hidden"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                <div
+                  className="flex transition-transform duration-500 ease-out"
+                  style={{
+                    transform: `translateX(-${current * 100}%)`,
+                  }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <Image
-                      src={t.image}
-                      alt={t.name}
-                      width={44}
-                      height={44}
-                      className="rounded-full object-cover w-11 h-11"
-                    />
-                    <div>
-                      <h3 className="font-semibold text-[#0A2A4F] text-sm">
-                        {t.name}
-                      </h3>
-                      <p className="text-xs text-[#0A2A4F]/50">{t.location}</p>
+                  {testimonials.map((t) => (
+                    <div
+                      key={t.name}
+                      className="w-full flex-shrink-0 px-1 sm:px-2"
+                    >
+                      <article className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl h-full">
+                        <div className="flex items-center gap-3 mb-4">
+                          <Image
+                            src={t.image}
+                            alt={t.name}
+                            width={44}
+                            height={44}
+                            className="rounded-full object-cover w-11 h-11"
+                          />
+                          <div>
+                            <h3 className="font-semibold text-[#0A2A4F] text-sm">
+                              {t.name}
+                            </h3>
+                            <p className="text-xs text-[#0A2A4F]/50">
+                              {t.location}
+                            </p>
+                          </div>
+                        </div>
+
+                        <p
+                          className={`text-sm font-bold mb-2 bg-clip-text text-transparent ${GRADIENT}`}
+                        >
+                          {t.highlight}
+                        </p>
+
+                        <p className="text-sm leading-relaxed text-[#0A2A4F]/70 mb-4">
+                          &ldquo;{t.text}&rdquo;
+                        </p>
+
+                        <div
+                          className="flex gap-1"
+                          aria-label="5 out of 5 stars"
+                        >
+                          {[...Array(5)].map((_, j) => (
+                            <Star
+                              key={j}
+                              size={14}
+                              fill="#FFC93C"
+                              color="#FFC93C"
+                            />
+                          ))}
+                        </div>
+                      </article>
                     </div>
-                  </div>
-
-                  <p
-                    className={`text-sm font-bold mb-2 bg-clip-text text-transparent ${GRADIENT}`}
-                  >
-                    {t.highlight}
-                  </p>
-
-                  <p className="text-sm leading-relaxed text-[#0A2A4F]/70 mb-4">
-                    &ldquo;{t.text}&rdquo;
-                  </p>
-
-                  <div className="flex gap-1" aria-label="5 out of 5 stars">
-                    {[...Array(5)].map((_, j) => (
-                      <Star key={j} size={14} fill="#FFC93C" color="#FFC93C" />
-                    ))}
-                  </div>
-                </article>
-              ))}
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Dots */}
@@ -667,7 +739,7 @@ function TestimonialsDark() {
               {testimonials.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setCurrent(i)}
+                  onClick={() => goTo(i)}
                   aria-label={`Go to testimonial ${i + 1}`}
                   className={`h-2 rounded-full transition-all cursor-pointer ${
                     i === current ? "w-6 bg-[#38B6C9]" : "w-2 bg-white/25"
@@ -798,12 +870,12 @@ function FooterV3() {
                 </a>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-white transition">
+                <Link href="/privacy-policy" className="hover:text-white transition">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-white transition">
+                <Link href="/terms-of-use" className="hover:text-white transition">
                   Terms of Use
                 </Link>
               </li>
