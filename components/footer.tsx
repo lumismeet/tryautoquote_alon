@@ -13,7 +13,7 @@ export default function Footer() {
 
           <div>
             <p className="text-xl font-extrabold tracking-tight mb-4">
-              TryAuto<span className="text-[#38B6C9]">.Quote</span>
+              TryAuto<span className="text-[#38B6C9]">Quote</span>
             </p>
             <p className="text-sm leading-relaxed text-white/55 max-w-xs">
               Your one-stop shop for auto-insurance. Compare personalized rates from dozens of top carriers in real time — free, with no obligation to buy.

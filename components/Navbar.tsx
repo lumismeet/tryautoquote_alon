@@ -35,7 +35,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
       <nav className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 h-16 md:h-[72px] flex items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="text-xl font-extrabold tracking-tight text-[#0A2A4F]">
-            TryAuto<span className="text-[#38B6C9]">.Quote</span>
+            TryAuto<span className="text-[#38B6C9]">Quote</span>
           </span>
         </Link>
 

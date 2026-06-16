@@ -27,23 +27,23 @@ export default function USMap({ onMapClick }: USMapProps) {
       <>
       <style>{`
     .us-map path:hover {
-      fill: #E8732A;
+      fill: #2B5BA8;
     }
   `}</style>
       </>
 
-        <h3 className="text-3xl font-black mb-2 my-8">
+        <h3 className="text-3xl font-black mb-2 my-8 text-[#0A2A4F]">
                     Check Availability in Your State
                   </h3>
-                  <p className="text-slate-600 text-lg mb-8">
-                    Hover over your state to see where drivers are comparing rates.
+                  <p className="text-[#0A2A4F]/60 text-lg mb-8">
+                    Click your state to start comparing rates in your area.
                   </p>
           <svg
               viewBox="0 0 959 593"
               className="
          us-map
           w-full max-w-5xl
-          [&>path]:fill-gray-200
+          [&>path]:fill-[#DDE9F7]
           [&>path]:stroke-white
           [&>path]:stroke-[0.5]
           [&>path]:transition

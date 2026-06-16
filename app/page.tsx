@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 
 import FAQAccordion from "@/components/FAQAccordion";
+import USMap from "@/components/USMap";
 import { useForm } from "@/context/FormContext";
 
 /* ------------------------------------------------------------------ */
@@ -180,6 +181,7 @@ export default function LandingV2() {
       <StrategySection />
       <StepsSection />
       <TestimonialsDark />
+      <MapSection />
       <FAQAccordion />
       <GradientCta />
       <FooterV3 />
@@ -199,7 +201,7 @@ function NavbarV3({ onQuoteClick }: { onQuoteClick: () => void }) {
       <nav className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 h-16 md:h-[72px] flex items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="text-xl font-extrabold tracking-tight text-[#0A2A4F]">
-            TryAuto<span className="text-[#38B6C9]">.Quote</span>
+            TryAuto<span className="text-[#38B6C9]">Quote</span>
           </span>
         </Link>
 
@@ -495,34 +497,34 @@ function StrategySection() {
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Collage: one large card + two small cards */}
           <div className="space-y-4">
-            <div className="bg-[#EBF2FB] rounded-2xl border-4 border-white shadow-lg p-8 flex items-center justify-center">
-              <div className="relative w-full h-[200px] md:h-[240px]">
+            <div className="bg-[#EBF2FB] rounded-2xl border-4 border-white shadow-lg overflow-hidden">
+              <div className="relative w-full h-[220px] md:h-[260px]">
                 <Image
-                  src="/ill_hero_blue.svg"
+                  src="/image1.png"
                   alt="Drivers finding the right coverage"
                   fill
-                  className="object-contain"
+                  className="object-cover"
                 />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-[#F4F7FB] rounded-2xl border-4 border-white shadow-lg p-5 flex items-center justify-center">
-                <div className="relative w-full h-[110px] md:h-[130px]">
+              <div className="bg-[#F4F7FB] rounded-2xl border-4 border-white shadow-lg overflow-hidden">
+                <div className="relative w-full h-[130px] md:h-[155px]">
                   <Image
-                    src="/ill_comp_blue.svg"
+                    src="/image2.png"
                     alt="Comparing policies"
                     fill
-                    className="object-contain"
+                    className="object-cover"
                   />
                 </div>
               </div>
-              <div className="bg-[#F4F7FB] rounded-2xl border-4 border-white shadow-lg p-5 flex items-center justify-center">
-                <div className="relative w-full h-[110px] md:h-[130px]">
+              <div className="bg-[#F4F7FB] rounded-2xl border-4 border-white shadow-lg overflow-hidden">
+                <div className="relative w-full h-[130px] md:h-[155px]">
                   <Image
-                    src="/ill_mobile_blue.svg"
+                    src="/image3.png"
                     alt="Getting a quote on mobile"
                     fill
-                    className="object-contain"
+                    className="object-cover object-top"
                   />
                 </div>
               </div>
@@ -772,6 +774,21 @@ function TestimonialsDark() {
 }
 
 /* ------------------------------------------------------------------ */
+/* Map Section — US state map between testimonials and FAQ              */
+/* ------------------------------------------------------------------ */
+
+function MapSection() {
+  const router = useRouter();
+  return (
+    <section className="bg-white py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        <USMap onMapClick={() => router.push("/quote/1_map")} />
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Gradient CTA band — template's newsletter strip → zip quote strip    */
 /* ------------------------------------------------------------------ */
 
@@ -858,7 +875,7 @@ function FooterV3() {
           {/* Brand */}
           <div>
             <p className="text-xl font-extrabold tracking-tight mb-4">
-              TryAuto<span className="text-[#38B6C9]">.Quote</span>
+              TryAuto<span className="text-[#38B6C9]">Quote</span>
             </p>
             <p className="text-sm leading-relaxed text-white/55 max-w-xs">
               Your one-stop shop for auto-insurance. Compare personalized rates
