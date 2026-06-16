@@ -497,34 +497,34 @@ function StrategySection() {
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Collage: one large card + two small cards */}
           <div className="space-y-4">
-            <div className="bg-[#EBF2FB] rounded-2xl border-4 border-white shadow-lg overflow-hidden">
+            <div className="group bg-[#EBF2FB] rounded-2xl border-4 border-white shadow-lg overflow-hidden">
               <div className="relative w-full h-[220px] md:h-[260px]">
                 <Image
                   src="/image1.png"
                   alt="Drivers finding the right coverage"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                 />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-[#F4F7FB] rounded-2xl border-4 border-white shadow-lg overflow-hidden">
+              <div className="group bg-[#F4F7FB] rounded-2xl border-4 border-white shadow-lg overflow-hidden">
                 <div className="relative w-full h-[130px] md:h-[155px]">
                   <Image
                     src="/image2.png"
                     alt="Comparing policies"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                   />
                 </div>
               </div>
-              <div className="bg-[#F4F7FB] rounded-2xl border-4 border-white shadow-lg overflow-hidden">
+              <div className="group bg-[#F4F7FB] rounded-2xl border-4 border-white shadow-lg overflow-hidden">
                 <div className="relative w-full h-[130px] md:h-[155px]">
                   <Image
                     src="/image3.png"
                     alt="Getting a quote on mobile"
                     fill
-                    className="object-cover object-top"
+                    className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-110"
                   />
                 </div>
               </div>
