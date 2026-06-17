@@ -25,6 +25,7 @@ import {
 
 import FAQAccordion from "@/components/FAQAccordion";
 import USMap from "@/components/USMap";
+import CarValueSlider from "@/components/CarValueSlider";
 import { useForm } from "@/context/FormContext";
 
 /* ------------------------------------------------------------------ */
@@ -180,6 +181,7 @@ export default function LandingV2() {
       <WhyBetter />
       <StrategySection />
       <StepsSection />
+      <CarValueSliderSection />
       <TestimonialsDark />
       <MapSection />
       <FAQAccordion />
@@ -771,6 +773,15 @@ function TestimonialsDark() {
       </div>
     </section>
   );
+}
+
+/* ------------------------------------------------------------------ */
+/* Car Value Slider — after How It Works                                */
+/* ------------------------------------------------------------------ */
+
+function CarValueSliderSection() {
+  const router = useRouter();
+  return <CarValueSlider onCtaClick={() => router.push("/quote/1_map")} />;
 }
 
 /* ------------------------------------------------------------------ */
