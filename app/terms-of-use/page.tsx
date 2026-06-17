@@ -1,15 +1,49 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import Link from "next/link";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Terms of Use | TryAutoQuote",
-  description: "Terms of Use for TryAutoQuote.com.",
+  description:
+    "The terms that govern your use of TryAutoQuote.com, including disclaimers about our advertising-supported auto insurance comparison service.",
+  alternates: { canonical: "/terms-of-use" },
+  openGraph: {
+    title: "Terms of Use | TryAutoQuote",
+    description:
+      "The terms that govern your use of TryAutoQuote.com, including disclaimers about our advertising-supported auto insurance comparison service.",
+    url: "https://tryautoquote.com/terms-of-use",
+    siteName: "TryAutoQuote",
+    type: "website",
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://tryautoquote.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Terms of Use",
+      item: "https://tryautoquote.com/terms-of-use",
+    },
+  ],
 };
 
 export default function TermsOfUse() {
   return (
     <div className="min-h-screen flex flex-col bg-[#F4F7FB] text-[#0A2A4F]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <main className="flex-1 max-w-4xl mx-auto px-6 py-32 space-y-10">
