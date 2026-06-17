@@ -144,6 +144,52 @@ const navLinks = [
 ];
 
 /* ------------------------------------------------------------------ */
+/* FAQ structured data (FAQPage)                                        */
+/* The "text" values below MUST match the answers shown in             */
+/* components/FAQAccordion.tsx word-for-word. If you edit the FAQ       */
+/* there, update these too.                                            */
+/* ------------------------------------------------------------------ */
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://tryautoquote.com/#faq",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What factors affect my car insurance premium?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Your driving history is one of the biggest factors, including any accidents, tickets, or DUI records from the past 3 to 5 years. Your age and years of experience behind the wheel matter too, with younger drivers typically paying more. Where you live plays a major role since urban areas with higher traffic and theft rates tend to have higher premiums. The vehicle itself matters as well, including its make, model, year, safety ratings, and how expensive it is to repair. On top of that, the coverage types and limits you choose, your deductible amount, and even your credit score in most states will all influence your final rate.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How quickly can I get matched with providers?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Almost instantly. Once you share a few details about yourself and your vehicle, our matching engine compares them in real time against a live database connected to dozens of top insurance carriers — so you see relevant, valid options in minutes, not days.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is the service really free?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. The service is free and you are never obligated to buy any policy we present. TryAutoQuote may receive compensation from partner carriers when you choose a policy, which is how we keep the service free for drivers.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Will checking quotes affect my credit score?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Comparing quotes through TryAutoQuote does not involve a hard credit inquiry. Some insurers may use a soft pull to estimate your rate, and soft inquiries have no impact on your credit score.",
+      },
+    },
+  ],
+};
+
+/* ------------------------------------------------------------------ */
 /* Page                                                                 */
 /* ------------------------------------------------------------------ */
 
@@ -176,6 +222,10 @@ export default function LandingV2() {
     <div
       className={`${display.variable} ${body.variable} [font-family:var(--font-body)] min-h-screen w-full bg-white text-[#0A2A4F]`}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <NavbarV3 onQuoteClick={focusZip} />
       <HeroSection zipRef={zipRef} />
       <WhyBetter />
