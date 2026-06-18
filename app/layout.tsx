@@ -68,6 +68,21 @@ export const metadata: Metadata = {
     url: "https://tryautoquote.com/",
     siteName: "TryAutoQuote",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "TryAutoQuote | Find the Best Auto Insurance Rates",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TryAutoQuote | Find the Best Auto Insurance Rates",
+    description:
+      "Compare personalized auto insurance quotes from top carriers in minutes. Free, no obligation, no spam.",
+    images: ["/opengraph-image.png"],
   },
 };
 
