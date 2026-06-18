@@ -191,6 +191,14 @@ export default async function StateCarInsurance({ params }: Props) {
             <p>{s.recommendedExplain}</p>
           </section>
 
+          {/* Closing state-specific sections */}
+          {s.closingSections?.map((section) => (
+            <section key={section.title}>
+              <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">{section.title}</h2>
+              <p>{section.body}</p>
+            </section>
+          ))}
+
         </div>
 
         <div className="mt-14 bg-[#0A2A4F] rounded-2xl px-8 py-10 text-center text-white">
