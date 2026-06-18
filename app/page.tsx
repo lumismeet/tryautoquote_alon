@@ -140,6 +140,7 @@ const navLinks = [
   { label: "How it works", href: "#how-it-works" },
   { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
+  { label: "Guides", href: "/guides" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -167,7 +168,7 @@ const faqSchema = {
       name: "How quickly can I get matched with providers?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Almost instantly. Once you share a few details about yourself and your vehicle, our matching engine compares them in real time against a live database connected to dozens of top insurance carriers — so you see relevant, valid options in minutes, not days.",
+        text: "Almost instantly. Once you share a few details about yourself and your vehicle, our matching engine compares them in real time against a live database connected to dozens of top insurance carriers, so you see relevant, valid options in minutes, not days.",
       },
     },
     {
@@ -184,6 +185,30 @@ const faqSchema = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "No. Comparing quotes through TryAutoQuote does not involve a hard credit inquiry. Some insurers may use a soft pull to estimate your rate, and soft inquiries have no impact on your credit score.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Should I get liability only or full coverage?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "If your car is financed or leased, your lender requires full coverage. If you own your car outright, a common rule of thumb is: if the annual cost of collision and comprehensive exceeds 10% of your car's current market value, liability only is often the smarter financial choice.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How can I lower my car insurance premium?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The most effective moves are comparing quotes across at least three carriers at renewal, raising your deductible, bundling home and auto, and stacking available discounts like good driver, good student, or telematics programs. Shopping at renewal is the single biggest lever since rates can vary by hundreds of dollars for the same coverage.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "I'm a young driver. How can I find more affordable rates?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Staying on a parent's policy, applying for a good student discount, completing a defensive driving course, and choosing a practical vehicle with strong safety ratings can collectively cut a young driver's premium by 40 to 60 percent. Comparing quotes across carriers matters especially for young drivers since rates vary more between carriers than for any other group.",
       },
     },
   ],
@@ -952,6 +977,7 @@ function FooterV3() {
               <li><a href="#why-us" className="hover:text-white transition">Why us</a></li>
               <li><a href="#how-it-works" className="hover:text-white transition">How it works</a></li>
               <li><a href="#reviews" className="hover:text-white transition">Reviews</a></li>
+              <li><Link href="/guides" className="hover:text-white transition">Guides</Link></li>
               <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link></li>
               <li><Link href="/terms-of-use" className="hover:text-white transition">Terms of Use</Link></li>

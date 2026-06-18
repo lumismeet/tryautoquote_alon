@@ -37,8 +37,47 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.2,
     },
-    // As you publish content pages, add them here, e.g.:
-    // { url: `${BASE}/guides/does-a-quote-affect-credit-score`,
-    //   lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    {
+      url: `${BASE}/guides`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE}/guides/does-getting-a-quote-affect-credit-score`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE}/guides/how-much-car-insurance-do-i-need`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE}/guides/cheapest-car-insurance-for-young-drivers`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE}/guides/liability-only-vs-full-coverage`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE}/guides/how-to-lower-your-car-insurance-premium`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE}/guides/what-to-do-after-a-car-accident`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
   ];
 }

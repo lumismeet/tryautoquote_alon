@@ -16,7 +16,7 @@ export default function Footer() {
               TryAuto<span className="text-[#38B6C9]">Quote</span>
             </p>
             <p className="text-sm leading-relaxed text-white/55 max-w-xs">
-              Your one-stop shop for auto-insurance. Compare personalized rates from dozens of top carriers in real time — free, with no obligation to buy.
+              Your one-stop shop for auto-insurance. Compare personalized rates from dozens of top carriers in real time, free, with no obligation to buy.
             </p>
           </div>
 
@@ -24,6 +24,7 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3 text-sm text-white/55">
               <li><Link href="/" className="hover:text-white transition">Home</Link></li>
+              <li><Link href="/guides" className="hover:text-white transition">Guides</Link></li>
               <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link></li>
               <li><Link href="/terms-of-use" className="hover:text-white transition">Terms of Use</Link></li>
