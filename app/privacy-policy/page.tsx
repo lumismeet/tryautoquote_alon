@@ -3,14 +3,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | TryAutoQuote",
+  title: "Privacy Policy | TryAutoQuote Auto Insurance Quotes",
   description:
-    "How TryAutoQuote collects, uses, and safeguards your information when you compare auto insurance quotes through our website.",
+    "How TryAutoQuote collects, uses, and safeguards your personal information when you compare auto insurance quotes through our website.",
   alternates: { canonical: "/privacy-policy" },
   openGraph: {
-    title: "Privacy Policy | TryAutoQuote",
+    title: "Privacy Policy | TryAutoQuote Auto Insurance Quotes",
     description:
-      "How TryAutoQuote collects, uses, and safeguards your information when you compare auto insurance quotes through our website.",
+      "How TryAutoQuote collects, uses, and safeguards your personal information when you compare auto insurance quotes through our website.",
     url: "https://tryautoquote.com/privacy-policy",
     siteName: "TryAutoQuote",
     type: "website",

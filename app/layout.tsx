@@ -55,16 +55,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   // metadataBase lets Next resolve absolute URLs for canonical/OG tags.
   metadataBase: new URL("https://tryautoquote.com"),
-  title: "TryAutoQuote | Find the Best Auto Insurance Rates",
+  title: "Free Auto Insurance Quotes | Compare and Save | TryAutoQuote",
   description:
-    "Compare personalized auto insurance quotes from top carriers in minutes. Free, no obligation, no spam.",
+    "Compare personalized auto insurance quotes from top carriers in minutes. Free service, no obligation, no spam calls. Start with your zip code.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "TryAutoQuote | Find the Best Auto Insurance Rates",
+    title: "Free Auto Insurance Quotes | Compare and Save | TryAutoQuote",
     description:
-      "Compare personalized auto insurance quotes from top carriers in minutes. Free, no obligation, no spam.",
+      "Compare personalized auto insurance quotes from top carriers in minutes. Free service, no obligation, no spam calls. Start with your zip code.",
     url: "https://tryautoquote.com/",
     siteName: "TryAutoQuote",
     type: "website",
@@ -73,15 +73,15 @@ export const metadata: Metadata = {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "TryAutoQuote | Find the Best Auto Insurance Rates",
+        alt: "TryAutoQuote | Free Auto Insurance Quote Comparison",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TryAutoQuote | Find the Best Auto Insurance Rates",
+    title: "Free Auto Insurance Quotes | Compare and Save | TryAutoQuote",
     description:
-      "Compare personalized auto insurance quotes from top carriers in minutes. Free, no obligation, no spam.",
+      "Compare personalized auto insurance quotes from top carriers in minutes. Free service, no obligation, no spam calls. Start with your zip code.",
     images: ["/opengraph-image.png"],
   },
 };

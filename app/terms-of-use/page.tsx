@@ -4,14 +4,14 @@ import Footer from "@/components/footer";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Use | TryAutoQuote",
+  title: "Terms of Use | TryAutoQuote Free Auto Insurance Quotes",
   description:
-    "The terms that govern your use of TryAutoQuote.com, including disclaimers about our advertising-supported auto insurance comparison service.",
+    "The terms and conditions that govern your use of TryAutoQuote.com, including disclaimers about our advertising-supported auto insurance comparison service.",
   alternates: { canonical: "/terms-of-use" },
   openGraph: {
-    title: "Terms of Use | TryAutoQuote",
+    title: "Terms of Use | TryAutoQuote Free Auto Insurance Quotes",
     description:
-      "The terms that govern your use of TryAutoQuote.com, including disclaimers about our advertising-supported auto insurance comparison service.",
+      "The terms and conditions that govern your use of TryAutoQuote.com, including disclaimers about our advertising-supported auto insurance comparison service.",
     url: "https://tryautoquote.com/terms-of-use",
     siteName: "TryAutoQuote",
     type: "website",

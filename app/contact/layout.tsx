@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us | TryAutoQuote",
+  title: "Contact TryAutoQuote | Auto Insurance Quote Support",
   description:
-    "Get in touch with TryAutoQuote. Email our team for help comparing auto insurance quotes or questions about our service.",
+    "Get in touch with the TryAutoQuote team. Email us for help comparing auto insurance quotes, questions about your results, or anything about our service.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact Us | TryAutoQuote",
+    title: "Contact TryAutoQuote | Auto Insurance Quote Support",
     description:
-      "Get in touch with TryAutoQuote. Email our team for help comparing auto insurance quotes or questions about our service.",
+      "Get in touch with the TryAutoQuote team. Email us for help comparing auto insurance quotes, questions about your results, or anything about our service.",
     url: "https://tryautoquote.com/contact",
     siteName: "TryAutoQuote",
     type: "website",
