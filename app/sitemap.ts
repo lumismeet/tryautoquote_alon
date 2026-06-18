@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { states } from "@/lib/states";
 
 /* ------------------------------------------------------------------
    app/sitemap.ts  →  Next.js serves this automatically at /sitemap.xml
@@ -36,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.2,
+    },
+    {
+      url: `${BASE}/car-insurance`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${BASE}/guides`,
@@ -79,5 +86,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    ...states.map((s) => ({
+      url: `${BASE}/car-insurance/${s.slug}`,
+      lastModified: new Date(s.datePublished),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
   ];
 }

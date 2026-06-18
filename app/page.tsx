@@ -259,6 +259,7 @@ export default function LandingV2() {
       <CarValueSliderSection />
       <TestimonialsDark />
       <MapSection />
+      <BrowseByState />
       <FAQAccordion />
       <GradientCta />
       <FooterV3 />
@@ -875,6 +876,43 @@ function MapSection() {
 }
 
 /* ------------------------------------------------------------------ */
+/* Browse by State                                                      */
+/* ------------------------------------------------------------------ */
+
+const statePages = [
+  { name: "Texas", slug: "texas", min: "30/60/25 liability" },
+  { name: "California", slug: "california", min: "30/60/15 liability" },
+  { name: "Florida", slug: "florida", min: "$10k PIP + $10k PD" },
+  { name: "New York", slug: "new-york", min: "25/50/10 + $50k PIP" },
+  { name: "Georgia", slug: "georgia", min: "25/50/25 liability" },
+];
+
+function BrowseByState() {
+  return (
+    <section className="bg-white py-10 md:py-12">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        <Link
+          href="/car-insurance"
+          className="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#F4F7FB] hover:bg-[#EBF2FB] border border-[#0A2A4F]/8 rounded-2xl px-8 py-6 transition"
+        >
+          <div>
+            <p className="font-semibold text-[#0A2A4F] text-lg mb-1">
+              Car Insurance by State
+            </p>
+            <p className="text-sm text-[#0A2A4F]/55">
+              Requirements vary by state. See the minimum coverage for your state and what it actually covers.
+            </p>
+          </div>
+          <span className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-[#2B5BA8] group-hover:gap-2.5 transition-all">
+            Browse all states <ChevronRight className="w-4 h-4" />
+          </span>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Gradient CTA band — template's newsletter strip → zip quote strip    */
 /* ------------------------------------------------------------------ */
 
@@ -957,7 +995,7 @@ function FooterV3() {
   return (
     <footer className="bg-[#06203D] text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
             <p className="text-xl font-extrabold tracking-tight mb-4">
@@ -981,6 +1019,20 @@ function FooterV3() {
               <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link></li>
               <li><Link href="/terms-of-use" className="hover:text-white transition">Terms of Use</Link></li>
+            </ul>
+          </div>
+
+          {/* Browse by State */}
+          <div>
+            <h3 className="font-semibold mb-4">By State</h3>
+            <ul className="space-y-3 text-sm text-white/55">
+              {statePages.map((state) => (
+                <li key={state.slug}>
+                  <Link href={`/car-insurance/${state.slug}`} className="hover:text-white transition">
+                    {state.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

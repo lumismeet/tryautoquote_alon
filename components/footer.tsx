@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#06203D] text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
           <div>
             <p className="text-xl font-extrabold tracking-tight mb-4">
@@ -28,6 +28,17 @@ export default function Footer() {
               <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link></li>
               <li><Link href="/terms-of-use" className="hover:text-white transition">Terms of Use</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-4">By State</h3>
+            <ul className="space-y-3 text-sm text-white/55">
+              <li><Link href="/car-insurance/texas" className="hover:text-white transition">Texas</Link></li>
+              <li><Link href="/car-insurance/california" className="hover:text-white transition">California</Link></li>
+              <li><Link href="/car-insurance/florida" className="hover:text-white transition">Florida</Link></li>
+              <li><Link href="/car-insurance/new-york" className="hover:text-white transition">New York</Link></li>
+              <li><Link href="/car-insurance/georgia" className="hover:text-white transition">Georgia</Link></li>
             </ul>
           </div>
 
