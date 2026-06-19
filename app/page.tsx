@@ -137,10 +137,9 @@ const testimonials = [
 
 const navLinks = [
   { label: "Why us", href: "#why-us" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
   { label: "Guides", href: "/guides" },
+  { label: "Blogs", href: "/blogs" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -879,14 +878,6 @@ function MapSection() {
 /* Browse by State                                                      */
 /* ------------------------------------------------------------------ */
 
-const statePages = [
-  { name: "Texas", slug: "texas", min: "30/60/25 liability" },
-  { name: "California", slug: "california", min: "30/60/15 liability" },
-  { name: "Florida", slug: "florida", min: "$10k PIP + $10k PD" },
-  { name: "New York", slug: "new-york", min: "25/50/10 + $50k PIP" },
-  { name: "Georgia", slug: "georgia", min: "25/50/25 liability" },
-];
-
 function BrowseByState() {
   return (
     <section className="bg-white py-10 md:py-12">
@@ -995,7 +986,7 @@ function FooterV3() {
   return (
     <footer className="bg-[#06203D] text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
             <p className="text-xl font-extrabold tracking-tight mb-4">
@@ -1015,11 +1006,19 @@ function FooterV3() {
               <li><a href="#why-us" className="hover:text-white transition">Why us</a></li>
               <li><a href="#how-it-works" className="hover:text-white transition">How it works</a></li>
               <li><a href="#reviews" className="hover:text-white transition">Reviews</a></li>
-              <li><Link href="/guides" className="hover:text-white transition">Guides</Link></li>
-              <li><Link href="/car-insurance" className="hover:text-white transition">States</Link></li>
               <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link></li>
               <li><Link href="/terms-of-use" className="hover:text-white transition">Terms of Use</Link></li>
+            </ul>
+          </div>
+
+          {/* Explore */}
+          <div>
+            <h3 className="font-semibold mb-4">Explore</h3>
+            <ul className="space-y-3 text-sm text-white/55">
+              <li><Link href="/blogs" className="hover:text-white transition">Blog</Link></li>
+              <li><Link href="/guides" className="hover:text-white transition">Guides</Link></li>
+              <li><Link href="/car-insurance" className="hover:text-white transition">States</Link></li>
             </ul>
           </div>
 

@@ -15,6 +15,7 @@ const faqs: FAQ[] = [
     question: "What factors affect my car insurance premium?",
     answer:
       "Your driving history is one of the biggest factors, including any accidents, tickets, or DUI records from the past 3 to 5 years. Your age and years of experience behind the wheel matter too, with younger drivers typically paying more. Where you live plays a major role since urban areas with higher traffic and theft rates tend to have higher premiums. The vehicle itself matters as well, including its make, model, year, safety ratings, and how expensive it is to repair. On top of that, the coverage types and limits you choose, your deductible amount, and even your credit score in most states will all influence your final rate.",
+    link: { text: "Read: How your zip code affects your rate →", href: "/blogs/how-zip-code-affects-your-insurance-rate" },
   },
   {
     question: "How quickly can I get matched with providers?",
@@ -35,7 +36,7 @@ const faqs: FAQ[] = [
     question: "Should I get liability only or full coverage?",
     answer:
       "If your car is financed or leased, your lender requires full coverage. If you own your car outright, a common rule of thumb is: if the annual cost of collision and comprehensive exceeds 10% of your car's current market value, liability only is often the smarter financial choice.",
-    link: { text: "Read: Liability only vs full coverage →", href: "/guides/liability-only-vs-full-coverage" },
+    link: { text: "Read: When to drop full coverage on an older car →", href: "/blogs/when-to-drop-full-coverage" },
   },
   {
     question: "How can I lower my car insurance premium?",

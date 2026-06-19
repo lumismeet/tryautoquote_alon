@@ -3,35 +3,41 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 
-const DISCLAIMER = "TryAutoQuote.com is an independent, advertising-supported comparison website. The products and offers that appear on this website are from third-party insurance partners and advertisers from which TryAutoQuote.com may receive compensation. This compensation may influence which products we feature, how they are presented, and where they appear on the page. TryAutoQuote.com is not a licensed insurance provider or broker. Content on this site is provided for informational purposes only and does not constitute insurance advice. Available rates and offers vary by location, driving history, and other factors and are subject to change without notice. Not all products or offers are available in all states.";
-
 export default function Footer() {
   return (
     <footer className="bg-[#06203D] text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
           <div>
             <p className="text-xl font-extrabold tracking-tight mb-4">
               TryAuto<span className="text-[#38B6C9]">Quote</span>
             </p>
             <p className="text-sm leading-relaxed text-white/55 max-w-xs">
-              Your one-stop shop for auto-insurance. Compare personalized rates from dozens of top carriers in real time, free, with no obligation to buy.
+              Your one-stop shop for auto-insurance. Compare personalized rates from dozens of top carriers in real time - free, with no obligation to buy.
             </p>
           </div>
 
           <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3 text-sm text-white/55">
-              <li><Link href="/" className="hover:text-white transition">Home</Link></li>
-              <li><Link href="/guides" className="hover:text-white transition">Guides</Link></li>
-              <li><Link href="/car-insurance" className="hover:text-white transition">States</Link></li>
+              <li><Link href="/#why-us" className="hover:text-white transition">Why us</Link></li>
+              <li><Link href="/#how-it-works" className="hover:text-white transition">How it works</Link></li>
+              <li><Link href="/#reviews" className="hover:text-white transition">Reviews</Link></li>
               <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link></li>
               <li><Link href="/terms-of-use" className="hover:text-white transition">Terms of Use</Link></li>
             </ul>
           </div>
 
+          <div>
+            <h3 className="font-semibold mb-4">Explore</h3>
+            <ul className="space-y-3 text-sm text-white/55">
+              <li><Link href="/blogs" className="hover:text-white transition">Blog</Link></li>
+              <li><Link href="/guides" className="hover:text-white transition">Guides</Link></li>
+              <li><Link href="/car-insurance" className="hover:text-white transition">States</Link></li>
+            </ul>
+          </div>
 
           <div>
             <h3 className="font-semibold mb-4">Contact Us</h3>
@@ -52,7 +58,9 @@ export default function Footer() {
 
         <hr className="my-10 border-white/10" />
 
-        <p className="text-xs leading-relaxed text-white/40 max-w-5xl">{DISCLAIMER}</p>
+        <p className="text-xs leading-relaxed text-white/40 max-w-5xl">
+          TryAutoQuote.com is an independent, advertising-supported comparison website. The products and offers that appear on this website are from third-party insurance partners and advertisers from which TryAutoQuote.com may receive compensation. This compensation may influence which products we feature, how they are presented, and where they appear on the page. TryAutoQuote.com is not a licensed insurance provider or broker. Content on this site is provided for informational purposes only and does not constitute insurance advice. Available rates and offers vary by location, driving history, and other factors and are subject to change without notice. Not all products or offers are available in all states.
+        </p>
 
         <p className="mt-8 text-xs text-white/35 text-center">
           © {new Date().getFullYear()} TryAutoQuote. All Rights Reserved.
