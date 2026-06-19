@@ -99,7 +99,7 @@ export default async function StateCarInsurance({ params }: Props) {
           <h1 className="text-3xl md:text-4xl font-bold text-[#0A2A4F] leading-tight mb-4">
             Car Insurance in {s.name}
           </h1>
-          <p className="text-[#0A2A4F]/60 text-sm">Updated June 18, 2026 &middot; 5 min read</p>
+          <p className="text-[#0A2A4F]/60 text-sm">Updated {new Date(s.datePublished).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} &middot; 5 min read</p>
         </div>
 
         <div className="bg-[#2B5BA8]/8 border-l-4 border-[#2B5BA8] rounded-r-xl px-6 py-5 mb-10">

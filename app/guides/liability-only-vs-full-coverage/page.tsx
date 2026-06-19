@@ -74,7 +74,7 @@ export default function GuideLiabilityVsFullCoverage() {
           <h1 className="text-3xl md:text-4xl font-bold text-[#0A2A4F] leading-tight mb-4">
             Liability Only vs Full Coverage Car Insurance
           </h1>
-          <p className="text-[#0A2A4F]/60 text-sm">Updated June 17, 2026 &middot; 6 min read</p>
+          <p className="text-[#0A2A4F]/60 text-sm">Updated June 17, 2026 &middot; 5 mins read</p>
         </div>
 
         <div className="flex justify-center mb-10">

@@ -25,7 +25,7 @@ const guides = [
     title: "Does Getting an Auto Insurance Quote Affect Your Credit Score?",
     description:
       "Comparing quotes is a soft inquiry with zero credit impact. Learn the difference between hard and soft pulls and what insurers actually check.",
-    readTime: "5 min read",
+    readTime: "5 mins read",
   },
   {
     href: "/guides/how-much-car-insurance-do-i-need",
@@ -33,7 +33,7 @@ const guides = [
     title: "How Much Car Insurance Do You Actually Need?",
     description:
       "State minimums leave most drivers underprotected. Learn what coverage types exist, what limits to carry, and how to avoid overpaying.",
-    readTime: "6 min read",
+    readTime: "5 mins read",
   },
   {
     href: "/guides/cheapest-car-insurance-for-young-drivers",
@@ -41,7 +41,7 @@ const guides = [
     title: "Cheapest Car Insurance for Young Drivers",
     description:
       "Young drivers pay the highest rates but there are real ways to bring them down. Discounts, vehicle choices, and comparison tips that work.",
-    readTime: "7 min read",
+    readTime: "5 mins read",
   },
   {
     href: "/guides/liability-only-vs-full-coverage",
@@ -49,7 +49,7 @@ const guides = [
     title: "Liability Only vs Full Coverage Car Insurance",
     description:
       "Learn what each type covers, when the 10 percent rule applies, and how to decide based on your car's value and financial situation.",
-    readTime: "6 min read",
+    readTime: "5 mins read",
   },
   {
     href: "/guides/how-to-lower-your-car-insurance-premium",
@@ -57,7 +57,7 @@ const guides = [
     title: "How to Lower Your Car Insurance Premium",
     description:
       "Ten proven ways to reduce your premium without cutting the coverage you need. Compare, bundle, adjust, and save.",
-    readTime: "8 min read",
+    readTime: "5 mins read",
   },
   {
     href: "/guides/what-to-do-after-a-car-accident",
@@ -65,7 +65,7 @@ const guides = [
     title: "What to Do After a Car Accident: Step-by-Step",
     description:
       "A clear checklist of every step to take after an accident, from the scene to the claim, to protect yourself and your coverage.",
-    readTime: "7 min read",
+    readTime: "5 mins read",
   },
 ];
 

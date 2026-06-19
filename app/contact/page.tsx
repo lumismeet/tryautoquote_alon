@@ -28,74 +28,74 @@ export default function ContactPage() {
       {/* Add your <Navbar /> here */}
 
       {/* Header */}
-      <section className="bg-[#EBF2FB] pt-36 pb-16">
+      <section className="bg-[#F4F7FB] pt-36 pb-16">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#0C2340] mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#0A2A4F] mb-4">
             Get in Touch
           </h1>
-          <p className="text-gray-600 text-lg max-w-xl mx-auto">
+          <p className="text-[#0A2A4F]/60 text-lg max-w-xl mx-auto">
             Have a question or need help finding the right policy? Send us a message and we will get back to you as soon as possible.
           </p>
         </div>
       </section>
 
       {/* Main */}
-      <section className="bg-[#EBF2FB] pb-24">
+      <section className="bg-[#F4F7FB] pb-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             {/* Left - Info Card */}
-            <div className="relative bg-[#2B5BA8] text-white rounded-2xl p-10 overflow-hidden flex flex-col justify-between min-h-[420px]">
-              <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#378ADD] rounded-full opacity-40" />
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#378ADD] rounded-full opacity-40" />
+            <div className="relative bg-gradient-to-br from-[#2B5BA8] to-[#1a4080] text-white rounded-2xl p-10 overflow-hidden flex flex-col justify-between min-h-[420px]">
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#38B6C9] rounded-full opacity-20" />
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#38B6C9] rounded-full opacity-25" />
 
               <div className="relative z-10">
                 <h2 className="text-2xl font-bold mb-4">Contact Information</h2>
-                <p className="opacity-80 mb-12 leading-relaxed">
+                <p className="opacity-70 mb-12 leading-relaxed">
                   We typically respond within one business day. For any questions about your quotes or how the platform works, we are happy to help.
                 </p>
 
                 <div className="flex items-center gap-4">
-                  <div className="bg-white/20 p-3 rounded-full">
-                    <Mail className="w-5 h-5" />
+                  <div className="bg-white/15 p-3 rounded-full">
+                    <Mail className="w-5 h-5 text-[#38B6C9]" />
                   </div>
                   <div>
-                    <p className="text-sm opacity-70 mb-0.5">Email us at</p>
+                    <p className="text-sm opacity-60 mb-0.5">Email us at</p>
                     <a
-                      href="mailto:info@tryautoquotes.com"
-                      className="font-semibold hover:opacity-80 transition"
+                      href="mailto:support@tryautoquote.com"
+                      className="font-semibold hover:text-[#38B6C9] transition"
                     >
-                      info@tryautoquotes.com
+                      support@tryautoquote.com
                     </a>
                   </div>
                 </div>
               </div>
 
               <div className="relative z-10 mt-16">
-                <p className="text-sm opacity-50">
+                <p className="text-sm opacity-40">
                   TryAutoQuote is a free service. You are never obligated to purchase any policy.
                 </p>
               </div>
             </div>
 
             {/* Right - Form Card */}
-            <div className="bg-white rounded-2xl p-10 shadow-lg">
+            <div className="bg-white border border-[#0A2A4F]/8 rounded-2xl p-10">
               {submitted ? (
                 <div className="flex flex-col items-center justify-center h-full text-center py-12">
-                  <div className="bg-[#EBF2FB] p-5 rounded-full mb-6">
+                  <div className="bg-[#2B5BA8]/10 p-5 rounded-full mb-6">
                     <Send className="w-8 h-8 text-[#2B5BA8]" />
                   </div>
-                  <h3 className="text-2xl font-bold text-[#0C2340] mb-3">
+                  <h3 className="text-2xl font-bold text-[#0A2A4F] mb-3">
                     Message Sent
                   </h3>
-                  <p className="text-gray-500 leading-relaxed">
+                  <p className="text-[#0A2A4F]/55 leading-relaxed">
                     Thanks for reaching out. We will get back to you at your email address within one business day.
                   </p>
                 </div>
               ) : (
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-[#0A2A4F] mb-2">
                       Your Name
                     </label>
                     <input
@@ -105,12 +105,12 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#2B5BA8] transition"
+                      className="w-full border border-[#0A2A4F]/15 rounded-lg px-4 py-3 text-[#0A2A4F] placeholder-[#0A2A4F]/30 focus:outline-none focus:border-[#2B5BA8] transition"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-[#0A2A4F] mb-2">
                       Email Address
                     </label>
                     <input
@@ -120,12 +120,12 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#2B5BA8] transition"
+                      className="w-full border border-[#0A2A4F]/15 rounded-lg px-4 py-3 text-[#0A2A4F] placeholder-[#0A2A4F]/30 focus:outline-none focus:border-[#2B5BA8] transition"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-[#0A2A4F] mb-2">
                       Message
                     </label>
                     <textarea
@@ -135,13 +135,13 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#2B5BA8] transition resize-none"
+                      className="w-full border border-[#0A2A4F]/15 rounded-lg px-4 py-3 text-[#0A2A4F] placeholder-[#0A2A4F]/30 focus:outline-none focus:border-[#2B5BA8] transition resize-none"
                     />
                   </div>
 
                   <button
                     onClick={handleSubmit}
-                    className="w-full bg-[#2B5BA8] text-white font-semibold py-3 rounded-lg hover:bg-[#E8732A] transition shadow-lg cursor-pointer"
+                    className="w-full bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] text-white font-semibold py-3 rounded-full hover:opacity-90 transition cursor-pointer"
                   >
                     Send Message →
                   </button>

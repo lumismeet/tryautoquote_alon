@@ -995,7 +995,7 @@ function FooterV3() {
   return (
     <footer className="bg-[#06203D] text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Brand */}
           <div>
             <p className="text-xl font-extrabold tracking-tight mb-4">
@@ -1016,23 +1016,10 @@ function FooterV3() {
               <li><a href="#how-it-works" className="hover:text-white transition">How it works</a></li>
               <li><a href="#reviews" className="hover:text-white transition">Reviews</a></li>
               <li><Link href="/guides" className="hover:text-white transition">Guides</Link></li>
+              <li><Link href="/car-insurance" className="hover:text-white transition">States</Link></li>
               <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link></li>
               <li><Link href="/terms-of-use" className="hover:text-white transition">Terms of Use</Link></li>
-            </ul>
-          </div>
-
-          {/* Browse by State */}
-          <div>
-            <h3 className="font-semibold mb-4">By State</h3>
-            <ul className="space-y-3 text-sm text-white/55">
-              {statePages.map((state) => (
-                <li key={state.slug}>
-                  <Link href={`/car-insurance/${state.slug}`} className="hover:text-white transition">
-                    {state.name}
-                  </Link>
-                </li>
-              ))}
             </ul>
           </div>
 

@@ -89,6 +89,10 @@ export default function CarInsuranceByState() {
               <ChevronRight className="w-5 h-5 text-[#2B5BA8] shrink-0 opacity-40 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition" />
             </Link>
           ))}
+
+          <div className="text-center py-5 text-sm text-[#0A2A4F]/40 tracking-wide">
+            More states coming soon
+          </div>
         </div>
 
         <div className="mt-14 bg-[#0A2A4F] rounded-2xl px-8 py-10 text-center text-white">
