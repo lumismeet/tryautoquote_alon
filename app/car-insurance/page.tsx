@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
-import { ChevronRight } from "lucide-react";
+import StatesGrid from "@/components/StatesGrid";
 import { states } from "@/lib/states";
 
 export const metadata: Metadata = {
@@ -55,45 +55,7 @@ export default function CarInsuranceByState() {
           </p>
         </div>
 
-        <div className="space-y-4">
-          {states.map((state) => (
-            <Link
-              key={state.slug}
-              href={`/car-insurance/${state.slug}`}
-              className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white hover:bg-[#EBF2FB] border border-[#0A2A4F]/8 rounded-2xl px-6 py-5 transition"
-            >
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <p className="font-semibold text-[#0A2A4F] group-hover:text-[#2B5BA8] transition text-lg">
-                    {state.name}
-                  </p>
-                  <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                    state.faultSystem === "no-fault"
-                      ? "bg-[#38B6C9]/15 text-[#38B6C9]"
-                      : "bg-[#2B5BA8]/10 text-[#2B5BA8]"
-                  }`}>
-                    {state.faultSystem === "no-fault" ? "No-fault" : "At-fault"}
-                  </span>
-                  {state.creditBanned && (
-                    <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-[#E8732A]/10 text-[#E8732A]">
-                      Credit ban
-                    </span>
-                  )}
-                </div>
-                <p className="text-sm text-[#0A2A4F]/55">
-                  Min. <span className="font-medium text-[#0A2A4F]/70">{state.minDisplay}</span>
-                  <span className="mx-2 text-[#0A2A4F]/25">·</span>
-                  {state.indexNote}
-                </p>
-              </div>
-              <ChevronRight className="w-5 h-5 text-[#2B5BA8] shrink-0 opacity-40 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition" />
-            </Link>
-          ))}
-
-          <div className="text-center py-5 text-sm text-[#0A2A4F]/40 tracking-wide">
-            More states coming soon
-          </div>
-        </div>
+        <StatesGrid states={states} />
 
         <div className="mt-14 bg-[#0A2A4F] rounded-2xl px-8 py-10 text-center text-white">
           <h2 className="text-2xl font-bold mb-3">Ready to compare rates in your state?</h2>
