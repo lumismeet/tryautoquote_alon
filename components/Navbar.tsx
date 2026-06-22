@@ -1,8 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { Inter } from "next/font/google";
 import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
+
+const inter = Inter({ subsets: ["latin"] });
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -33,8 +37,9 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
   return (
     <header className="sticky top-0 z-50 bg-[#F4F7FB]/90 backdrop-blur border-b border-[#0A2A4F]/5">
       <nav className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 h-16 md:h-[72px] flex items-center justify-between gap-6">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <span className="text-xl font-extrabold tracking-tight text-[#0A2A4F]">
+        <Link href="/" className="flex items-center gap-0 shrink-0">
+          <Image src="/LOGO-no-bg.png" alt="TryAutoQuote logo" width={68} height={68} className="h-10 w-auto object-contain" />
+          <span className={`${inter.className} text-xl font-extrabold tracking-tight text-[#0A2A4F]`}>
             TryAuto<span className="text-[#38B6C9]">Quote</span>
           </span>
         </Link>
