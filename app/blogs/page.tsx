@@ -20,6 +20,15 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    href: "/blogs/car-insurance-for-foreign-drivers",
+    tag: "New to the U.S.",
+    title: "Car Insurance in the U.S. When You're Not From Here",
+    description:
+      "Getting auto insurance as a foreign driver, international student, visa holder, or recent immigrant is harder than it should be. Here is exactly what you need and how to get it.",
+    readTime: "8 min read",
+    date: "July 7, 2026",
+  },
+  {
     href: "/blogs/how-to-compare-auto-insurance",
     tag: "Expert Advice",
     title: "A Real Conversation About Auto Insurance: What an Agent Actually Tells Customers",
