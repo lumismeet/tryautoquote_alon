@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
+import BlogsList from "@/components/BlogsList";
 
 export const metadata: Metadata = {
   title: "Auto Insurance Blog | TryAutoQuote",
@@ -100,35 +101,7 @@ export default function BlogsIndex() {
           </p>
         </div>
 
-        <div className="space-y-5">
-          {posts.map((post) => (
-            <Link
-              key={post.href}
-              href={post.href}
-              className="group block bg-white border border-[#0A2A4F]/8 rounded-2xl p-7 hover:border-[#2B5BA8]/30 hover:shadow-md transition"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <span className="inline-block text-xs font-semibold text-[#2B5BA8] bg-[#2B5BA8]/10 rounded-full px-3 py-1 mb-3">
-                    {post.tag}
-                  </span>
-                  <h2 className="text-lg font-bold text-[#0A2A4F] group-hover:text-[#2B5BA8] transition mb-2 leading-snug">
-                    {post.title}
-                  </h2>
-                  <p className="text-sm text-[#0A2A4F]/60 leading-relaxed">{post.description}</p>
-                  <div className="mt-3 flex items-center gap-3 text-xs text-[#0A2A4F]/40">
-                    <span>{post.date}</span>
-                    <span>·</span>
-                    <span>{post.readTime}</span>
-                  </div>
-                </div>
-                <span className="text-[#0A2A4F]/25 group-hover:text-[#2B5BA8] transition text-2xl shrink-0 mt-1">
-                  &#8594;
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <BlogsList posts={posts} />
 
       </main>
 

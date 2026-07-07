@@ -13,11 +13,25 @@ function StatesGridInner({ states }: { states: typeof StatesType }) {
   const router = useRouter();
   const pathname = usePathname();
 
+  const query = searchParams.get("q") ?? "";
+  const filtered = query
+    ? states
+        .filter((s) => s.name.toLowerCase().includes(query.toLowerCase()))
+        .sort((a, b) => {
+          const q = query.toLowerCase();
+          const aStarts = a.name.toLowerCase().startsWith(q);
+          const bStarts = b.name.toLowerCase().startsWith(q);
+          if (aStarts && !bStarts) return -1;
+          if (!aStarts && bStarts) return 1;
+          return a.name.localeCompare(b.name);
+        })
+    : states;
+
   const page = Math.max(1, Number(searchParams.get("page") ?? "1"));
-  const totalPages = Math.ceil(states.length / PAGE_SIZE);
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const safePage = Math.min(page, totalPages);
   const start = (safePage - 1) * PAGE_SIZE;
-  const shown = states.slice(start, start + PAGE_SIZE);
+  const shown = filtered.slice(start, start + PAGE_SIZE);
 
   function goTo(n: number) {
     const params = new URLSearchParams(searchParams.toString());
@@ -30,8 +44,34 @@ function StatesGridInner({ states }: { states: typeof StatesType }) {
     router.replace(`${pathname}${qs ? `?${qs}` : ""}`, { scroll: false });
   }
 
+  function onSearch(value: string) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value) {
+      params.set("q", value);
+    } else {
+      params.delete("q");
+    }
+    params.delete("page");
+    const qs = params.toString();
+    router.replace(`${pathname}${qs ? `?${qs}` : ""}`, { scroll: false });
+  }
+
   return (
     <div>
+      <div className="mb-5">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => onSearch(e.target.value)}
+          placeholder="Search states..."
+          className="w-full bg-white border border-[#0A2A4F]/10 rounded-xl px-4 py-3 text-sm text-[#0A2A4F] placeholder-[#0A2A4F]/35 focus:outline-none focus:ring-2 focus:ring-[#2B5BA8]/30 transition"
+        />
+      </div>
+
+      {filtered.length === 0 && (
+        <p className="text-center py-10 text-sm text-[#0A2A4F]/40">No states match &quot;{query}&quot;</p>
+      )}
+
       <div className="space-y-4 mb-8">
         {shown.map((state) => (
           <Link
@@ -102,7 +142,7 @@ function StatesGridInner({ states }: { states: typeof StatesType }) {
         </div>
       )}
 
-      {safePage === totalPages && (
+      {safePage === totalPages && !query && (
         <p className="text-center mt-6 text-sm text-[#0A2A4F]/40 tracking-wide">
           More states coming soon
         </p>
