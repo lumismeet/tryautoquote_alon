@@ -116,6 +116,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${BASE}/blogs/car-insurance-for-foreign-drivers`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE}/blogs/how-an-accident-affects-your-insurance-rate`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...states.map((s) => ({
       url: `${BASE}/car-insurance/${s.slug}`,
       lastModified: new Date(s.datePublished),
