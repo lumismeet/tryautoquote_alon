@@ -20,6 +20,15 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    href: "/blogs/how-an-accident-affects-your-insurance-rate",
+    tag: "Rates and Pricing",
+    title: "What Actually Happens to Your Rate After an Accident",
+    description:
+      "Most people assume any accident permanently wrecks their rate. The reality is more specific. Here is exactly how much it goes up, for how long, and what you can do about it.",
+    readTime: "8 min read",
+    date: "July 7, 2026",
+  },
+  {
     href: "/blogs/car-insurance-for-foreign-drivers",
     tag: "New to the U.S.",
     title: "Car Insurance in the U.S. When You're Not From Here",
