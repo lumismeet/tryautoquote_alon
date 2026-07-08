@@ -21,6 +21,24 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    href: "/blogs/uninsured-motorist-coverage",
+    tag: "Coverage Decisions",
+    title: "Uninsured Motorist Coverage: The One Most People Skip and Shouldn't",
+    description:
+      "About 1 in 8 U.S. drivers is uninsured. Learn what uninsured and underinsured motorist coverage actually pays for, how it differs from liability insurance, and why it's often one of the best values on your policy.",
+    readTime: "8 min read",
+    date: "July 8, 2026",
+  },
+  {
+    href: "/blogs/how-adding-a-teen-driver-affects-your-premium",
+    tag: "Family Insurance",
+    title: "How Adding a Teen Driver Affects Your Premium",
+    description:
+      "Adding a 16 or 17-year-old driver can nearly double your family's insurance premium. Learn why rates increase so much, which discounts actually help, how vehicle assignment affects pricing, and when a separate policy might make sense.",
+    readTime: "8 min read",
+    date: "July 8, 2026",
+  },
+  {
     href: "/blogs/how-an-accident-affects-your-insurance-rate",
     tag: "Rates and Pricing",
     title: "What Actually Happens to Your Rate After an Accident",
@@ -71,7 +89,7 @@ const posts = [
     title: "How Your Zip Code Affects Your Car Insurance Rate More Than Almost Anything Else",
     description:
       "Where you live can move your premium by hundreds of dollars a year, sometimes more than your driving record does. Here is why, and what you can actually do about it.",
-    readTime: "8 mins read",
+    readTime: "8 min read",
     date: "June 19, 2026",
   },
 ];

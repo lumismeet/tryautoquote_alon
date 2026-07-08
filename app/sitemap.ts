@@ -128,6 +128,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${BASE}//blogs/how-adding-a-teen-driver-affects-your-premium`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE}/blogs/uninsured-motorist-coverage`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...states.map((s) => ({
       url: `${BASE}/car-insurance/${s.slug}`,
       lastModified: new Date(s.datePublished),
