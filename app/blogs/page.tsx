@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import BlogsList from "@/components/BlogsList";
+import { getAllPosts } from "@/lib/blogs";
 
 export const metadata: Metadata = {
   title: "Auto Insurance Blog | TryAutoQuote",
@@ -19,82 +20,9 @@ export const metadata: Metadata = {
   },
 };
 
-const posts = [
-  {
-    href: "/blogs/uninsured-motorist-coverage",
-    tag: "Coverage Decisions",
-    title: "Uninsured Motorist Coverage: The One Most People Skip and Shouldn't",
-    description:
-      "About 1 in 8 U.S. drivers is uninsured. Learn what uninsured and underinsured motorist coverage actually pays for, how it differs from liability insurance, and why it's often one of the best values on your policy.",
-    readTime: "8 min read",
-    date: "July 8, 2026",
-  },
-  {
-    href: "/blogs/how-adding-a-teen-driver-affects-your-premium",
-    tag: "Family Insurance",
-    title: "How Adding a Teen Driver Affects Your Premium",
-    description:
-      "Adding a 16 or 17-year-old driver can nearly double your family's insurance premium. Learn why rates increase so much, which discounts actually help, how vehicle assignment affects pricing, and when a separate policy might make sense.",
-    readTime: "8 min read",
-    date: "July 8, 2026",
-  },
-  {
-    href: "/blogs/how-an-accident-affects-your-insurance-rate",
-    tag: "Rates and Pricing",
-    title: "What Actually Happens to Your Rate After an Accident",
-    description:
-      "Most people assume any accident permanently wrecks their rate. The reality is more specific. Here is exactly how much it goes up, for how long, and what you can do about it.",
-    readTime: "8 min read",
-    date: "July 7, 2026",
-  },
-  {
-    href: "/blogs/car-insurance-for-foreign-drivers",
-    tag: "New to the U.S.",
-    title: "Car Insurance in the U.S. When You're Not From Here",
-    description:
-      "Getting auto insurance as a foreign driver, international student, visa holder, or recent immigrant is harder than it should be. Here is exactly what you need and how to get it.",
-    readTime: "8 min read",
-    date: "July 7, 2026",
-  },
-  {
-    href: "/blogs/how-to-compare-auto-insurance",
-    tag: "Expert Advice",
-    title: "A Real Conversation About Auto Insurance: What an Agent Actually Tells Customers",
-    description:
-      "We sat down with a licensed insurance agent and listened in as she walked a first-time shopper through everything: coverage types, how to compare quotes, and the mistakes most drivers make.",
-    readTime: "7 min read",
-    date: "June 19, 2026",
-  },
-  {
-    href: "/blogs/common-mistakes-when-filing-a-claim",
-    tag: "Claims",
-    title: "Common Mistakes People Make When Filing an Auto Insurance Claim",
-    description:
-      "Most claim mistakes are well-meaning, not dishonest. Here are the ones that quietly cost people money and how to avoid them.",
-    readTime: "7 min read",
-    date: "June 19, 2026",
-  },
-  {
-    href: "/blogs/when-to-drop-full-coverage",
-    tag: "Coverage Decisions",
-    title: "When to Drop Full Coverage on an Older Car",
-    description:
-      "Collision and comprehensive coverage make sense at some point in a car's life and stop making sense at another. Here is how to figure out where you are.",
-    readTime: "8 mins read",
-    date: "June 19, 2026",
-  },
-  {
-    href: "/blogs/how-zip-code-affects-your-insurance-rate",
-    tag: "Rates and Pricing",
-    title: "How Your Zip Code Affects Your Car Insurance Rate More Than Almost Anything Else",
-    description:
-      "Where you live can move your premium by hundreds of dollars a year, sometimes more than your driving record does. Here is why, and what you can actually do about it.",
-    readTime: "8 min read",
-    date: "June 19, 2026",
-  },
-];
-
 export default function BlogsIndex() {
+  const posts = getAllPosts();
+
   return (
     <div className="min-h-screen flex flex-col bg-[#F4F7FB] text-[#0A2A4F]">
       <Navbar />
