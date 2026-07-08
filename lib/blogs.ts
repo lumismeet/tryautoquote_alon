@@ -67,5 +67,3 @@ export function getAllSlugs(): string[] {
     .map((f) => f.replace(/\.mdx$/, ""));
 }
 
-console.log("BLOGS_DIR resolves to:", BLOGS_DIR);
-console.log("cwd is:", process.cwd());

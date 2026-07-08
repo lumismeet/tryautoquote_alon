@@ -12,12 +12,13 @@ export function generateStaticParams() {
 }
 
 // Per-post SEO — pulls from frontmatter instead of hardcoded metadata
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const post = getPostBySlug(params.slug);
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) return {};
 
   return {
@@ -34,8 +35,9 @@ export function generateMetadata({
   };
 }
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) notFound();
 
   return (
@@ -67,11 +69,29 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           <hr className="mt-7 border-[#0A2A4F]/10" />
         </div>
 
-        {/* article prose — MDX headings/paragraphs need matching styles.
-            ADD: your h2/p/ul styles here or via a global .mdx-content class,
-            since MDXRemote output isn't wrapped in your old <article> className directly */}
-        <article className="text-[#0A2A4F]/75 leading-[1.85] text-[1.02rem] space-y-6 mdx-content">
-          <MDXRemote source={post.content} />
+        <article className="text-[#0A2A4F]/75 leading-[1.85] text-[1.02rem] space-y-6">
+          <MDXRemote
+            source={post.content}
+            components={{
+              h2: ({ children }) =>
+                children === "Key takeaways" ? (
+                  <p className="font-semibold text-[#0A2A4F] text-sm border-t border-[#0A2A4F]/10 pt-8 mt-4">
+                    {children}
+                  </p>
+                ) : (
+                  <h2 className="text-xl font-bold text-[#0A2A4F] pt-4">{children}</h2>
+                ),
+              ul: ({ children }) => (
+                <ul className="space-y-2.5 text-sm text-[#0A2A4F]/65">{children}</ul>
+              ),
+              li: ({ children }) => (
+                <li className="flex items-start gap-2.5">
+                  <span className="text-[#38B6C9] mt-0.5 shrink-0">&#10003;</span>
+                  <span>{children}</span>
+                </li>
+              ),
+            }}
+          />
         </article>
 
         <div className="mt-14 bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] rounded-2xl px-8 py-10 text-center text-white">
