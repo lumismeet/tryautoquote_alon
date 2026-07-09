@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { states } from "@/lib/states";
+import { getAllPosts } from "@/lib/blogs";
 
 /* ------------------------------------------------------------------
    app/sitemap.ts  →  Next.js serves this automatically at /sitemap.xml
@@ -92,54 +93,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
-    {
-      url: `${BASE}/blogs/how-to-compare-auto-insurance`,
-      lastModified: now,
-      changeFrequency: "monthly",
+    ...getAllPosts().map((post) => ({
+      url: `${BASE}/blogs/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly" as const,
       priority: 0.7,
-    },
-    {
-      url: `${BASE}/blogs/common-mistakes-when-filing-a-claim`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/blogs/how-zip-code-affects-your-insurance-rate`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/blogs/when-to-drop-full-coverage`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/blogs/car-insurance-for-foreign-drivers`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/blogs/how-an-accident-affects-your-insurance-rate`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}//blogs/how-adding-a-teen-driver-affects-your-premium`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/blogs/uninsured-motorist-coverage`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
+    })),
     ...states.map((s) => ({
       url: `${BASE}/car-insurance/${s.slug}`,
       lastModified: new Date(s.datePublished),

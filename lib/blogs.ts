@@ -11,8 +11,8 @@ export type BlogFrontmatter = {
   title: string;
   tag: string;
   description: string;
-  date: string;      // e.g. "July 8, 2026" — keep consistent across all .mdx files
-  readTime: string;  // e.g. "8 min read"
+  date: string;
+  readTime: string;
 };
 
 export type BlogPost = BlogFrontmatter & {
@@ -67,3 +67,27 @@ export function getAllSlugs(): string[] {
     .map((f) => f.replace(/\.mdx$/, ""));
 }
 
+// Extracts "## Heading" lines from raw MDX and slugifies them the same way
+// rehype-slug does, so these IDs match the actual rendered <h2 id="..."> tags.
+export type Heading = { id: string; text: string };
+
+export function getHeadings(content: string): Heading[] {
+  const matches = [...content.matchAll(/^##\s+(.+)$/gm)];
+  const seen = new Map<string, number>();
+
+  return matches.map((m) => {
+    const text = m[1].trim();
+    let id = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .trim()
+      .replace(/\s+/g, "-");
+
+    // handles duplicate heading text the same way github-slugger does (-1, -2, ...)
+    const count = seen.get(id) ?? 0;
+    seen.set(id, count + 1);
+    if (count > 0) id = `${id}-${count}`;
+
+    return { id, text };
+  });
+}
