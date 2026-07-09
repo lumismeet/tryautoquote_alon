@@ -4,7 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Bricolage_Grotesque, Inter } from "next/font/google";
+// import { Gelasio, Inter } from "next/font/google";
+// import { Charis_SIL, Inter } from "next/font/google";
+// import { Source_Serif_4, Inter } from "next/font/google";
+// import { Playfair_Display, Inter } from "next/font/google";
+import { Merriweather, Inter } from "next/font/google";
+// import { Noto_Serif_Hebrew, Inter } from "next/font/google";
+// import { Domine, Inter } from "next/font/google";
+// import { PT_Serif, Inter } from "next/font/google";
+// import { Lora, Inter} from "next/font/google";
+// import { Libre_Baskerville, Inter } from "next/font/google";
+// import { Bitter, Inter } from "next/font/google";
+
 import {
   ShieldCheck,
   PhoneOff,
@@ -32,9 +43,57 @@ import { useForm } from "@/context/FormContext";
 /* Fonts                                                                */
 /* ------------------------------------------------------------------ */
 
-const display = Bricolage_Grotesque({
+// const display = Gelasio({
+//   subsets: ["latin"],
+//   weight: ["400", "600", "700"],
+//   variable: "--font-display",
+// });
+
+// const display = Charis_SIL({
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+//   variable: "--font-display",
+// });
+
+// const display = Noto_Serif_Hebrew({
+//   subsets: ["latin"],
+//   weight: ["700", "800", "900"],
+//   variable: "--font-display",
+// });
+
+// const display = Domine({
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+//   variable: "--font-display",
+// });
+
+// const display = PT_Serif({
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+//   variable: "--font-display",
+// });
+
+// const display = Lora({
+//   subsets: ["latin"],
+//   weight: ["700"],
+//   variable: "--font-display",
+// });
+
+// const display = Libre_Baskerville({
+//   subsets: ["latin"],
+//   weight: ["700"],
+//   variable: "--font-display",
+// });
+
+// const display = Bitter({
+//   subsets: ["latin"],
+//   weight: ["700"],
+//   variable: "--font-display",
+// });
+
+const display = Merriweather({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["700", "900"],
   variable: "--font-display",
 });
 
@@ -429,14 +488,14 @@ function HeroSection({
   return (
     <section className="bg-[#F4F7FB]">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-14 md:pt-20 pb-16 md:pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-14 items-center">
           {/* Text */}
           <div>
             <span className="inline-block text-xs font-semibold text-[#0A2A4F]/70 border border-[#0A2A4F]/15 bg-white rounded-full px-4 py-1.5 mb-6">
               Auto insurance, simplified
             </span>
 
-            <h1 className="[font-family:var(--font-display)] text-4xl sm:text-5xl lg:text-[56px] font-extrabold leading-[1.08] text-[#0A2A4F]">
+            <h1 className="[font-family:var(--font-display)] text-4xl sm:text-5xl lg:text-[64px] xl:text-[55px] font-extrabold leading-[1.08] text-[#0A2A4F]">
               Your one-stop shop for auto-insurance.
             </h1>
 
