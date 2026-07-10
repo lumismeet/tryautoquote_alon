@@ -4,17 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-// import { Gelasio, Inter } from "next/font/google";
-// import { Charis_SIL, Inter } from "next/font/google";
-// import { Source_Serif_4, Inter } from "next/font/google";
-// import { Playfair_Display, Inter } from "next/font/google";
 import { Merriweather, Inter } from "next/font/google";
-// import { Noto_Serif_Hebrew, Inter } from "next/font/google";
-// import { Domine, Inter } from "next/font/google";
-// import { PT_Serif, Inter } from "next/font/google";
-// import { Lora, Inter} from "next/font/google";
-// import { Libre_Baskerville, Inter } from "next/font/google";
-// import { Bitter, Inter } from "next/font/google";
 
 import {
   ShieldCheck,
@@ -39,57 +29,7 @@ import USMap from "@/components/USMap";
 import CarValueSlider from "@/components/CarValueSlider";
 import { useForm } from "@/context/FormContext";
 
-/* ------------------------------------------------------------------ */
-/* Fonts                                                                */
-/* ------------------------------------------------------------------ */
-
-// const display = Gelasio({
-//   subsets: ["latin"],
-//   weight: ["400", "600", "700"],
-//   variable: "--font-display",
-// });
-
-// const display = Charis_SIL({
-//   subsets: ["latin"],
-//   weight: ["400", "700"],
-//   variable: "--font-display",
-// });
-
-// const display = Noto_Serif_Hebrew({
-//   subsets: ["latin"],
-//   weight: ["700", "800", "900"],
-//   variable: "--font-display",
-// });
-
-// const display = Domine({
-//   subsets: ["latin"],
-//   weight: ["400", "700"],
-//   variable: "--font-display",
-// });
-
-// const display = PT_Serif({
-//   subsets: ["latin"],
-//   weight: ["400", "700"],
-//   variable: "--font-display",
-// });
-
-// const display = Lora({
-//   subsets: ["latin"],
-//   weight: ["700"],
-//   variable: "--font-display",
-// });
-
-// const display = Libre_Baskerville({
-//   subsets: ["latin"],
-//   weight: ["700"],
-//   variable: "--font-display",
-// });
-
-// const display = Bitter({
-//   subsets: ["latin"],
-//   weight: ["700"],
-//   variable: "--font-display",
-// });
+// fonts
 
 const display = Merriweather({
   subsets: ["latin"],
