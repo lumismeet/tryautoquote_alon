@@ -79,7 +79,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               <hr className="mt-7 border-[#0A2A4F]/10" />
             </div>
 
-            <article className="text-[#0A2A4F]/75 leading-[1.85] text-[1.02rem] space-y-6">
+            <article className="text-[#0A2A4F]/75 leading-[1.85] text-[1.02rem] space-y-6 mdx-content">
               <MDXRemote
                 source={post.content}
                 options={{ mdxOptions: { rehypePlugins: [rehypeSlug] } }}

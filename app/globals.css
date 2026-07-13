@@ -66,3 +66,20 @@ body {
   padding-left: 1.25rem;
   margin-bottom: 1.5rem;
 }
+
+.mdx-content h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0A2A4F;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(10, 42, 79, 0.08);
+}
+ 
+.mdx-content h3 + p {
+  margin-top: 0.5rem;
+  color: #0A2A4F;
+  opacity: 0.7;
+  font-size: 0.95rem;
+}
+ 
