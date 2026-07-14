@@ -43,9 +43,9 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-3 text-sm text-white/55">
               <li>
-                <a href="mailto:support@tryautoquote.com" className="inline-flex items-center gap-2 hover:text-white transition">
+                <a href="mailto:info@tryautoquote.com" className="inline-flex items-center gap-2 hover:text-white transition">
                   <Mail className="w-4 h-4 text-[#38B6C9]" />
-                  support@tryautoquote.com
+                  info@tryautoquote.com
                 </a>
               </li>
               <li className="text-white/40">

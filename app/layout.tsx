@@ -105,7 +105,7 @@ const organizationSchema = {
     "TryAutoQuote is an independent, advertising-supported comparison website that helps drivers compare personalized auto insurance quotes from third-party carriers.",
   contactPoint: {
     "@type": "ContactPoint",
-    email: "support@tryautoquote.com",
+    email: "info@tryautoquote.com",
     contactType: "customer support",
   },
   disambiguatingDescription:

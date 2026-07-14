@@ -62,10 +62,10 @@ export default function ContactPage() {
                   <div>
                     <p className="text-sm opacity-60 mb-0.5">Email us at</p>
                     <a
-                      href="mailto:support@tryautoquote.com"
+                      href="mailto:info@tryautoquote.com"
                       className="font-semibold hover:text-[#38B6C9] transition"
                     >
-                      support@tryautoquote.com
+                      info@tryautoquote.com
                     </a>
                   </div>
                 </div>
