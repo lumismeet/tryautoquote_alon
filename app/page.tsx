@@ -743,6 +743,7 @@ function TestimonialsDark() {
 
           {/* Slider */}
           <div
+            className="min-w-0"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
@@ -763,9 +764,10 @@ function TestimonialsDark() {
                 <ChevronRight size={20} />
               </button>
 
-              {/* Viewport */}
+              {/* Viewport — vertical padding so card shadows/rounded edges
+                  aren't clipped by overflow-hidden */}
               <div
-                className="overflow-hidden"
+                className="overflow-hidden py-5"
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}
@@ -779,7 +781,7 @@ function TestimonialsDark() {
                   {testimonials.map((t) => (
                     <div
                       key={t.name}
-                      className="w-full flex-shrink-0 px-1 sm:px-2"
+                      className="w-full flex-shrink-0 px-4 sm:px-2"
                     >
                       <article className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl h-full">
                         <div className="flex items-center gap-3 mb-4">
