@@ -21,11 +21,36 @@ function BlogsListInner({ posts }: { posts: Post[] }) {
   const router = useRouter();
   const pathname = usePathname();
 
+  const query = searchParams.get("q") ?? "";
+  const activeTag = searchParams.get("tag") ?? "";
+
+  // Unique tags become the category chips — no separate data source needed.
+  const categories = Array.from(new Set(posts.map((p) => p.tag))).sort();
+
+  const q = query.toLowerCase();
+  const filtered = posts
+    .filter((p) => (activeTag ? p.tag === activeTag : true))
+    .filter((p) =>
+      q
+        ? p.title.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q) ||
+          p.tag.toLowerCase().includes(q)
+        : true
+    )
+    .sort((a, b) => {
+      if (!q) return 0; // preserve incoming (newest-first) order when not searching
+      const aStarts = a.title.toLowerCase().startsWith(q);
+      const bStarts = b.title.toLowerCase().startsWith(q);
+      if (aStarts && !bStarts) return -1;
+      if (!aStarts && bStarts) return 1;
+      return 0;
+    });
+
   const page = Math.max(1, Number(searchParams.get("page") ?? "1"));
-  const totalPages = Math.ceil(posts.length / PAGE_SIZE);
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
   const start = (safePage - 1) * PAGE_SIZE;
-  const shown = posts.slice(start, start + PAGE_SIZE);
+  const shown = filtered.slice(start, start + PAGE_SIZE);
 
   function goTo(n: number) {
     const params = new URLSearchParams(searchParams.toString());
@@ -38,8 +63,84 @@ function BlogsListInner({ posts }: { posts: Post[] }) {
     router.replace(`${pathname}${qs ? `?${qs}` : ""}`, { scroll: false });
   }
 
+  function onSearch(value: string) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value) {
+      params.set("q", value);
+    } else {
+      params.delete("q");
+    }
+    params.delete("page");
+    const qs = params.toString();
+    router.replace(`${pathname}${qs ? `?${qs}` : ""}`, { scroll: false });
+  }
+
+  function onTag(tag: string) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (tag) {
+      params.set("tag", tag);
+    } else {
+      params.delete("tag");
+    }
+    params.delete("page");
+    const qs = params.toString();
+    router.replace(`${pathname}${qs ? `?${qs}` : ""}`, { scroll: false });
+  }
+
   return (
     <div>
+      {/* Search */}
+      <div className="mb-4">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => onSearch(e.target.value)}
+          placeholder="Search articles..."
+          className="w-full bg-white border border-[#0A2A4F]/10 rounded-xl px-4 py-3 text-sm text-[#0A2A4F] placeholder-[#0A2A4F]/35 focus:outline-none focus:ring-2 focus:ring-[#2B5BA8]/30 transition"
+        />
+      </div>
+
+      {/* Category chips */}
+      <div className="flex flex-wrap gap-2 mb-5">
+        <button
+          onClick={() => onTag("")}
+          className={`text-xs font-semibold rounded-full px-3 py-1.5 transition ${
+            activeTag === ""
+              ? "bg-[#2B5BA8] text-white"
+              : "bg-[#2B5BA8]/10 text-[#2B5BA8] hover:bg-[#2B5BA8]/20"
+          }`}
+        >
+          All
+        </button>
+        {categories.map((tag) => (
+          <button
+            key={tag}
+            onClick={() => onTag(activeTag === tag ? "" : tag)}
+            className={`text-xs font-semibold rounded-full px-3 py-1.5 transition ${
+              activeTag === tag
+                ? "bg-[#2B5BA8] text-white"
+                : "bg-[#2B5BA8]/10 text-[#2B5BA8] hover:bg-[#2B5BA8]/20"
+            }`}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+
+      {/* Result count */}
+      <p className="text-xs text-[#0A2A4F]/45 mb-5">
+        {filtered.length === posts.length
+          ? `${posts.length} articles`
+          : `Showing ${filtered.length} of ${posts.length} articles`}
+      </p>
+
+      {/* Empty state */}
+      {filtered.length === 0 && (
+        <p className="text-center py-10 text-sm text-[#0A2A4F]/40">
+          No articles match your search.
+        </p>
+      )}
+
       <div className="space-y-5 mb-8">
         {shown.map((post) => (
           <Link
