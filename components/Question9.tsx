@@ -12,21 +12,6 @@ export default function Question9() {
 
   const options = ["Yes", "No"];
 
-  const handleContinue = () => {
-    if (formData.currentlyInsured === "Yes") {
-      if (formData.currentInsurance && formData.continuousCoverage) {
-        router.push("/quote/10");
-      }
-    } else if (formData.currentlyInsured === "No") {
-      router.push("/quote/10");
-    }
-  };
-
-  const isDisabled =
-    formData.currentlyInsured === "Yes"
-      ? !formData.currentInsurance || !formData.continuousCoverage
-      : !formData.currentlyInsured;
-
   return (
     <div className="min-h-screen flex flex-col bg-white relative">
       <Navbar />
@@ -59,13 +44,16 @@ export default function Question9() {
                 <button
                   key={option}
                   onClick={() => {
-                    updateForm({
-                      currentlyInsured: option,
-                      ...(option === "No" && {
+                    if (option === "No") {
+                      updateForm({
+                        currentlyInsured: "No",
                         currentInsurance: undefined,
                         continuousCoverage: undefined,
-                      }),
-                    });
+                      });
+                      router.push("/quote/10");
+                    } else {
+                      updateForm({ currentlyInsured: "Yes" });
+                    }
                   }}
                   className={`w-full py-6 rounded-xl border transition shadow-sm text-lg font-semibold
                     ${
@@ -90,9 +78,12 @@ export default function Question9() {
                   </label>
                   <select
                     value={formData.currentInsurance || ""}
-                    onChange={(e) =>
-                      updateForm({ currentInsurance: e.target.value })
-                    }
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      updateForm({ currentInsurance: val });
+                      if (val && formData.continuousCoverage)
+                        router.push("/quote/10");
+                    }}
                     className="w-full bg-white border border-gray-300 rounded-xl px-4 py-4 
                                text-gray-700 focus:outline-none focus:border-[#2B5BA8]"
                   >
@@ -112,9 +103,12 @@ export default function Question9() {
                   </label>
                   <select
                     value={formData.continuousCoverage || ""}
-                    onChange={(e) =>
-                      updateForm({ continuousCoverage: e.target.value })
-                    }
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      updateForm({ continuousCoverage: val });
+                      if (val && formData.currentInsurance)
+                        router.push("/quote/10");
+                    }}
                     className="w-full bg-white border border-gray-300 rounded-xl px-4 py-4 
                                text-gray-700 focus:outline-none focus:border-[#2B5BA8]"
                   >
@@ -127,18 +121,6 @@ export default function Question9() {
                 </div>
               </div>
             )}
-
-            {/* Continue */}
-            <button
-              onClick={handleContinue}
-              disabled={isDisabled}
-              className="mt-8 bg-[#2B5BA8] hover:bg-[#E8732A]
-                         disabled:opacity-40 disabled:cursor-not-allowed
-                         transition text-white px-10 py-3 rounded-lg
-                         font-semibold shadow-md"
-            >
-              Continue →
-            </button>
 
             <div className="-mt-4">
               <BackButton />

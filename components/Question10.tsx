@@ -12,21 +12,6 @@ export default function Question10() {
 
   const options = ["Yes", "No"];
 
-  const handleContinue = () => {
-    if (
-      formData.activeLicense &&
-      formData.ticketsLast3Years &&
-      formData.sr22Filed
-    ) {
-      router.push("/quote/11");
-    }
-  };
-
-  const isDisabled =
-    !formData.activeLicense ||
-    !formData.ticketsLast3Years ||
-    !formData.sr22Filed;
-
   return (
     <div className="min-h-screen flex flex-col bg-white relative">
       <Navbar />
@@ -59,9 +44,11 @@ export default function Question10() {
                 {options.map((option) => (
                   <button
                     key={option}
-                    onClick={() =>
-                      updateForm({ activeLicense: option })
-                    }
+                    onClick={() => {
+                      updateForm({ activeLicense: option });
+                      if (formData.ticketsLast3Years && formData.sr22Filed)
+                        router.push("/quote/11");
+                    }}
                     className={`w-full py-6 rounded-xl border transition shadow-sm text-lg font-semibold
                       ${
                         formData.activeLicense === option
@@ -85,9 +72,11 @@ export default function Question10() {
                 {options.map((option) => (
                   <button
                     key={option}
-                    onClick={() =>
-                      updateForm({ ticketsLast3Years: option })
-                    }
+                    onClick={() => {
+                      updateForm({ ticketsLast3Years: option });
+                      if (formData.activeLicense && formData.sr22Filed)
+                        router.push("/quote/11");
+                    }}
                     className={`w-full py-6 rounded-xl border transition shadow-sm text-lg font-semibold
                       ${
                         formData.ticketsLast3Years === option
@@ -111,9 +100,11 @@ export default function Question10() {
                 {options.map((option) => (
                   <button
                     key={option}
-                    onClick={() =>
-                      updateForm({ sr22Filed: option })
-                    }
+                    onClick={() => {
+                      updateForm({ sr22Filed: option });
+                      if (formData.activeLicense && formData.ticketsLast3Years)
+                        router.push("/quote/11");
+                    }}
                     className={`w-full py-6 rounded-xl border transition shadow-sm text-lg font-semibold
                       ${
                         formData.sr22Filed === option
@@ -126,18 +117,6 @@ export default function Question10() {
                 ))}
               </div>
             </div>
-
-            {/* Continue Button */}
-            <button
-              onClick={handleContinue}
-              disabled={isDisabled}
-              className="mt-8 bg-[#2B5BA8] hover:bg-[#E8732A]
-                         disabled:opacity-40 disabled:cursor-not-allowed
-                         transition text-white px-10 py-3 rounded-lg
-                         font-semibold shadow-md"
-            >
-              Continue →
-            </button>
 
             <div className="-mt-4">
               <BackButton />

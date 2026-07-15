@@ -27,7 +27,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
   if (headings.length === 0) return null;
 
   return (
-    <nav className="sticky top-24 hidden lg:block w-44 lg:flex-1 shrink-0 pl-6">
+    <nav className="sticky top-24 hidden lg:block w-52 shrink-0">
       <p className="text-sm font-bold text-[#0A2A4F] mb-3 tracking-tight">
         Jump to
       </p>

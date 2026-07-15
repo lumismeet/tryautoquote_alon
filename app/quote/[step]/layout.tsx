@@ -1,5 +1,6 @@
 import QuizProgress from "@/components/QuizProgress";
 import QuoteHighlighter from "@/components/QuoteHighlighter";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default async function QuoteLayout({
   children,
@@ -12,6 +13,7 @@ export default async function QuoteLayout({
 
   return (
     <>
+      <ScrollToTop />
       <QuoteHighlighter />
       {step !== "16" && <QuizProgress step={step} />}
       {children}

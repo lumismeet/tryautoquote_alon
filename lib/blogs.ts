@@ -67,6 +67,53 @@ export function getAllSlugs(): string[] {
     .map((f) => f.replace(/\.mdx$/, ""));
 }
 
+// A single FAQ pair extracted from the MDX body.
+export type Faq = { question: string; answer: string };
+
+// Splits the MDX body around a "## Frequently Asked Questions" (or "## FAQ")
+// section so the FAQ can render as an interactive accordion + FAQPage schema,
+// while the prose before and after it still renders as normal MDX.
+//   - `before`: everything up to the FAQ heading
+//   - `faqs`:   parsed { question, answer } pairs from the "### " sub-headings
+//   - `after`:  everything from the next "## " heading onward (e.g. Bottom Line)
+// If no FAQ section exists, `faqs` is empty and `before` holds the full body.
+export function splitFaq(content: string): {
+  before: string;
+  faqs: Faq[];
+  after: string;
+} {
+  const lines = content.split("\n");
+  const faqHeadingRegex = /^##\s+(frequently asked questions|faqs?)\s*$/i;
+  const startIdx = lines.findIndex((l) => faqHeadingRegex.test(l.trim()));
+  if (startIdx === -1) return { before: content, faqs: [], after: "" };
+
+  // The FAQ block ends at the next top-level "## " heading (not "### ").
+  let endIdx = lines.length;
+  for (let i = startIdx + 1; i < lines.length; i++) {
+    if (/^##\s+/.test(lines[i])) {
+      endIdx = i;
+      break;
+    }
+  }
+
+  const before = lines.slice(0, startIdx).join("\n").trim();
+  const faqBlock = lines.slice(startIdx + 1, endIdx).join("\n");
+  const after = lines.slice(endIdx).join("\n").trim();
+
+  // Each "### question" starts a new pair; the following lines are its answer.
+  const faqs: Faq[] = faqBlock
+    .split(/^###\s+/m)
+    .slice(1)
+    .map((part) => {
+      const [qLine, ...rest] = part.split("\n");
+      const answer = rest.join(" ").replace(/\s+/g, " ").trim();
+      return { question: qLine.trim(), answer };
+    })
+    .filter((f) => f.question && f.answer);
+
+  return { before, faqs, after };
+}
+
 // Extracts "## Heading" lines from raw MDX and slugifies them the same way
 // rehype-slug does, so these IDs match the actual rendered <h2 id="..."> tags.
 export type Heading = { id: string; text: string };

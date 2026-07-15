@@ -13,23 +13,6 @@ export default function Question11() {
   const yesNoOptions = ["Yes", "No"];
   const genderOptions = ["Male", "Female"];
 
-  const handleContinue = () => {
-    if (
-      formData.homeowner &&
-      formData.married &&
-      formData.gender &&
-      formData.military
-    ) {
-      router.push("/quote/12");
-    }
-  };
-
-  const isDisabled =
-    !formData.homeowner ||
-    !formData.married ||
-    !formData.gender ||
-    !formData.military;
-
   return (
     <div className="min-h-screen flex flex-col bg-white relative">
       <Navbar />
@@ -57,7 +40,11 @@ export default function Question11() {
               title="Homeowner"
               options={yesNoOptions}
               value={formData.homeowner || ""}
-              onChange={(val) => updateForm({ homeowner: val })}
+              onChange={(val) => {
+                updateForm({ homeowner: val });
+                if (formData.married && formData.gender && formData.military)
+                  router.push("/quote/12");
+              }}
             />
 
             {/* Married */}
@@ -65,7 +52,11 @@ export default function Question11() {
               title="Married"
               options={yesNoOptions}
               value={formData.married || ""}
-              onChange={(val) => updateForm({ married: val })}
+              onChange={(val) => {
+                updateForm({ married: val });
+                if (formData.homeowner && formData.gender && formData.military)
+                  router.push("/quote/12");
+              }}
             />
 
             {/* Gender */}
@@ -73,7 +64,11 @@ export default function Question11() {
               title="Gender"
               options={genderOptions}
               value={formData.gender || ""}
-              onChange={(val) => updateForm({ gender: val })}
+              onChange={(val) => {
+                updateForm({ gender: val });
+                if (formData.homeowner && formData.married && formData.military)
+                  router.push("/quote/12");
+              }}
             />
 
             {/* Military */}
@@ -81,20 +76,13 @@ export default function Question11() {
               title="Military Affiliation"
               options={yesNoOptions}
               value={formData.military || ""}
-              onChange={(val) => updateForm({ military: val })}
+              onChange={(val) => {
+                updateForm({ military: val });
+                if (formData.homeowner && formData.married && formData.gender)
+                  router.push("/quote/12");
+              }}
             />
 
-            {/* Continue Button */}
-            <button
-              onClick={handleContinue}
-              disabled={isDisabled}
-              className="mt-8 bg-[#2B5BA8] hover:bg-[#E8732A]
-                         disabled:opacity-40 disabled:cursor-not-allowed
-                         transition text-white px-10 py-3 rounded-lg
-                         font-semibold shadow-md"
-            >
-              Continue →
-            </button>
             <div className="-mt-4">
               <BackButton />
             </div>

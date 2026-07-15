@@ -9,7 +9,7 @@ import BackButton from "./BackButton";
 
 export default function Question3() {
   const router = useRouter();
-  const { formData, updateForm } = useForm();
+  const { formData, updateForm, hydrated } = useForm();
 
   const currentVehicle =
     formData.vehicles?.[formData.currentVehicleIndex ?? 0];
@@ -20,6 +20,10 @@ export default function Question3() {
   const [customModel, setCustomModel] = useState("");
 
   useEffect(() => {
+    // Wait for saved data to load before judging whether a make exists —
+    // otherwise a fresh load races hydration and bounces back to /quote/1.
+    if (!hydrated) return;
+
     const make = currentVehicle?.vehicleMake;
     const year = currentVehicle?.vehicleYear;
 
@@ -46,7 +50,7 @@ export default function Question3() {
         setError(true);
         setLoading(false);
       });
-  }, [currentVehicle?.vehicleMake, currentVehicle?.vehicleYear]);
+  }, [hydrated, currentVehicle?.vehicleMake, currentVehicle?.vehicleYear]);
 
   const setVehicleModel = (model: string) => {
     updateForm((prev) => {

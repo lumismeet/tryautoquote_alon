@@ -44,6 +44,10 @@ type FormContextType = {
       | Partial<FormDataType>
       | ((prev: FormDataType) => FormDataType)
   ) => void;
+  // False until saved data has been read from localStorage. Guards that
+  // redirect on "missing" data must wait for this, or they'll fire against
+  // the default state before hydration and bounce the user backward.
+  hydrated: boolean;
 };
 
 
@@ -75,31 +79,45 @@ export function FormProvider({ children }: { children: React.ReactNode }) {
   currentVehicleIndex: 0,
 });
 
+  const [hydrated, setHydrated] = useState(false);
 
     useEffect(() => {
-        const stored = localStorage.getItem("leadForm");
+        try {
+            const stored = localStorage.getItem("leadForm");
+            if (stored) {
+                const parsed = JSON.parse(stored);
 
-        if (stored) {
-            const parsed = JSON.parse(stored);
-
-            setFormData(prev => ({
-                ...prev,
-                ...parsed,
-                vehicles:
-                    parsed.vehicles && parsed.vehicles.length > 0
-                        ? parsed.vehicles
-                        : prev.vehicles,
-                currentVehicleIndex:
-                    typeof parsed.currentVehicleIndex === "number"
-                        ? parsed.currentVehicleIndex
-                        : 0,
-            }));
+                setFormData(prev => ({
+                    ...prev,
+                    ...parsed,
+                    vehicles:
+                        parsed.vehicles && parsed.vehicles.length > 0
+                            ? parsed.vehicles
+                            : prev.vehicles,
+                    currentVehicleIndex:
+                        typeof parsed.currentVehicleIndex === "number"
+                            ? parsed.currentVehicleIndex
+                            : 0,
+                }));
+            }
+        } catch (err) {
+            // Private mode / blocked or corrupt storage — fall back to defaults.
+            console.warn("Could not read saved form data:", err);
+        } finally {
+            // Mark hydration complete even if nothing was stored, so redirect
+            // guards know the real data (or confirmed absence) is now in place.
+            setHydrated(true);
         }
     }, []);
-        
+
   // Save to localStorage whenever formData changes
   useEffect(() => {
-    localStorage.setItem("leadForm", JSON.stringify(formData));
+    try {
+      localStorage.setItem("leadForm", JSON.stringify(formData));
+    } catch (err) {
+      // Storage full or blocked (e.g. Safari Private Mode) — skip persisting.
+      console.warn("Could not save form data:", err);
+    }
   }, [formData]);
 
   const updateForm: FormContextType["updateForm"] = (data) => {
@@ -112,7 +130,7 @@ export function FormProvider({ children }: { children: React.ReactNode }) {
 
 
   return (
-    <FormContext.Provider value={{ formData, updateForm }}>
+    <FormContext.Provider value={{ formData, updateForm, hydrated }}>
       {children}
     </FormContext.Provider>
   );

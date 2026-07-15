@@ -6,8 +6,31 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import rehypeSlug from "rehype-slug";
 import TableOfContents from "@/components/TableOfContents";
-import { getPostBySlug, getAllSlugs, getHeadings } from "@/lib/blogs";
+import MobileTableOfContents from "@/components/MobileTableOfContents";
+import FaqSection from "@/components/FaqSection";
+import { getPostBySlug, getAllSlugs, getHeadings, splitFaq } from "@/lib/blogs";
 import BlogCTA from "@/components/BlogCTA";
+
+// Shared MDX element styling, reused for the prose before and after the FAQ.
+const mdxComponents = {
+  h2: ({ children, id }: { children?: React.ReactNode; id?: string }) =>
+    children === "Key takeaways" ? (
+      <p id={id} className="font-semibold text-[#0A2A4F] text-sm border-t border-[#0A2A4F]/10 pt-8 mt-4 scroll-mt-28">
+        {children}
+      </p>
+    ) : (
+      <h2 id={id} className="text-xl font-bold text-[#0A2A4F] pt-4 scroll-mt-28">{children}</h2>
+    ),
+  ul: ({ children }: { children?: React.ReactNode }) => (
+    <ul className="space-y-2.5 text-sm text-[#0A2A4F]/65">{children}</ul>
+  ),
+  li: ({ children }: { children?: React.ReactNode }) => (
+    <li className="flex items-start gap-2.5">
+      <span className="text-[#38B6C9] mt-0.5 shrink-0">&#10003;</span>
+      <span>{children}</span>
+    </li>
+  ),
+};
 
 // Pre-builds every blog page at build time (static, same as before)
 export function generateStaticParams() {
@@ -47,12 +70,34 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
   const headings = getHeadings(post.content);
 
+  // Pull the FAQ out of the body so it renders as an accordion + FAQ schema.
+  const { before, faqs, after } = splitFaq(post.content);
+
+  const faqSchema =
+    faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: { "@type": "Answer", text: f.answer },
+          })),
+        }
+      : null;
+
   return (
     <div className="min-h-screen flex flex-col bg-[#F4F7FB] text-[#0A2A4F]">
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <Navbar />
 
       <main className="flex-1 w-full pt-10 pb-20 md:pt-14 md:pb-28">
-        <div className="flex justify-center gap-6 items-start">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-6 flex justify-center gap-8 items-start">
           <TableOfContents headings={headings} />
           <div className="w-full max-w-2xl min-w-0">
 
@@ -79,30 +124,24 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               <hr className="mt-7 border-[#0A2A4F]/10" />
             </div>
 
+            <MobileTableOfContents headings={headings} />
+
             <article className="text-[#0A2A4F]/75 leading-[1.85] text-[1.02rem] space-y-6 mdx-content">
               <MDXRemote
-                source={post.content}
+                source={before}
                 options={{ mdxOptions: { rehypePlugins: [rehypeSlug] } }}
-                components={{
-                  h2: ({ children, id }) =>
-                    children === "Key takeaways" ? (
-                      <p id={id} className="font-semibold text-[#0A2A4F] text-sm border-t border-[#0A2A4F]/10 pt-8 mt-4 scroll-mt-28">
-                        {children}
-                      </p>
-                    ) : (
-                      <h2 id={id} className="text-xl font-bold text-[#0A2A4F] pt-4 scroll-mt-28">{children}</h2>
-                    ),
-                  ul: ({ children }) => (
-                    <ul className="space-y-2.5 text-sm text-[#0A2A4F]/65">{children}</ul>
-                  ),
-                  li: ({ children }) => (
-                    <li className="flex items-start gap-2.5">
-                      <span className="text-[#38B6C9] mt-0.5 shrink-0">&#10003;</span>
-                      <span>{children}</span>
-                    </li>
-                  ),
-                }}
+                components={mdxComponents}
               />
+
+              {faqs.length > 0 && <FaqSection faqs={faqs} />}
+
+              {after && (
+                <MDXRemote
+                  source={after}
+                  options={{ mdxOptions: { rehypePlugins: [rehypeSlug] } }}
+                  components={mdxComponents}
+                />
+              )}
             </article>
 
             <div className="mt-10 text-center">
@@ -112,7 +151,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             </div>
 
           </div>
-          <div className="hidden xl:block w-64 xl:flex-[1.4] shrink-0 self-stretch pr-6">
+          <div className="hidden xl:block w-72 shrink-0 self-stretch">
             <BlogCTA />
           </div>
         </div>

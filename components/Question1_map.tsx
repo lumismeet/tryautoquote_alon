@@ -14,14 +14,13 @@ export default function Question1() {
   const currentVehicle =
     formData.vehicles?.[formData.currentVehicleIndex ?? 0];
 
-  const handleContinue = () => {
-    if (!currentVehicle?.vehicleMake || !formData.zipcode) return;
-    router.push("/quote/2");
-  };
-
   const handleZipChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.replace(/\D/g, "").slice(0, 5);
     updateForm({ zipcode: val });
+    // Auto-advance once ZIP is complete and a make is already chosen.
+    if (val.length === 5 && currentVehicle?.vehicleMake) {
+      router.push("/quote/2");
+    }
   };
 
   const setVehicleMake = (make: string) => {
@@ -35,6 +34,10 @@ export default function Question1() {
 
       return { ...prev, vehicles: updatedVehicles };
     });
+    // Auto-advance once a make is chosen and ZIP is already valid.
+    if (make && /^\d{5}$/.test(formData.zipcode ?? "")) {
+      router.push("/quote/2");
+    }
   };
 
   const carMakes = [
@@ -142,20 +145,6 @@ export default function Question1() {
                 <option value="Infiniti">Infiniti</option>
               </select>
             </div>
-
-            {/* Continue */}
-            <button
-              onClick={handleContinue}
-              disabled={!currentVehicle?.vehicleMake}
-              className={`mt-6 px-10 py-3 rounded-lg font-semibold shadow-md transition
-                ${
-                  currentVehicle?.vehicleMake
-                    ? "bg-[#2B5BA8] hover:bg-[#E8732A] text-white"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                }`}
-            >
-              Continue →
-            </button>
 
             <div className="-mt-4">
               <BackButton />

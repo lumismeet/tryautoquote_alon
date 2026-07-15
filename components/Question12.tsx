@@ -10,14 +10,6 @@ export default function Question12() {
   const router = useRouter();
   const { formData, updateForm } = useForm();
 
-  const handleContinue = () => {
-    if (formData.education && formData.creditScore) {
-      router.push("/quote/13");
-    }
-  };
-
-  const isDisabled = !formData.education || !formData.creditScore;
-
   return (
     <div className="min-h-screen flex flex-col bg-white relative">
       <Navbar />
@@ -48,9 +40,11 @@ export default function Question12() {
 
               <select
                 value={formData.education || ""}
-                onChange={(e) =>
-                  updateForm({ education: e.target.value })
-                }
+                onChange={(e) => {
+                  const val = e.target.value;
+                  updateForm({ education: val });
+                  if (val && formData.creditScore) router.push("/quote/13");
+                }}
                 className="w-full bg-white border border-gray-300 rounded-xl 
                            px-4 py-4 text-gray-700
                            focus:outline-none focus:border-[#2B5BA8]"
@@ -72,9 +66,11 @@ export default function Question12() {
 
               <select
                 value={formData.creditScore || ""}
-                onChange={(e) =>
-                  updateForm({ creditScore: e.target.value })
-                }
+                onChange={(e) => {
+                  const val = e.target.value;
+                  updateForm({ creditScore: val });
+                  if (val && formData.education) router.push("/quote/13");
+                }}
                 className="w-full bg-white border border-gray-300 rounded-xl 
                            px-4 py-4 text-gray-700
                            focus:outline-none focus:border-[#2B5BA8]"
@@ -89,18 +85,6 @@ export default function Question12() {
                 </option>
               </select>
             </div>
-
-            {/* Continue Button */}
-            <button
-              onClick={handleContinue}
-              disabled={isDisabled}
-              className="mt-8 bg-[#2B5BA8] hover:bg-[#E8732A]
-                         disabled:opacity-40 disabled:cursor-not-allowed
-                         transition text-white px-10 py-3 rounded-lg
-                         font-semibold shadow-md"
-            >
-              Continue →
-            </button>
 
             <div className="-mt-4">
               <BackButton />

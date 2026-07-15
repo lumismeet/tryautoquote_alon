@@ -121,8 +121,8 @@ export default function TermsOfUse() {
           <p className="mt-3">
             TryAutoQuote<br />
             Email:{" "}
-            <a href="mailto:legal@tryautoquote.com" className="text-[#2B5BA8] hover:underline transition">
-              legal@tryautoquote.com
+            <a href="mailto:info@tryautoquote.com" className="text-[#2B5BA8] hover:underline transition">
+              info@tryautoquote.com
             </a>
           </p>
         </Section>

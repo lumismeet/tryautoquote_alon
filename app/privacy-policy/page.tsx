@@ -115,8 +115,8 @@ export default function PrivacyPolicy() {
           </ul>
           <p className="mt-3">
             To exercise these rights, contact us at{" "}
-            <a href="mailto:privacy@tryautoquote.com" className="text-[#2B5BA8] hover:underline transition">
-              privacy@tryautoquote.com
+            <a href="mailto:info@tryautoquote.com" className="text-[#2B5BA8] hover:underline transition">
+              info@tryautoquote.com
             </a>.
           </p>
         </Section>
@@ -138,8 +138,8 @@ export default function PrivacyPolicy() {
           <p className="mt-3">
             TryAutoQuote<br />
             Email:{" "}
-            <a href="mailto:privacy@tryautoquote.com" className="text-[#2B5BA8] hover:underline transition">
-              privacy@tryautoquote.com
+            <a href="mailto:info@tryautoquote.com" className="text-[#2B5BA8] hover:underline transition">
+              info@tryautoquote.com
             </a>
           </p>
         </Section>
