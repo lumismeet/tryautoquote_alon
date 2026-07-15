@@ -8,7 +8,8 @@ import rehypeSlug from "rehype-slug";
 import TableOfContents from "@/components/TableOfContents";
 import MobileTableOfContents from "@/components/MobileTableOfContents";
 import FaqSection from "@/components/FaqSection";
-import { getPostBySlug, getAllSlugs, getHeadings, splitFaq } from "@/lib/blogs";
+import RelatedPosts from "@/components/RelatedPosts";
+import { getPostBySlug, getAllSlugs, getHeadings, splitFaq, getRelatedPosts } from "@/lib/blogs";
 import BlogCTA from "@/components/BlogCTA";
 
 // Shared MDX element styling, reused for the prose before and after the FAQ.
@@ -86,8 +87,27 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         }
       : null;
 
+  // Article-level structured data for rich results. publisher references the
+  // Organization defined once in app/layout.tsx.
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: new Date(post.date).toISOString(),
+    mainEntityOfPage: `https://tryautoquote.com/blogs/${post.slug}`,
+    url: `https://tryautoquote.com/blogs/${post.slug}`,
+    publisher: { "@id": "https://tryautoquote.com/#organization" },
+  };
+
+  const relatedPosts = getRelatedPosts(slug);
+
   return (
     <div className="min-h-screen flex flex-col bg-[#F4F7FB] text-[#0A2A4F]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       {faqSchema && (
         <script
           type="application/ld+json"
@@ -143,6 +163,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 />
               )}
             </article>
+
+            <RelatedPosts posts={relatedPosts} />
 
             <div className="mt-10 text-center">
               <Link href="/blogs" className="text-sm text-[#2B5BA8] hover:underline">

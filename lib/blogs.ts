@@ -60,6 +60,21 @@ export function getPostBySlug(slug: string): BlogPost | null {
   };
 }
 
+// Returns up to `limit` posts related to the given slug: same tag first
+// (newest first), backfilled with the most recent other posts so the
+// "Read next" section is never sparse. Excludes the current post.
+export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
+  const all = getAllPosts();
+  const current = all.find((p) => p.slug === slug);
+  if (!current) return [];
+
+  const others = all.filter((p) => p.slug !== slug);
+  const sameTag = others.filter((p) => p.tag === current.tag);
+  const rest = others.filter((p) => p.tag !== current.tag);
+
+  return [...sameTag, ...rest].slice(0, limit);
+}
+
 export function getAllSlugs(): string[] {
   return fs
     .readdirSync(BLOGS_DIR)
