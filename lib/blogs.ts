@@ -82,6 +82,57 @@ export function getAllSlugs(): string[] {
     .map((f) => f.replace(/\.mdx$/, ""));
 }
 
+// A single source link extracted from a "## References" section.
+export type Reference = { label: string; url: string };
+
+// Splits a "## References" (or "## Sources") section out of the MDX body so it
+// can render as a styled, numbered citation list instead of the normal
+// checkmark bullets. Run this on the full post content before splitFaq so the
+// References block is removed regardless of where it sits.
+//   - `body`:       the content with the References section removed (render as MDX)
+//   - `references`: parsed { label, url } pairs from the "- [label](url)" lines
+// If no References section exists, `references` is empty and `body` is unchanged.
+export function splitReferences(content: string): {
+  body: string;
+  references: Reference[];
+} {
+  const lines = content.split("\n");
+  const headingRegex = /^##\s+(references|sources)\s*$/i;
+  const startIdx = lines.findIndex((l) => headingRegex.test(l.trim()));
+  if (startIdx === -1) return { body: content, references: [] };
+
+  // The block runs to the next top-level "## " heading (or the end of the file).
+  let endIdx = lines.length;
+  for (let i = startIdx + 1; i < lines.length; i++) {
+    if (/^##\s+/.test(lines[i])) {
+      endIdx = i;
+      break;
+    }
+  }
+
+  const block = lines.slice(startIdx + 1, endIdx).join("\n");
+  const body = [...lines.slice(0, startIdx), ...lines.slice(endIdx)]
+    .join("\n")
+    .trim();
+
+  // Each list item is "- [label](url)". A bare URL falls back to itself as label.
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/;
+  const references: Reference[] = block
+    .split("\n")
+    .map((l) => l.trim())
+    .filter((l) => l.startsWith("- ") || l.startsWith("* "))
+    .map((l): Reference | null => {
+      const item = l.replace(/^[-*]\s+/, "").trim();
+      const match = item.match(linkRegex);
+      if (match) return { label: match[1].trim(), url: match[2].trim() };
+      const bare = item.match(/https?:\/\/\S+/);
+      return bare ? { label: bare[0], url: bare[0] } : null;
+    })
+    .filter((r): r is Reference => r !== null);
+
+  return { body, references };
+}
+
 // A single FAQ pair extracted from the MDX body.
 export type Faq = { question: string; answer: string };
 

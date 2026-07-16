@@ -9,29 +9,74 @@ import TableOfContents from "@/components/TableOfContents";
 import MobileTableOfContents from "@/components/MobileTableOfContents";
 import FaqSection from "@/components/FaqSection";
 import RelatedPosts from "@/components/RelatedPosts";
-import { getPostBySlug, getAllSlugs, getHeadings, splitFaq, getRelatedPosts } from "@/lib/blogs";
+import References from "@/components/References";
+import { getPostBySlug, getAllSlugs, getHeadings, splitFaq, splitReferences, getRelatedPosts } from "@/lib/blogs";
 import BlogCTA from "@/components/BlogCTA";
 
 // Shared MDX element styling, reused for the prose before and after the FAQ.
-const mdxComponents = {
-  h2: ({ children, id }: { children?: React.ReactNode; id?: string }) =>
-    children === "Key takeaways" ? (
-      <p id={id} className="font-semibold text-[#0A2A4F] text-sm border-t border-[#0A2A4F]/10 pt-8 mt-4 scroll-mt-28">
-        {children}
-      </p>
-    ) : (
-      <h2 id={id} className="text-xl font-bold text-[#0A2A4F] pt-4 scroll-mt-28">{children}</h2>
+// Built per-post so the `a` handler can turn citation links into numbered
+// superscript markers. `refMap` maps a source URL to its number + label in the
+// References list; any inline link whose href matches becomes a "[n]" marker
+// that opens the source in a new tab (with the source name as a tooltip),
+// instead of a plain inline hyperlink.
+function makeMdxComponents(refMap: Map<string, { num: number; label: string }>) {
+  return {
+    h2: ({ children, id }: { children?: React.ReactNode; id?: string }) =>
+      children === "Key takeaways" ? (
+        <p id={id} className="font-semibold text-[#0A2A4F] text-sm border-t border-[#0A2A4F]/10 pt-8 mt-4 scroll-mt-28">
+          {children}
+        </p>
+      ) : (
+        <h2 id={id} className="text-xl font-bold text-[#0A2A4F] pt-4 scroll-mt-28">{children}</h2>
+      ),
+    ul: ({ children }: { children?: React.ReactNode }) => (
+      <ul className="space-y-2.5 text-sm text-[#0A2A4F]/65">{children}</ul>
     ),
-  ul: ({ children }: { children?: React.ReactNode }) => (
-    <ul className="space-y-2.5 text-sm text-[#0A2A4F]/65">{children}</ul>
-  ),
-  li: ({ children }: { children?: React.ReactNode }) => (
-    <li className="flex items-start gap-2.5">
-      <span className="text-[#38B6C9] mt-0.5 shrink-0">&#10003;</span>
-      <span>{children}</span>
-    </li>
-  ),
-};
+    li: ({ children }: { children?: React.ReactNode }) => (
+      <li className="flex items-start gap-2.5">
+        <span className="text-[#38B6C9] mt-0.5 shrink-0">&#10003;</span>
+        <span>{children}</span>
+      </li>
+    ),
+    a: ({ href, children }: { href?: string; children?: React.ReactNode }) => {
+      // A citation: keep the phrase as plain text and append a numbered marker
+      // that opens the source directly in a new tab. The source name shows as a
+      // tooltip so the reader has context before clicking out.
+      const cite = href ? refMap.get(href) : undefined;
+      if (cite) {
+        return (
+          <>
+            {children}
+            <sup className="ml-0.5">
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={cite.label}
+                aria-label={`Source ${cite.num}: ${cite.label}`}
+                className="text-[#2B5BA8] font-semibold no-underline hover:underline"
+              >
+                [{cite.num}]
+              </a>
+            </sup>
+          </>
+        );
+      }
+
+      // Any other link (internal or an uncited external link) renders normally.
+      const external = !!href && /^https?:\/\//.test(href);
+      return (
+        <a
+          href={href}
+          className="text-[#2B5BA8] underline decoration-[#2B5BA8]/30 underline-offset-2 hover:decoration-[#2B5BA8] transition"
+          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {children}
+        </a>
+      );
+    },
+  };
+}
 
 // Pre-builds every blog page at build time (static, same as before)
 export function generateStaticParams() {
@@ -67,12 +112,21 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  // const headings = getHeadings(post.content).filter((h) => h.text !== "Key takeaways");
+  // Pull the References section out first so it renders as a styled citation
+  // footer (and doesn't appear in the TOC), then split the FAQ from the rest.
+  const { body: contentBody, references } = splitReferences(post.content);
 
-  const headings = getHeadings(post.content);
+  // Maps each source URL to its number + label in the References list so inline
+  // citation links render as "[n]" markers that open the source in a new tab.
+  const refMap = new Map(
+    references.map((r, i) => [r.url, { num: i + 1, label: r.label }])
+  );
+  const mdxComponents = makeMdxComponents(refMap);
+
+  const headings = getHeadings(contentBody);
 
   // Pull the FAQ out of the body so it renders as an accordion + FAQ schema.
-  const { before, faqs, after } = splitFaq(post.content);
+  const { before, faqs, after } = splitFaq(contentBody);
 
   const faqSchema =
     faqs.length > 0
@@ -98,6 +152,14 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     mainEntityOfPage: `https://tryautoquote.com/blogs/${post.slug}`,
     url: `https://tryautoquote.com/blogs/${post.slug}`,
     publisher: { "@id": "https://tryautoquote.com/#organization" },
+    citation:
+      references.length > 0
+        ? references.map((r) => ({
+            "@type": "CreativeWork",
+            name: r.label,
+            url: r.url,
+          }))
+        : undefined,
   };
 
   const relatedPosts = getRelatedPosts(slug);
@@ -163,6 +225,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 />
               )}
             </article>
+
+            <References references={references} />
 
             <RelatedPosts posts={relatedPosts} />
 
