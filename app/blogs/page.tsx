@@ -1,3 +1,29 @@
+// Blogs (content/blogs/*.mdx), newest first:
+// 500-vs-1000-deductible
+// can-employer-ask-for-car-insurance-information
+// who-is-covered-when-someone-else-drives-your-car
+// what-happens-if-your-insurance-lapses
+// telematics-usage-based-insurance
+// insuring-multiple-vehicles
+// why-your-car-insurance-went-up
+// how-to-choose-your-deductible
+// rental-car-insurance
+// comparative-negligence-partial-fault
+// ev-insurance-cost
+// diminished-value-claims
+// rideshare-delivery-insurance
+// credit-score-insurance
+// sr22-insurance
+// gap-insurance
+// uninsured-motorist-coverage
+// how-adding-a-teen-driver-affects-your-premium
+// how-an-accident-affects-your-insurance-rate
+// car-insurance-for-foreign-drivers
+// when-to-drop-full-coverage
+// how-zip-code-affects-your-insurance-rate
+// how-to-compare-auto-insurance
+// common-mistakes-when-filing-a-claim
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
