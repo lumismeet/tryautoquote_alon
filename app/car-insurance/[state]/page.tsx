@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: s.metaTitle,
       description: s.metaDescription,
-      url: `https://tryautoquote.com/car-insurance/${s.slug}`,
+      url: `https://www.tryautoquote.com/car-insurance/${s.slug}`,
       siteName: "TryAutoQuote",
       type: "article",
     },
@@ -47,25 +47,25 @@ export default async function StateCarInsurance({ params }: Props) {
     "@type": "Article",
     headline: `Car Insurance in ${s.name}: State Requirements and Coverage Guide`,
     description: s.metaDescription,
-    author: { "@type": "Organization", name: "TryAutoQuote", url: "https://tryautoquote.com" },
+    author: { "@type": "Organization", name: "TryAutoQuote", url: "https://www.tryautoquote.com" },
     publisher: {
       "@type": "Organization",
       name: "TryAutoQuote",
-      url: "https://tryautoquote.com",
-      logo: { "@type": "ImageObject", url: "https://tryautoquote.com/logo-test1.png" },
+      url: "https://www.tryautoquote.com",
+      logo: { "@type": "ImageObject", url: "https://www.tryautoquote.com/logo-test1.png" },
     },
     datePublished: s.datePublished,
     dateModified: s.datePublished,
-    mainEntityOfPage: { "@type": "WebPage", "@id": `https://tryautoquote.com/car-insurance/${s.slug}` },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `https://www.tryautoquote.com/car-insurance/${s.slug}` },
   };
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://tryautoquote.com/" },
-      { "@type": "ListItem", position: 2, name: "Car Insurance by State", item: "https://tryautoquote.com/car-insurance" },
-      { "@type": "ListItem", position: 3, name: s.name, item: `https://tryautoquote.com/car-insurance/${s.slug}` },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
+      { "@type": "ListItem", position: 2, name: "Car Insurance by State", item: "https://www.tryautoquote.com/car-insurance" },
+      { "@type": "ListItem", position: 3, name: s.name, item: `https://www.tryautoquote.com/car-insurance/${s.slug}` },
     ],
   };
 

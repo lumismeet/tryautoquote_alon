@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Does Getting an Auto Insurance Quote Affect Your Credit Score?",
     description:
       "Comparing auto insurance quotes does not hurt your credit score. Learn the difference between soft and hard credit inquiries and what insurers actually check.",
-    url: "https://tryautoquote.com/guides/does-getting-a-quote-affect-credit-score",
+    url: "https://www.tryautoquote.com/guides/does-getting-a-quote-affect-credit-score",
     siteName: "TryAutoQuote",
     type: "article",
   },
@@ -25,18 +25,18 @@ const articleSchema = {
   headline: "Does Getting an Auto Insurance Quote Affect Your Credit Score?",
   description:
     "Comparing auto insurance quotes does not hurt your credit score. Learn the difference between soft and hard credit inquiries and what insurers actually check.",
-  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://tryautoquote.com" },
+  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://www.tryautoquote.com" },
   publisher: {
     "@type": "Organization",
     name: "TryAutoQuote",
-    url: "https://tryautoquote.com",
-    logo: { "@type": "ImageObject", url: "https://tryautoquote.com/logo-test1.png" },
+    url: "https://www.tryautoquote.com",
+    logo: { "@type": "ImageObject", url: "https://www.tryautoquote.com/logo-test1.png" },
   },
   datePublished: "2026-06-17",
   dateModified: "2026-06-17",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://tryautoquote.com/guides/does-getting-a-quote-affect-credit-score",
+    "@id": "https://www.tryautoquote.com/guides/does-getting-a-quote-affect-credit-score",
   },
 };
 
@@ -44,9 +44,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "Does Getting a Quote Affect Your Credit Score?", item: "https://tryautoquote.com/guides/does-getting-a-quote-affect-credit-score" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
+    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
+    { "@type": "ListItem", position: 3, name: "Does Getting a Quote Affect Your Credit Score?", item: "https://www.tryautoquote.com/guides/does-getting-a-quote-affect-credit-score" },
   ],
 };
 

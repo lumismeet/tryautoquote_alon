@@ -16,6 +16,45 @@ type Post = {
 
 const PAGE_SIZE = 5;
 
+// Presentational list of post cards, shared by the interactive (filtered) view
+// and the Suspense fallback. Rendering it in the fallback is what puts real
+// <a href="/blogs/{slug}"> links into the statically prerendered HTML, so
+// crawlers can discover and pass link equity to every post even though the
+// interactive list itself is client-only (it depends on useSearchParams).
+function PostCards({ posts }: { posts: Post[] }) {
+  return (
+    <div className="space-y-5 mb-8">
+      {posts.map((post) => (
+        <Link
+          key={post.href}
+          href={post.href}
+          className="group block bg-white border border-[#0A2A4F]/8 rounded-2xl p-7 hover:border-[#2B5BA8]/30 hover:shadow-md transition"
+        >
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1">
+              <span className="inline-block text-xs font-semibold text-[#2B5BA8] bg-[#2B5BA8]/10 rounded-full px-3 py-1 mb-3">
+                {post.tag}
+              </span>
+              <h2 className="text-lg font-bold text-[#0A2A4F] group-hover:text-[#2B5BA8] transition mb-2 leading-snug">
+                {post.title}
+              </h2>
+              <p className="text-sm text-[#0A2A4F]/60 leading-relaxed">{post.description}</p>
+              <div className="mt-3 flex items-center gap-3 text-xs text-[#0A2A4F]/40">
+                <span>{post.date}</span>
+                <span>·</span>
+                <span>{post.readTime}</span>
+              </div>
+            </div>
+            <span className="text-[#0A2A4F]/25 group-hover:text-[#2B5BA8] transition text-2xl shrink-0 mt-1">
+              &#8594;
+            </span>
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 function BlogsListInner({ posts }: { posts: Post[] }) {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -141,35 +180,7 @@ function BlogsListInner({ posts }: { posts: Post[] }) {
         </p>
       )}
 
-      <div className="space-y-5 mb-8">
-        {shown.map((post) => (
-          <Link
-            key={post.href}
-            href={post.href}
-            className="group block bg-white border border-[#0A2A4F]/8 rounded-2xl p-7 hover:border-[#2B5BA8]/30 hover:shadow-md transition"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex-1">
-                <span className="inline-block text-xs font-semibold text-[#2B5BA8] bg-[#2B5BA8]/10 rounded-full px-3 py-1 mb-3">
-                  {post.tag}
-                </span>
-                <h2 className="text-lg font-bold text-[#0A2A4F] group-hover:text-[#2B5BA8] transition mb-2 leading-snug">
-                  {post.title}
-                </h2>
-                <p className="text-sm text-[#0A2A4F]/60 leading-relaxed">{post.description}</p>
-                <div className="mt-3 flex items-center gap-3 text-xs text-[#0A2A4F]/40">
-                  <span>{post.date}</span>
-                  <span>·</span>
-                  <span>{post.readTime}</span>
-                </div>
-              </div>
-              <span className="text-[#0A2A4F]/25 group-hover:text-[#2B5BA8] transition text-2xl shrink-0 mt-1">
-                &#8594;
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <PostCards posts={shown} />
 
       {totalPages > 1 && (
         <div className="flex items-center justify-center gap-1.5">
@@ -209,8 +220,20 @@ function BlogsListInner({ posts }: { posts: Post[] }) {
 }
 
 export default function BlogsList({ posts }: { posts: Post[] }) {
+  // The fallback renders every post's link. Because BlogsListInner depends on
+  // useSearchParams(), it bails out of static prerendering and only this
+  // fallback is emitted into the static HTML — so the fallback must contain the
+  // crawlable links to all posts. After hydration the interactive
+  // search/filter/paginate view replaces it.
   return (
-    <Suspense>
+    <Suspense
+      fallback={
+        <div>
+          <p className="text-xs text-[#0A2A4F]/45 mb-5">{posts.length} articles</p>
+          <PostCards posts={posts} />
+        </div>
+      }
+    >
       <BlogsListInner posts={posts} />
     </Suspense>
   );

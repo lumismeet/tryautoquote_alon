@@ -9,7 +9,7 @@ import { getAllPosts } from "@/lib/blogs";
    content plan. Keep URLs absolute and on the production domain.
    ------------------------------------------------------------------ */
 
-const BASE = "https://tryautoquote.com";
+const BASE = "https://www.tryautoquote.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

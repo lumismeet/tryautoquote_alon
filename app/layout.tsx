@@ -54,7 +54,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   // metadataBase lets Next resolve absolute URLs for canonical/OG tags.
-  metadataBase: new URL("https://tryautoquote.com"),
+  metadataBase: new URL("https://www.tryautoquote.com"),
   title: "Free Auto Insurance Quotes | Compare and Save | TryAutoQuote",
   description:
     "Compare personalized auto insurance quotes from top carriers in minutes. Free service, no obligation, no spam calls. Start with your zip code.",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title: "Free Auto Insurance Quotes | Compare and Save | TryAutoQuote",
     description:
       "Compare personalized auto insurance quotes from top carriers in minutes. Free service, no obligation, no spam calls. Start with your zip code.",
-    url: "https://tryautoquote.com/",
+    url: "https://www.tryautoquote.com/",
     siteName: "TryAutoQuote",
     type: "website",
     images: [
@@ -94,12 +94,12 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://tryautoquote.com/#organization",
+  "@id": "https://www.tryautoquote.com/#organization",
   name: "TryAutoQuote",
-  url: "https://tryautoquote.com/",
+  url: "https://www.tryautoquote.com/",
   logo: {
     "@type": "ImageObject",
-    url: "https://tryautoquote.com/logo-test1.png",
+    url: "https://www.tryautoquote.com/logo-test1.png",
   },
   description:
     "TryAutoQuote is an independent, advertising-supported comparison website that helps drivers compare personalized auto insurance quotes from third-party carriers.",
@@ -115,10 +115,10 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://tryautoquote.com/#website",
+  "@id": "https://www.tryautoquote.com/#website",
   name: "TryAutoQuote",
-  url: "https://tryautoquote.com/",
-  publisher: { "@id": "https://tryautoquote.com/#organization" },
+  url: "https://www.tryautoquote.com/",
+  publisher: { "@id": "https://www.tryautoquote.com/#organization" },
   inLanguage: "en-US",
 };
 

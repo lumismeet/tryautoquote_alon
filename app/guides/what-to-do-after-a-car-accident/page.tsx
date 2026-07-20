@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "What to Do After a Car Accident: Step-by-Step Guide | TryAutoQuote",
     description:
       "A clear step-by-step guide for what to do immediately after a car accident, from the scene to the claim, so you protect yourself and your coverage.",
-    url: "https://tryautoquote.com/guides/what-to-do-after-a-car-accident",
+    url: "https://www.tryautoquote.com/guides/what-to-do-after-a-car-accident",
     siteName: "TryAutoQuote",
     type: "article",
   },
@@ -25,18 +25,18 @@ const articleSchema = {
   headline: "What to Do After a Car Accident: Step-by-Step Guide",
   description:
     "A clear step-by-step guide for what to do immediately after a car accident, from the scene to the claim, so you protect yourself and your coverage.",
-  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://tryautoquote.com" },
+  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://www.tryautoquote.com" },
   publisher: {
     "@type": "Organization",
     name: "TryAutoQuote",
-    url: "https://tryautoquote.com",
-    logo: { "@type": "ImageObject", url: "https://tryautoquote.com/logo-test1.png" },
+    url: "https://www.tryautoquote.com",
+    logo: { "@type": "ImageObject", url: "https://www.tryautoquote.com/logo-test1.png" },
   },
   datePublished: "2026-06-17",
   dateModified: "2026-06-17",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://tryautoquote.com/guides/what-to-do-after-a-car-accident",
+    "@id": "https://www.tryautoquote.com/guides/what-to-do-after-a-car-accident",
   },
 };
 
@@ -44,9 +44,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "What to Do After a Car Accident", item: "https://tryautoquote.com/guides/what-to-do-after-a-car-accident" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
+    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
+    { "@type": "ListItem", position: 3, name: "What to Do After a Car Accident", item: "https://www.tryautoquote.com/guides/what-to-do-after-a-car-accident" },
   ],
 };
 

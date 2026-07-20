@@ -100,7 +100,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${post.title} | TryAutoQuote Blog`,
       description: post.description,
-      url: `https://tryautoquote.com/blogs/${post.slug}`,
+      url: `https://www.tryautoquote.com/blogs/${post.slug}`,
       siteName: "TryAutoQuote",
       type: "article",
     },
@@ -149,9 +149,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     headline: post.title,
     description: post.description,
     datePublished: new Date(post.date).toISOString(),
-    mainEntityOfPage: `https://tryautoquote.com/blogs/${post.slug}`,
-    url: `https://tryautoquote.com/blogs/${post.slug}`,
-    publisher: { "@id": "https://tryautoquote.com/#organization" },
+    mainEntityOfPage: `https://www.tryautoquote.com/blogs/${post.slug}`,
+    url: `https://www.tryautoquote.com/blogs/${post.slug}`,
+    publisher: { "@id": "https://www.tryautoquote.com/#organization" },
     citation:
       references.length > 0
         ? references.map((r) => ({

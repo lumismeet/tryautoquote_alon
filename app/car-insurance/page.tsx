@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Car Insurance Requirements by State | TryAutoQuote",
     description:
       "Find the minimum car insurance requirements for your state. Coverage laws vary significantly — learn what is required where you live and compare free quotes.",
-    url: "https://tryautoquote.com/car-insurance",
+    url: "https://www.tryautoquote.com/car-insurance",
     siteName: "TryAutoQuote",
     type: "website",
   },
@@ -24,8 +24,8 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Car Insurance by State", item: "https://tryautoquote.com/car-insurance" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
+    { "@type": "ListItem", position: 2, name: "Car Insurance by State", item: "https://www.tryautoquote.com/car-insurance" },
   ],
 };
 

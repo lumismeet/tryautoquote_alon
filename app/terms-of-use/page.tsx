@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Terms of Use | TryAutoQuote Free Auto Insurance Quotes",
     description:
       "The terms and conditions that govern your use of TryAutoQuote.com, including disclaimers about our advertising-supported auto insurance comparison service.",
-    url: "https://tryautoquote.com/terms-of-use",
+    url: "https://www.tryautoquote.com/terms-of-use",
     siteName: "TryAutoQuote",
     type: "website",
   },
@@ -26,13 +26,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://tryautoquote.com/",
+      item: "https://www.tryautoquote.com/",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Terms of Use",
-      item: "https://tryautoquote.com/terms-of-use",
+      item: "https://www.tryautoquote.com/terms-of-use",
     },
   ],
 };

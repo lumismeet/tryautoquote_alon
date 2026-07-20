@@ -22,7 +22,7 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://tryautoquote.com/sitemap.xml",
-    host: "https://tryautoquote.com",
+    sitemap: "https://www.tryautoquote.com/sitemap.xml",
+    host: "https://www.tryautoquote.com",
   };
 }

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Contact TryAutoQuote | Auto Insurance Quote Support",
     description:
       "Get in touch with the TryAutoQuote team. Email us for help comparing auto insurance quotes, questions about your results, or anything about our service.",
-    url: "https://tryautoquote.com/contact",
+    url: "https://www.tryautoquote.com/contact",
     siteName: "TryAutoQuote",
     type: "website",
   },
@@ -23,13 +23,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://tryautoquote.com/",
+      item: "https://www.tryautoquote.com/",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Contact",
-      item: "https://tryautoquote.com/contact",
+      item: "https://www.tryautoquote.com/contact",
     },
   ],
 };

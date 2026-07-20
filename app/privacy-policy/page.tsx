@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Privacy Policy | TryAutoQuote Auto Insurance Quotes",
     description:
       "How TryAutoQuote collects, uses, and safeguards your personal information when you compare auto insurance quotes through our website.",
-    url: "https://tryautoquote.com/privacy-policy",
+    url: "https://www.tryautoquote.com/privacy-policy",
     siteName: "TryAutoQuote",
     type: "website",
   },
@@ -25,13 +25,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://tryautoquote.com/",
+      item: "https://www.tryautoquote.com/",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Privacy Policy",
-      item: "https://tryautoquote.com/privacy-policy",
+      item: "https://www.tryautoquote.com/privacy-policy",
     },
   ],
 };

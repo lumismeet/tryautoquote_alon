@@ -151,7 +151,7 @@ const navLinks = [
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://tryautoquote.com/#faq",
+  "@id": "https://www.tryautoquote.com/#faq",
   mainEntity: [
     {
       "@type": "Question",

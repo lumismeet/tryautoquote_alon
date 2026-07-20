@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "How to Lower Your Car Insurance Premium | TryAutoQuote",
     description:
       "Ten proven ways to reduce your auto insurance premium without sacrificing the coverage you need. Compare, bundle, adjust, and save.",
-    url: "https://tryautoquote.com/guides/how-to-lower-your-car-insurance-premium",
+    url: "https://www.tryautoquote.com/guides/how-to-lower-your-car-insurance-premium",
     siteName: "TryAutoQuote",
     type: "article",
   },
@@ -25,18 +25,18 @@ const articleSchema = {
   headline: "How to Lower Your Car Insurance Premium",
   description:
     "Ten proven ways to reduce your auto insurance premium without sacrificing the coverage you need.",
-  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://tryautoquote.com" },
+  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://www.tryautoquote.com" },
   publisher: {
     "@type": "Organization",
     name: "TryAutoQuote",
-    url: "https://tryautoquote.com",
-    logo: { "@type": "ImageObject", url: "https://tryautoquote.com/logo-test1.png" },
+    url: "https://www.tryautoquote.com",
+    logo: { "@type": "ImageObject", url: "https://www.tryautoquote.com/logo-test1.png" },
   },
   datePublished: "2026-06-17",
   dateModified: "2026-06-17",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://tryautoquote.com/guides/how-to-lower-your-car-insurance-premium",
+    "@id": "https://www.tryautoquote.com/guides/how-to-lower-your-car-insurance-premium",
   },
 };
 
@@ -44,9 +44,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "How to Lower Your Car Insurance Premium", item: "https://tryautoquote.com/guides/how-to-lower-your-car-insurance-premium" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
+    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
+    { "@type": "ListItem", position: 3, name: "How to Lower Your Car Insurance Premium", item: "https://www.tryautoquote.com/guides/how-to-lower-your-car-insurance-premium" },
   ],
 };
 

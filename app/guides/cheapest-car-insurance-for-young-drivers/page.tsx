@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Cheapest Car Insurance for Young Drivers | TryAutoQuote Guide",
     description:
       "Young drivers pay the highest rates, but there are real ways to bring them down. Discounts, coverage choices, and comparison tips that actually make a difference.",
-    url: "https://tryautoquote.com/guides/cheapest-car-insurance-for-young-drivers",
+    url: "https://www.tryautoquote.com/guides/cheapest-car-insurance-for-young-drivers",
     siteName: "TryAutoQuote",
     type: "article",
   },
@@ -25,18 +25,18 @@ const articleSchema = {
   headline: "Cheapest Car Insurance for Young Drivers",
   description:
     "Young drivers pay the highest rates, but there are real ways to bring them down. Discounts, coverage choices, and comparison tips that actually make a difference.",
-  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://tryautoquote.com" },
+  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://www.tryautoquote.com" },
   publisher: {
     "@type": "Organization",
     name: "TryAutoQuote",
-    url: "https://tryautoquote.com",
-    logo: { "@type": "ImageObject", url: "https://tryautoquote.com/logo-test1.png" },
+    url: "https://www.tryautoquote.com",
+    logo: { "@type": "ImageObject", url: "https://www.tryautoquote.com/logo-test1.png" },
   },
   datePublished: "2026-06-17",
   dateModified: "2026-06-17",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://tryautoquote.com/guides/cheapest-car-insurance-for-young-drivers",
+    "@id": "https://www.tryautoquote.com/guides/cheapest-car-insurance-for-young-drivers",
   },
 };
 
@@ -44,9 +44,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "Cheapest Car Insurance for Young Drivers", item: "https://tryautoquote.com/guides/cheapest-car-insurance-for-young-drivers" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
+    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
+    { "@type": "ListItem", position: 3, name: "Cheapest Car Insurance for Young Drivers", item: "https://www.tryautoquote.com/guides/cheapest-car-insurance-for-young-drivers" },
   ],
 };
 

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Auto Insurance Guides | TryAutoQuote",
     description:
       "Practical guides to help you understand auto insurance, compare coverage options, and find the best rate for your situation.",
-    url: "https://tryautoquote.com/guides",
+    url: "https://www.tryautoquote.com/guides",
     siteName: "TryAutoQuote",
     type: "website",
   },

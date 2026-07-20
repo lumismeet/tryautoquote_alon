@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "How Much Car Insurance Do You Actually Need? | TryAutoQuote",
     description:
       "State minimums are rarely enough. Learn what coverage types exist, what limits to carry, and how to find the right amount of car insurance for your situation.",
-    url: "https://tryautoquote.com/guides/how-much-car-insurance-do-i-need",
+    url: "https://www.tryautoquote.com/guides/how-much-car-insurance-do-i-need",
     siteName: "TryAutoQuote",
     type: "article",
   },
@@ -25,18 +25,18 @@ const articleSchema = {
   headline: "How Much Car Insurance Do You Actually Need?",
   description:
     "State minimums are rarely enough. Learn what coverage types exist, what limits to carry, and how to find the right amount of car insurance for your situation.",
-  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://tryautoquote.com" },
+  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://www.tryautoquote.com" },
   publisher: {
     "@type": "Organization",
     name: "TryAutoQuote",
-    url: "https://tryautoquote.com",
-    logo: { "@type": "ImageObject", url: "https://tryautoquote.com/logo-test1.png" },
+    url: "https://www.tryautoquote.com",
+    logo: { "@type": "ImageObject", url: "https://www.tryautoquote.com/logo-test1.png" },
   },
   datePublished: "2026-06-17",
   dateModified: "2026-06-17",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://tryautoquote.com/guides/how-much-car-insurance-do-i-need",
+    "@id": "https://www.tryautoquote.com/guides/how-much-car-insurance-do-i-need",
   },
 };
 
@@ -44,9 +44,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "How Much Car Insurance Do You Need?", item: "https://tryautoquote.com/guides/how-much-car-insurance-do-i-need" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
+    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
+    { "@type": "ListItem", position: 3, name: "How Much Car Insurance Do You Need?", item: "https://www.tryautoquote.com/guides/how-much-car-insurance-do-i-need" },
   ],
 };
 

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Liability Only vs Full Coverage Car Insurance | TryAutoQuote",
     description:
       "Should you carry liability only or full coverage? Learn what each covers, when the switch makes financial sense, and how to decide based on your car's value.",
-    url: "https://tryautoquote.com/guides/liability-only-vs-full-coverage",
+    url: "https://www.tryautoquote.com/guides/liability-only-vs-full-coverage",
     siteName: "TryAutoQuote",
     type: "article",
   },
@@ -25,18 +25,18 @@ const articleSchema = {
   headline: "Liability Only vs Full Coverage Car Insurance",
   description:
     "Should you carry liability only or full coverage? Learn what each covers, when the switch makes financial sense, and how to decide based on your car's value.",
-  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://tryautoquote.com" },
+  author: { "@type": "Organization", name: "TryAutoQuote", url: "https://www.tryautoquote.com" },
   publisher: {
     "@type": "Organization",
     name: "TryAutoQuote",
-    url: "https://tryautoquote.com",
-    logo: { "@type": "ImageObject", url: "https://tryautoquote.com/logo-test1.png" },
+    url: "https://www.tryautoquote.com",
+    logo: { "@type": "ImageObject", url: "https://www.tryautoquote.com/logo-test1.png" },
   },
   datePublished: "2026-06-17",
   dateModified: "2026-06-17",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://tryautoquote.com/guides/liability-only-vs-full-coverage",
+    "@id": "https://www.tryautoquote.com/guides/liability-only-vs-full-coverage",
   },
 };
 
@@ -44,9 +44,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "Liability Only vs Full Coverage", item: "https://tryautoquote.com/guides/liability-only-vs-full-coverage" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
+    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
+    { "@type": "ListItem", position: 3, name: "Liability Only vs Full Coverage", item: "https://www.tryautoquote.com/guides/liability-only-vs-full-coverage" },
   ],
 };
 

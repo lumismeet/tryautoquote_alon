@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Auto Insurance Blog | TryAutoQuote",
     description:
       "Real talk about auto insurance: conversations, comparisons, and advice to help you find the right coverage and save money.",
-    url: "https://tryautoquote.com/blogs",
+    url: "https://www.tryautoquote.com/blogs",
     siteName: "TryAutoQuote",
     type: "website",
   },
