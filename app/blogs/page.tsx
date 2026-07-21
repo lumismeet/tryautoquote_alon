@@ -1,4 +1,6 @@
 // Blogs (content/blogs/*.mdx), newest first:
+// certificate-of-insurance-explained
+// business-use-car-insurance
 // 500-vs-1000-deductible
 // can-employer-ask-for-car-insurance-information
 // who-is-covered-when-someone-else-drives-your-car
