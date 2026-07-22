@@ -1018,7 +1018,7 @@ function FooterV3() {
           <div>
             <h3 className="font-semibold mb-4">Explore</h3>
             <ul className="space-y-3 text-sm text-white/55">
-              <li><Link href="/blogs" className="hover:text-white transition">Blog</Link></li>
+              <li><Link href="/blogs" className="hover:text-white transition">Blogs</Link></li>
               <li><Link href="/guides" className="hover:text-white transition">Guides</Link></li>
               <li><Link href="/car-insurance" className="hover:text-white transition">States</Link></li>
             </ul>

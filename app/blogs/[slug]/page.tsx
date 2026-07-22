@@ -232,7 +232,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
             <div className="mt-10 text-center">
               <Link href="/blogs" className="text-sm text-[#2B5BA8] hover:underline">
-                Back to Blog
+                Back to Blogs
               </Link>
             </div>
 
