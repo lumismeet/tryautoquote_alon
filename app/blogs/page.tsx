@@ -1,4 +1,6 @@
 // Blogs (content/blogs/*.mdx), newest first:
+// how-to-appeal-a-denied-auto-insurance-claim
+// what-comprehensive-coverage-covers
 // 50-100-50-liability-limits-explained
 // car-insurance-without-an-agent
 // certificate-of-insurance-explained
