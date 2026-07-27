@@ -1,4 +1,6 @@
 // Blogs (content/blogs/*.mdx), newest first:
+// state-minimum-vs-full-coverage
+// how-to-lower-your-car-insurance-premiums
 // how-to-file-a-theft-or-vandalism-claim
 // actual-cash-value-vs-replacement-cost
 // how-to-appeal-a-denied-auto-insurance-claim
