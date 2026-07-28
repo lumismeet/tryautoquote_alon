@@ -1,4 +1,6 @@
 // Blogs (content/blogs/*.mdx), newest first:
+// bundle-home-and-auto-insurance
+// what-documents-to-file-a-car-insurance-claim
 // state-minimum-vs-full-coverage
 // how-to-lower-your-car-insurance-premiums
 // how-to-file-a-theft-or-vandalism-claim
