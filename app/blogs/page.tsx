@@ -1,4 +1,6 @@
 // Blogs (content/blogs/*.mdx), newest first:
+// how-much-car-insurance-do-you-need
+// how-insurers-calculate-your-premium
 // bundle-home-and-auto-insurance
 // what-documents-to-file-a-car-insurance-claim
 // state-minimum-vs-full-coverage
