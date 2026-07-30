@@ -1,4 +1,6 @@
 // Blogs (content/blogs/*.mdx), newest first:
+// red-flags-choosing-insurance-company
+// what-not-to-tell-your-insurance-company
 // how-much-car-insurance-do-you-need
 // how-insurers-calculate-your-premium
 // bundle-home-and-auto-insurance
