@@ -1,4 +1,6 @@
 // Blogs (content/blogs/*.mdx), newest first:
+// can-you-switch-car-insurance-mid-policy
+// questions-to-ask-before-buying-car-insurance
 // red-flags-choosing-insurance-company
 // what-not-to-tell-your-insurance-company
 // how-much-car-insurance-do-you-need
