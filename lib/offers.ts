@@ -28,6 +28,7 @@ export type Offer = {
     excludeStates?: string[];          // never show to these states
     insured?: ("Yes" | "No")[];        // only show to these insured statuses
     homeowner?: ("Own" | "Rent")[];
+    excludeAges?: string[];            // never show to these age ranges (e.g. ["18-24"])
   };
 };
 
@@ -50,10 +51,20 @@ export const OFFERS: Offer[] = [
     id: "dms-budget-auto-quotes",
     active: true, // NOTE: DMS requires creative/pre-lander approval before launch
     name: "Budget Auto Quotes",
-    headline: "Compare auto insurance quotes from multiple providers",
-    bullets: ["Free, no-obligation quotes", "Compare options in minutes", "Available nationwide"],
+    // Logo, copy and CTA follow the DMS Partner Brand & Compliance Guidelines.
+    // Use only approved claims; do not add savings figures, time claims, or
+    // "we compare for you" language without DMS approval. Logo must not be altered.
+    logo: "/offers/budget-auto-quotes.jpg",
+    headline: "Compare rates and save",
+    bullets: [
+      "Quotes from top providers in your area",
+      "Free quote with no obligation",
+      "No unsolicited calls",
+    ],
     url: "https://www.dxm4n9z.com/DZKLZ511/2Z5TDTNW/?uid=291",
-    buttonLabel: "Get My Quotes",
+    buttonLabel: "Get Free Quotes",
+    // DMS guidelines: do not target under-25 audiences.
+    filter: { excludeAges: ["18-24"] },
     customParams: (answers, ctx) => ({
       sub1: "SEO",
       sub2: ctx.clickId,
@@ -83,6 +94,7 @@ export function matchingOffers(answers: Answers): Offer[] {
     if (f.excludeStates && answers.state && f.excludeStates.includes(answers.state)) return false;
     if (f.insured && !f.insured.includes(answers.insured as "Yes" | "No")) return false;
     if (f.homeowner && !f.homeowner.includes(answers.homeowner as "Own" | "Rent")) return false;
+    if (f.excludeAges && answers.age && f.excludeAges.includes(answers.age)) return false;
     return true;
   });
 }

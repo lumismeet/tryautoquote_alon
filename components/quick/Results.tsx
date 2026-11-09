@@ -67,7 +67,7 @@ export default function Results() {
           Compare car insurance rates{answers.state ? ` in ${answers.state}` : ""}
         </h1>
         <p className="text-center text-[#0A2A4F]/60 mb-6">
-          Choose a provider below to see your rates. Checking more than one is the easiest way to save.
+          Choose a provider below to see your options. Reviewing more than one quote is a good way to see how much you could save.
         </p>
 
         {summary.length > 0 && (
@@ -91,13 +91,17 @@ export default function Results() {
               });
               return (
                 <li key={offer.id} className="bg-white rounded-2xl border border-[#0A2A4F]/10 shadow-sm p-6 flex flex-col sm:flex-row sm:items-center gap-5">
-                  {offer.logo && (
-                    <div className="relative w-28 h-12 shrink-0">
-                      <Image src={offer.logo} alt={offer.name} fill className="object-contain" />
-                    </div>
-                  )}
                   <div className="flex-1">
-                    <h2 className="text-lg font-bold text-[#042C53]">{offer.name}</h2>
+                    {offer.logo ? (
+                      <h2 className="mb-4">
+                        {/* Partner logo: unaltered, on white, with clear space of at least half its height */}
+                        <span className="block bg-white py-3">
+                          <Image src={offer.logo} alt={offer.name} width={200} height={28} className="h-7 w-auto" />
+                        </span>
+                      </h2>
+                    ) : (
+                      <h2 className="text-lg font-bold text-[#042C53]">{offer.name}</h2>
+                    )}
                     <p className="text-[#0A2A4F]/70 mb-2">{offer.headline}</p>
                     <ul className="text-sm text-[#0A2A4F]/60 space-y-0.5">
                       {offer.bullets.map((b) => <li key={b}>✓ {b}</li>)}

@@ -47,14 +47,14 @@ export default function BlogCTA() {
           Find the best rate in your area
         </h3>
         <p className="text-white/60 text-xs mb-6 leading-relaxed">
-          Compare top carriers side by side in minutes. No spam, no obligation.
+          Review quotes from top providers in a few minutes. No spam, no obligation.
         </p>
 
         <ul className="space-y-2.5 mb-6">
           {[
-            "Compare top carriers instantly",
+            "Quotes from top providers in your area",
             "No spam calls or emails",
-            "Takes less than 2 minutes",
+            "Takes just a few minutes",
           ].map((item) => (
             <li key={item} className="flex items-center gap-2.5 text-sm text-white/85">
               <span className="w-4 h-4 rounded-full bg-[#38B6C9]/20 flex items-center justify-center shrink-0">
