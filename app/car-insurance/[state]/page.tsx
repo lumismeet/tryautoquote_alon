@@ -201,6 +201,27 @@ export default async function StateCarInsurance({ params }: Props) {
 
         </div>
 
+        {/* Related resources: internal links from state pages into guides and articles */}
+        <section className="mt-14">
+          <h2 className="text-xl font-bold text-[#0A2A4F] mb-4">Helpful guides for {s.name} drivers</h2>
+          <ul className="grid sm:grid-cols-2 gap-3">
+            {[
+              { href: "/guides/how-much-car-insurance-do-i-need", label: "How much car insurance do I need?" },
+              { href: "/guides/liability-only-vs-full-coverage", label: "Liability only vs. full coverage" },
+              { href: "/guides/how-to-lower-your-car-insurance-premium", label: "How to lower your car insurance premium" },
+              { href: "/blogs/when-to-drop-full-coverage", label: "When to drop full coverage on your car" },
+              { href: "/blogs/what-documents-to-file-a-car-insurance-claim", label: "Documents you need for a car insurance claim" },
+              { href: "/guides/does-getting-a-quote-affect-credit-score", label: "Does getting a quote affect your credit score?" },
+            ].map((r) => (
+              <li key={r.href}>
+                <Link href={r.href} className="block rounded-xl border border-[#0A2A4F]/10 bg-white px-4 py-3 text-[#2B5BA8] font-medium hover:border-[#2B5BA8]/40 transition">
+                  {r.label} →
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <div className="mt-14 bg-[#0A2A4F] rounded-2xl px-8 py-10 text-center text-white">
           <h2 className="text-2xl font-bold mb-3">{s.ctaHeading}</h2>
           <p className="text-white/70 mb-6 max-w-md mx-auto">

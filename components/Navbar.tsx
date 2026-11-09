@@ -10,8 +10,9 @@ const inter = Inter({ subsets: ["latin"] });
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Contact", href: "/contact" },
+  { label: "Car Insurance by State", href: "/car-insurance" },
+  { label: "Guides", href: "/guides" },
+  { label: "Blog", href: "/blogs" },
 ];
 
 type NavbarProps = {
@@ -49,7 +50,8 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-[#0A2A4F]/70 hover:text-[#2B5BA8] transition rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2B5BA8]"
+                aria-current={pathname.startsWith(link.href) ? "page" : undefined}
+                className={`text-sm font-medium hover:text-[#2B5BA8] transition rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2B5BA8] ${pathname.startsWith(link.href) ? "text-[#2B5BA8]" : "text-[#0A2A4F]/70"}`}
               >
                 {link.label}
               </Link>

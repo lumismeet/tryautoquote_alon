@@ -231,6 +231,17 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               <BlogCTA />
             </div>
 
+            {/* Internal link into the state pages hub */}
+            <div className="mt-10 rounded-2xl border border-[#0A2A4F]/10 bg-white px-6 py-5">
+              <p className="font-semibold text-[#0A2A4F]">Car insurance rules are different in every state</p>
+              <p className="mt-1 text-sm text-[#0A2A4F]/70">
+                See minimum coverage requirements, average costs, and local tips for your state.
+              </p>
+              <Link href="/car-insurance" className="mt-3 inline-block text-sm font-semibold text-[#2B5BA8] hover:underline">
+                Browse car insurance by state →
+              </Link>
+            </div>
+
             <References references={references} />
 
             <RelatedPosts posts={relatedPosts} />
