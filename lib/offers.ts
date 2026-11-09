@@ -96,7 +96,15 @@ export const OFFERS: Offer[] = [
     buttonLabel: "Compare Providers",
     disclaimer:
       "Advertisement. Advertiser is not an insurance provider. Terms set by providers. Not all providers featured.",
-    filter: { hoursET: [8, 20], weekendShare: 0.8, excludeStates: ["CA", "NY"] },
+    // Test phase: match NI audience profile (25-55, currently insured) while NI's data
+    // team assesses quality (~3 days). Widen ages/insured once caps are lifted.
+    filter: {
+      hoursET: [8, 20],
+      weekendShare: 0.8,
+      excludeStates: ["CA", "NY"],
+      insured: ["Yes"],
+      excludeAges: ["18-24", "55-64", "65+"],
+    },
     customParams: (answers, ctx) => ({
       pub_param_1: "tryautoquote_seo",            // our source ID
       pub_param_2: ctx.clickId,                   // unique click ID, returned in postback
