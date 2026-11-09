@@ -16,6 +16,7 @@ export type Offer = {
   bullets: string[];
   url: string;              // client landing page (may already include query params)
   buttonLabel?: string;     // default: "View Rates"
+  disclaimer?: string;      // small print shown under the listing (required by some advertisers)
   // Rename parameters if a client expects different names, e.g. { zip: "zipcode" }.
   // Set a key to null to not send that answer to this client.
   paramNames?: Partial<Record<AnswerKey, string | null>>;
@@ -29,6 +30,7 @@ export type Offer = {
     insured?: ("Yes" | "No")[];        // only show to these insured statuses
     homeowner?: ("Own" | "Rent")[];
     excludeAges?: string[];            // never show to these age ranges (e.g. ["18-24"])
+    hoursET?: [number, number];        // only show between these hours, US Eastern (e.g. [8, 20] = 8am-8pm)
   };
 };
 
@@ -72,6 +74,36 @@ export const OFFERS: Offer[] = [
       sub4: ctx.campaign.slice(0, 100),
     }),
   },
+  // Natural Intelligence / BestMoney - auto insurance. Contract signed Sept 24, 2026, Net30.
+  // Contact: Josh Molin (josh.molin@naturalint.com).
+  // Caps: hard 100 carrier clickouts/day, soft 300 bridge visits/day (enforced by NI).
+  // Day parting: 8am-8pm US Eastern. Billing source of truth: NI Publisher Hub (UTC).
+  // Copy follows NI guidelines: "Compare Car Insurance Providers" style, no "rates just
+  // changed" claims, no "one question" hook, no age references, disclaimer required.
+  // LAUNCH: keep active: false until NI's data team validates the test link + postback.
+  {
+    id: "ni-bestmoney-auto",
+    active: false,
+    name: "BestMoney",
+    headline: "Compare Car Insurance Providers",
+    bullets: [
+      "Answer a few quick questions and compare providers",
+      "Free, no obligation",
+    ],
+    url: "https://funnel.naturaltracking.com/v4?key=ezisqznfL2NzVKH9xBrv",
+    buttonLabel: "Compare Providers",
+    disclaimer:
+      "Advertisement. Advertiser is not an insurance provider. Terms set by providers. Not all providers featured.",
+    filter: { hoursET: [8, 20] },
+    customParams: (answers, ctx) => ({
+      pub_param_1: "tryautoquote_seo",            // our source ID
+      pub_param_2: ctx.clickId,                   // unique click ID, returned in postback
+      external_campaign_id: ctx.campaign.slice(0, 100) || "auto_insurance_seo",
+      // TODO: confirm SEO values with Josh (Meta = Paid_Social / Facebook)
+      aff_traffic_join: "Organic_Search",
+      aff_source_join: "Google",
+    }),
+  },
   // Example template (inactive). Replace with real clients.
   {
     id: "example-client",
@@ -95,6 +127,10 @@ export function matchingOffers(answers: Answers): Offer[] {
     if (f.insured && !f.insured.includes(answers.insured as "Yes" | "No")) return false;
     if (f.homeowner && !f.homeowner.includes(answers.homeowner as "Own" | "Rent")) return false;
     if (f.excludeAges && answers.age && f.excludeAges.includes(answers.age)) return false;
+    if (f.hoursET) {
+      const h = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "numeric", hourCycle: "h23" }).format(new Date()));
+      if (h < f.hoursET[0] || h >= f.hoursET[1]) return false;
+    }
     return true;
   });
 }

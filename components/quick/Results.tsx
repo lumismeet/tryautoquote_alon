@@ -106,6 +106,9 @@ export default function Results() {
                     <ul className="text-sm text-[#0A2A4F]/60 space-y-0.5">
                       {offer.bullets.map((b) => <li key={b}>✓ {b}</li>)}
                     </ul>
+                    {offer.disclaimer && (
+                      <p className="mt-3 text-xs text-[#0A2A4F]/50">{offer.disclaimer}</p>
+                    )}
                   </div>
                   <a
                     href={href}
