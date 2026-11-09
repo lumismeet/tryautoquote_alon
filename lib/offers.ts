@@ -31,6 +31,7 @@ export type Offer = {
     homeowner?: ("Own" | "Rent")[];
     excludeAges?: string[];            // never show to these age ranges (e.g. ["18-24"])
     hoursET?: [number, number];        // only show between these hours, US Eastern (e.g. [8, 20] = 8am-8pm)
+    weekendShare?: number;             // on Sat/Sun (US Eastern), show to only this share of visitors (e.g. 0.8)
   };
 };
 
@@ -77,7 +78,8 @@ export const OFFERS: Offer[] = [
   // Natural Intelligence / BestMoney - auto insurance. Contract signed Sept 24, 2026, Net30.
   // Contact: Josh Molin (josh.molin@naturalint.com).
   // Caps: hard 100 carrier clickouts/day, soft 300 bridge visits/day (enforced by NI).
-  // Day parting: 8am-8pm US Eastern. Billing source of truth: NI Publisher Hub (UTC).
+  // Targeting Guide: 8am-8pm ET, weekend volume -20%, restricted states CA and NY.
+  // Billing source of truth: NI Publisher Hub (UTC).
   // Copy follows NI guidelines: "Compare Car Insurance Providers" style, no "rates just
   // changed" claims, no "one question" hook, no age references, disclaimer required.
   // LAUNCH: keep active: false until NI's data team validates the test link + postback.
@@ -94,7 +96,7 @@ export const OFFERS: Offer[] = [
     buttonLabel: "Compare Providers",
     disclaimer:
       "Advertisement. Advertiser is not an insurance provider. Terms set by providers. Not all providers featured.",
-    filter: { hoursET: [8, 20] },
+    filter: { hoursET: [8, 20], weekendShare: 0.8, excludeStates: ["CA", "NY"] },
     customParams: (answers, ctx) => ({
       pub_param_1: "tryautoquote_seo",            // our source ID
       pub_param_2: ctx.clickId,                   // unique click ID, returned in postback
@@ -117,6 +119,20 @@ export const OFFERS: Offer[] = [
 
 export type ClickContext = { medium: string; campaign: string; content: string; clickId: string };
 
+// One stable random number per offer per browser session, so a visitor
+// doesn't see an offer flicker in and out between page views.
+function weekendRoll(id: string): number {
+  if (typeof window === "undefined") return 0;
+  try {
+    const k = `tq_roll_${id}`;
+    const v = sessionStorage.getItem(k);
+    if (v) return Number(v);
+    const r = Math.random();
+    sessionStorage.setItem(k, String(r));
+    return r;
+  } catch { return Math.random(); }
+}
+
 export function matchingOffers(answers: Answers): Offer[] {
   return OFFERS.filter((o) => {
     if (!o.active) return false;
@@ -127,9 +143,12 @@ export function matchingOffers(answers: Answers): Offer[] {
     if (f.insured && !f.insured.includes(answers.insured as "Yes" | "No")) return false;
     if (f.homeowner && !f.homeowner.includes(answers.homeowner as "Own" | "Rent")) return false;
     if (f.excludeAges && answers.age && f.excludeAges.includes(answers.age)) return false;
-    if (f.hoursET) {
-      const h = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "numeric", hourCycle: "h23" }).format(new Date()));
-      if (h < f.hoursET[0] || h >= f.hoursET[1]) return false;
+    if (f.hoursET || f.weekendShare !== undefined) {
+      const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "numeric", hourCycle: "h23", weekday: "short" }).formatToParts(new Date());
+      const h = Number(parts.find((p) => p.type === "hour")?.value);
+      const day = parts.find((p) => p.type === "weekday")?.value;
+      if (f.hoursET && (h < f.hoursET[0] || h >= f.hoursET[1])) return false;
+      if (f.weekendShare !== undefined && (day === "Sat" || day === "Sun") && weekendRoll(o.id) >= f.weekendShare) return false;
     }
     return true;
   });
