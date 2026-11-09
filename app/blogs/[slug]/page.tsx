@@ -226,6 +226,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               )}
             </article>
 
+            {/* Inline CTA for mobile and tablet. The sidebar CTA only renders on xl screens. */}
+            <div className="xl:hidden mt-12">
+              <BlogCTA />
+            </div>
+
             <References references={references} />
 
             <RelatedPosts posts={relatedPosts} />
