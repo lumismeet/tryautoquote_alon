@@ -151,6 +151,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     datePublished: new Date(post.date).toISOString(),
     mainEntityOfPage: `https://www.tryautoquote.com/blogs/${post.slug}`,
     url: `https://www.tryautoquote.com/blogs/${post.slug}`,
+    dateModified: new Date(post.date).toISOString(),
+    author: {
+      "@type": "Organization",
+      name: "TryAutoQuote Editorial Team",
+      url: "https://www.tryautoquote.com/about#editorial",
+    },
     publisher: { "@id": "https://www.tryautoquote.com/#organization" },
     citation:
       references.length > 0
@@ -198,8 +204,15 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               <h1 className="text-3xl md:text-[2.15rem] font-bold text-[#0A2A4F] leading-tight mb-5">
                 {post.title}
               </h1>
-              <div className="flex items-center gap-3 text-sm text-[#0A2A4F]/45">
-                <span>{post.date}</span>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#0A2A4F]/45">
+                <span>
+                  By{" "}
+                  <Link href="/about#editorial" className="text-[#2B5BA8] hover:underline">
+                    TryAutoQuote Editorial Team
+                  </Link>
+                </span>
+                <span>·</span>
+                <span>Updated {post.date}</span>
                 <span>·</span>
                 <span>{post.readTime}</span>
               </div>

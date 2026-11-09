@@ -14,13 +14,14 @@ export default function Footer() {
               TryAuto<span className="text-[#38B6C9]">Quote</span>
             </p>
             <p className="text-sm leading-relaxed text-white/55 max-w-xs">
-              Your one-stop shop for auto-insurance. Compare personalized rates from dozens of top carriers in real time - free, with no obligation to buy.
+              Your one-stop shop for auto-insurance. Compare auto insurance options in minutes, free and with no obligation to buy.
             </p>
           </div>
 
           <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3 text-sm text-white/55">
+              <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
               <li><Link href="/#why-us" className="hover:text-white transition">Why us</Link></li>
               <li><Link href="/#how-it-works" className="hover:text-white transition">How it works</Link></li>
               <li><Link href="/#reviews" className="hover:text-white transition">Reviews</Link></li>
@@ -49,7 +50,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="text-white/40">
-                Our licensed insurance specialists are here to walk you through your options.
+                Questions about our content or the site? We usually reply within one business day.
               </li>
             </ul>
           </div>
@@ -59,11 +60,11 @@ export default function Footer() {
         <hr className="my-10 border-white/10" />
 
         <p className="text-xs leading-relaxed text-white/40 max-w-5xl">
-          TryAutoQuote.com is an independent, advertising-supported comparison website. The products and offers that appear on this website are from third-party insurance partners and advertisers from which TryAutoQuote.com may receive compensation. This compensation may influence which products we feature, how they are presented, and where they appear on the page. TryAutoQuote.com is not a licensed insurance provider or broker. Content on this site is provided for informational purposes only and does not constitute insurance advice. Available rates and offers vary by location, driving history, and other factors and are subject to change without notice. Not all products or offers are available in all states.
+          TryAutoQuote.com is an independent, advertising-supported comparison website. The products and offers that appear on this website are from third-party insurance partners and advertisers from which TryAutoQuote.com may receive compensation. This compensation may influence which products we feature, how they are presented, and where they appear on the page. TryAutoQuote.com is not an insurance company, agent, or broker. Content on this site is provided for informational purposes only and does not constitute insurance advice. Available rates and offers vary by location, driving history, and other factors and are subject to change without notice. Not all products or offers are available in all states.
         </p>
 
         <p className="mt-8 text-xs text-white/35 text-center">
-          © {new Date().getFullYear()} TryAutoQuote. All Rights Reserved.
+          © {new Date().getFullYear()} TryAutoQuote, operated by StarTech Media. All Rights Reserved.
         </p>
       </div>
     </footer>

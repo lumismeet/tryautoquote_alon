@@ -104,6 +104,7 @@ const organizationSchema = {
   },
   description:
     "TryAutoQuote is an independent, advertising-supported comparison website that helps drivers compare personalized auto insurance quotes from third-party carriers.",
+  parentOrganization: { "@type": "Organization", name: "StarTech Media" },
   contactPoint: {
     "@type": "ContactPoint",
     email: "info@tryautoquote.com",

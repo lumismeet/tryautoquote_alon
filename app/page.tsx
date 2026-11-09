@@ -1005,6 +1005,7 @@ function FooterV3() {
           <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3 text-sm text-white/55">
+              <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
               <li><a href="#why-us" className="hover:text-white transition">Why us</a></li>
               <li><a href="#how-it-works" className="hover:text-white transition">How it works</a></li>
               <li><a href="#reviews" className="hover:text-white transition">Reviews</a></li>
@@ -1038,8 +1039,8 @@ function FooterV3() {
                 </a>
               </li>
               <li className="text-white/40">
-                Our licensed insurance specialists are here to walk you through
-                your options.
+                Questions about our content or the site? We usually reply within
+                one business day.
               </li>
             </ul>
           </div>
@@ -1053,8 +1054,8 @@ function FooterV3() {
           third-party insurance partners and advertisers from which
           TryAutoQuote.com may receive compensation. This compensation may
           influence which products we feature, how they are presented, and
-          where they appear on the page. TryAutoQuote.com is not a licensed
-          insurance provider or broker. Content on this site is provided for
+          where they appear on the page. TryAutoQuote.com is not an insurance
+          company, agent, or broker. Content on this site is provided for
           informational purposes only and does not constitute insurance advice.
           Available rates and offers vary by location, driving history, and
           other factors and are subject to change without notice. Not all
@@ -1062,7 +1063,7 @@ function FooterV3() {
         </p>
 
         <p className="mt-8 text-xs text-white/35 text-center">
-          © 2026 TryAutoQuote. All Rights Reserved.
+          © {new Date().getFullYear()} TryAutoQuote, operated by StarTech Media. All Rights Reserved.
         </p>
       </div>
     </footer>
