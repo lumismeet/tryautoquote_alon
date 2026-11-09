@@ -42,6 +42,12 @@ export default function Results() {
   }), [formData]);
 
   const offers = matchingOffers(answers);
+  // One unique click id per offer per results view (sub2 / reconciliation with GA)
+  const clickIds = useMemo(
+    () => Object.fromEntries(offers.map((o) => [o.id, crypto.randomUUID().replace(/-/g, "").slice(0, 20)])),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [offers.map((o) => o.id).join(",")]
+  );
   const medium = source === "direct" ? "direct" : mediumFor(source);
   const campaign = source === "direct" ? "direct" : (source.replace(/^\/+|\/+$/g, "").replace(/\//g, "_") || "home");
 
@@ -76,10 +82,12 @@ export default function Results() {
         {offers.length > 0 ? (
           <ul className="space-y-4">
             {offers.map((offer, i) => {
+              const clickId = clickIds[offer.id];
               const href = buildOfferUrl(offer, answers, {
                 medium,
                 campaign,
                 content: `${offer.id}_pos${i + 1}`,
+                clickId,
               });
               return (
                 <li key={offer.id} className="bg-white rounded-2xl border border-[#0A2A4F]/10 shadow-sm p-6 flex flex-col sm:flex-row sm:items-center gap-5">
@@ -99,7 +107,7 @@ export default function Results() {
                     href={href}
                     target="_blank"
                     rel="noopener sponsored"
-                    onClick={() => window.gtag?.("event", "offer_click", { offer_id: offer.id, position: i + 1, source_page: source })}
+                    onClick={() => window.gtag?.("event", "offer_click", { offer_id: offer.id, position: i + 1, source_page: source, click_id: clickId })}
                     className="text-center bg-[#2B5BA8] hover:bg-[#E8732A] transition text-white px-7 py-3 rounded-xl font-semibold shrink-0"
                   >
                     {offer.buttonLabel ?? "View Rates"}
