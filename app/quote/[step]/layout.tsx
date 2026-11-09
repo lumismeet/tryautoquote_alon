@@ -22,7 +22,7 @@ export default async function QuoteLayout({
     <>
       <ScrollToTop />
       <QuoteHighlighter />
-      {step !== "16" && <QuizProgress step={step} />}
+      {step !== "results" && <QuizProgress step={step} />}
       {children}
     </>
   );

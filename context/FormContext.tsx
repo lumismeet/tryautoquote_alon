@@ -21,6 +21,8 @@ activeLicense?: string;
 ticketsLast3Years?: string;
 sr22Filed?: string;
 homeowner?: string;
+vehicleCount?: string;
+ageRange?: string;
 married?: string;
 gender?: string;
 military?: string;
