@@ -73,7 +73,7 @@ const features = [
   {
     icon: Zap,
     title: "Fast and simple",
-    text: "Answer five quick questions with no personal details required. In a few minutes you will see quote options for your area and situation.",
+    text: "Answer five quick questions, no name, phone, or email required. In a few minutes you will see quote options for your area and situation.",
   },
   {
     icon: BadgeCheck,
@@ -611,7 +611,7 @@ function StrategySection() {
           {/* Copy + checklist */}
           <div>
             <h2 className="[font-family:var(--font-display)] text-3xl md:text-4xl font-bold text-[#0A2A4F] leading-tight mb-6">
-              Options matched to you, no personal details required
+              Options matched to you, no contact info required
             </h2>
             <p className="text-[#0A2A4F]/60 leading-relaxed mb-8">
               We use your ZIP code and a few basics, like insurance status and
