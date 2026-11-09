@@ -20,17 +20,17 @@ const faqs: FAQ[] = [
   {
     question: "How quickly can I get matched with providers?",
     answer:
-      "Almost instantly. Once you share a few details about yourself and your vehicle, our matching engine compares them in real time against a live database connected to dozens of top insurance carriers — so you see relevant, valid options in minutes, not days.",
+      "Within a few minutes. After you answer a few quick questions, we show you quote providers that serve your area, and you can review quotes from top national carriers right away.",
   },
   {
     question: "Is the service really free?",
     answer:
-      "Yes. The service is free and you are never obligated to buy any policy we present. TryAutoQuote may receive compensation from partner carriers when you choose a policy, which is how we keep the service free for drivers.",
+      "Yes. The service is free and you are never obligated to buy anything. TryAutoQuote may receive compensation from the providers we list when you visit them, which is how we keep the service free for drivers.",
   },
   {
     question: "Will checking quotes affect my credit score?",
     answer:
-      "No. Comparing quotes through TryAutoQuote does not involve a hard credit inquiry. Some insurers may use a soft pull to estimate your rate, and soft inquiries have no impact on your credit score.",
+      "No. Using TryAutoQuote involves no credit check at all. Some insurers may use a soft pull when they quote you, and soft inquiries have no impact on your credit score.",
   },
   {
     question: "Should I get liability only or full coverage?",

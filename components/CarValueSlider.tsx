@@ -87,7 +87,7 @@ export default function CarValueSlider({ onCtaClick }: CarValueSliderProps) {
               </p>
               <p className="text-[#0A2A4F]/60 text-base">
                 Insurance rates can vary significantly depending on your ZIP code.
-                Let&apos;s check what drivers in your area typically pay.
+                Let&apos;s see which quote providers serve your area.
               </p>
             </div>
 
@@ -95,7 +95,7 @@ export default function CarValueSlider({ onCtaClick }: CarValueSliderProps) {
               onClick={handleClick}
               className="w-full bg-[#2B5BA8] hover:bg-[#E8732A] text-white font-black py-4 rounded-xl text-lg transition shadow-md cursor-pointer"
             >
-              {checking ? "Checking Local Rates..." : "Check My Local Rate →"}
+              {checking ? "Loading..." : "See My Options →"}
             </button>
 
             <p className="text-xs text-[#0A2A4F]/40">

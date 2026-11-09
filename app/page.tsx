@@ -14,7 +14,6 @@ import {
   CheckCircle2,
   ClipboardList,
   Car,
-  DollarSign,
   Star,
   Menu,
   X,
@@ -55,8 +54,8 @@ const GRADIENT = "bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9]";
 /* ------------------------------------------------------------------ */
 
 const heroStats = [
-  { stat: "Dozens", label: "Top carriers compared" },
-  { stat: "Minutes", label: "To compare & switch" },
+  { stat: "5", label: "Quick questions" },
+  { stat: "Minutes", label: "To see your options" },
   { stat: "100%", label: "Free, no obligation" },
 ];
 
@@ -64,49 +63,49 @@ const features = [
   {
     icon: ShieldCheck,
     title: "Free, always",
-    text: "The service is free and you are never obligated to buy the presented policy. No hidden fees, no credit card required. Just real rates from real carriers, at no cost to you.",
+    text: "The service is free and you are never obligated to buy anything. No hidden fees, no credit card required, at no cost to you.",
   },
   {
     icon: PhoneOff,
     title: "No spam calls",
-    text: "Compare quotes without a flood of follow-up calls. You decide who to talk to. We never sell your phone number to telemarketers. Your contact details stay between you and the carrier you choose.",
+    text: "We never ask for your phone number or email, so there is nothing to sell. You choose which provider to visit and share your details only with them.",
   },
   {
     icon: Zap,
-    title: "Real-time matching",
-    text: "Your details are compared live against a database connected to dozens of top insurance carriers. The quotes you see reflect actual current rates, not ballpark estimates generated days later.",
+    title: "Fast and simple",
+    text: "Answer five quick questions with no personal details required. In a few minutes you will see quote options for your area and situation.",
   },
   {
     icon: BadgeCheck,
-    title: "Carriers you recognize",
-    text: "Get matched with established providers you actually know, willing to insure you. No obscure names, only trusted carriers with strong reputations and solid claims track records.",
+    title: "Top providers in your area",
+    text: "We list established quote providers that let you review multiple quotes from top national carriers, so you can see how much you could save.",
   },
 ];
 
 const checklist = [
-  "Personalized results specific to you and your vehicle",
-  "Only carriers that are actually willing to insure you",
-  "Free service - never an obligation to buy the presented policy",
+  "Options matched to your ZIP code and situation",
+  "No name, phone number, or email required",
+  "Free service, never an obligation to buy",
 ];
 
 const steps = [
   {
     number: "01",
     icon: ClipboardList,
-    title: "A little Information",
-    text: "Provide some basic details about yourself and your vehicle. This takes about 2 minutes and lets us generate personalized, accurate results and not generic quotes. The service is free and you are never obligated to buy anything.",
+    title: "Answer a few questions",
+    text: "Tell us your ZIP code and a few basics, like whether you are currently insured and how many vehicles you have. It takes a few minutes, and we never ask for your name, phone, or email.",
   },
   {
     number: "02",
     icon: Car,
-    title: "A bit of Magic",
-    text: "Our matching engine compares your profile in real time against dozens of top carriers. You'll see the best available rates for your area side by side. No waiting, no back-and-forth with agents. The quotes reflect actual current rates, not ballpark estimates.",
+    title: "See your options",
+    text: "We show you quote providers that serve your area. Pick one to review multiple quotes from top national carriers directly on their site, with no back-and-forth with agents.",
   },
   {
     number: "03",
-    icon: DollarSign,
-    title: "A Lot of Savings",
-    text: "Review your options and choose the policy that fits your budget and coverage needs. If you're ready, you can purchase directly through the carrier. If not, just walk away with no pressure, no follow-up calls.",
+    icon: CheckCircle2,
+    title: "Choose what fits",
+    text: "Review your quotes and choose the coverage that fits your budget. You could save by switching, and if you are not ready, just walk away with no obligation.",
   },
 ];
 
@@ -166,7 +165,7 @@ const faqSchema = {
       name: "How quickly can I get matched with providers?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Almost instantly. Once you share a few details about yourself and your vehicle, our matching engine compares them in real time against a live database connected to dozens of top insurance carriers, so you see relevant, valid options in minutes, not days.",
+        text: "Within a few minutes. After you answer a few quick questions, we show you quote providers that serve your area, and you can review quotes from top national carriers right away.",
       },
     },
     {
@@ -174,7 +173,7 @@ const faqSchema = {
       name: "Is the service really free?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. The service is free and you are never obligated to buy any policy we present. TryAutoQuote may receive compensation from partner carriers when you choose a policy, which is how we keep the service free for drivers.",
+        text: "Yes. The service is free and you are never obligated to buy anything. TryAutoQuote may receive compensation from the providers we list when you visit them, which is how we keep the service free for drivers.",
       },
     },
     {
@@ -182,7 +181,7 @@ const faqSchema = {
       name: "Will checking quotes affect my credit score?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No. Comparing quotes through TryAutoQuote does not involve a hard credit inquiry. Some insurers may use a soft pull to estimate your rate, and soft inquiries have no impact on your credit score.",
+        text: "No. Using TryAutoQuote involves no credit check at all. Some insurers may use a soft pull when they quote you, and soft inquiries have no impact on your credit score.",
       },
     },
     {
@@ -255,7 +254,7 @@ export default function LandingV2() {
       <StrategySection />
       <StepsSection />
       <CarValueSliderSection />
-      <TestimonialsDark />
+      {/* Testimonials hidden pending confirmation they are from real customers */}
       <MapSection />
       <BrowseByState />
       <FAQAccordion />
@@ -440,8 +439,9 @@ function HeroSection({
             </h1>
 
             <p className="mt-6 text-[#0A2A4F]/60 max-w-md leading-relaxed">
-              Answer a few quick questions and we&apos;ll find the best auto
-              insurance rates available in your area. No commitment required.
+              Answer a few quick questions and we&apos;ll show you quote
+              providers in your area, so you can compare rates and see how much
+              you could save. No commitment required.
             </p>
 
             {/* Zip CTA (replaces template's Get Started + video) */}
@@ -532,9 +532,9 @@ function WhyBetter() {
           Why we&apos;re better than others
         </h2>
         <p className="text-white/60 max-w-2xl mx-auto mb-12">
-          Many of us spend countless hours filling endless documentation just
-          to find out there is no relevant policy. Our platform makes sure you
-          are presented with the top options in one place.
+          Shopping for car insurance should not mean hours of forms. We point
+          you to quote providers that serve your area, so you can review your
+          options in one place.
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
@@ -611,13 +611,13 @@ function StrategySection() {
           {/* Copy + checklist */}
           <div>
             <h2 className="[font-family:var(--font-display)] text-3xl md:text-4xl font-bold text-[#0A2A4F] leading-tight mb-6">
-              Personalized results, from carriers willing to insure you
+              Options matched to you, no personal details required
             </h2>
             <p className="text-[#0A2A4F]/60 leading-relaxed mb-8">
-              We take all the information you provide regarding yourself and
-              your vehicle and compare it in real time to our live database
-              connected to dozens of top insurance carriers. The result is a
-              list of policies specific to your personal circumstances.
+              We use your ZIP code and a few basics, like insurance status and
+              how many vehicles you have, to show quote providers that fit your
+              situation. You never share your name, phone number, or email
+              with us.
             </p>
 
             <ul className="space-y-4">
@@ -649,8 +649,7 @@ function StepsSection() {
           How does TryAutoQuote work?
         </h2>
         <p className="text-[#0A2A4F]/60 max-w-2xl mx-auto mb-14">
-          Three steps between you and a better rate, the whole thing takes
-          minutes, not hours.
+          Three simple steps. The whole thing takes just a few minutes.
         </p>
 
         <div className="grid md:grid-cols-3 gap-12 md:gap-8">
@@ -915,11 +914,11 @@ function GradientCta() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 grid md:grid-cols-2 gap-8 items-center">
         <div className="text-white">
           <h2 className="[font-family:var(--font-display)] text-2xl md:text-3xl font-bold mb-3">
-            Ready to start saving?
+            Ready to see how much you could save?
           </h2>
           <p className="text-white/80 text-sm md:text-base max-w-md">
-            Enter your zipcode and compare personalized rates from top carriers
-            in minutes. Free, no obligation, no spam calls.
+            Enter your ZIP code to review quotes from top providers in your
+            area. Free, no obligation, no spam calls.
           </p>
         </div>
 
@@ -995,9 +994,8 @@ function FooterV3() {
               TryAuto<span className="text-[#38B6C9]">Quote</span>
             </p>
             <p className="text-sm leading-relaxed text-white/55 max-w-xs">
-              Your one-stop shop for auto-insurance. Compare personalized rates
-              from dozens of top carriers in real time - free, with no
-              obligation to buy.
+              Your one-stop shop for auto insurance. Review quotes from top
+              providers in your area, free and with no obligation to buy.
             </p>
           </div>
 
@@ -1008,7 +1006,6 @@ function FooterV3() {
               <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
               <li><a href="#why-us" className="hover:text-white transition">Why us</a></li>
               <li><a href="#how-it-works" className="hover:text-white transition">How it works</a></li>
-              <li><a href="#reviews" className="hover:text-white transition">Reviews</a></li>
               <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link></li>
               <li><Link href="/terms-of-use" className="hover:text-white transition">Terms of Use</Link></li>
