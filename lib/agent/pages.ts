@@ -1,3 +1,4 @@
+import { splitTakeaways } from "@/lib/blogs";
 import { SITE } from "./site";
 import { faqs } from "@/lib/faqs";
 import { GUIDES } from "./llms";
@@ -70,15 +71,21 @@ export function blogMarkdown(post: {
   title: string;
   description?: string;
   date?: string;
+  updated?: string;
   content: string;
 }): string {
   const url = `${SITE.baseUrl}/blogs/${post.slug}`;
   const meta = [
     post.description ? `> ${post.description}` : "",
     `Source: ${url}`,
-    `By ${SITE.name} Editorial Team${post.date ? ` · Updated ${post.date}` : ""}`,
+    `By ${SITE.name} Editorial Team${post.date ? ` · Published ${post.date}` : ""}${post.updated ? ` · Updated ${post.updated}` : ""}`,
   ].filter(Boolean);
-  const body = post.content
+  // Lead with the Key takeaways so agents get the answer before the detail.
+  const { body: rest, takeaways } = splitTakeaways(post.content);
+  const summary = takeaways.length
+    ? `## Key takeaways\n\n${takeaways.map((t) => `- ${t}`).join("\n")}\n\n`
+    : "";
+  const body = (summary + rest)
     .trim()
     .replace(/\]\(\/(?!\/)/g, `](${SITE.baseUrl}/`); // absolute internal links
   return `# ${post.title}\n\n${meta.join("\n\n")}\n\n${body}\n`;

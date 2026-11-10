@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { states } from "@/lib/states";
-import { getAllPosts } from "@/lib/blogs";
+import { getAllPosts, lastModified } from "@/lib/blogs";
 
 /* ------------------------------------------------------------------
    app/sitemap.ts  →  Next.js serves this automatically at /sitemap.xml
@@ -101,7 +101,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...getAllPosts().map((post) => ({
       url: `${BASE}/blogs/${post.slug}`,
-      lastModified: new Date(post.date),
+      lastModified: new Date(lastModified(post)),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

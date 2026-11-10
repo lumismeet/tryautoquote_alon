@@ -5,12 +5,13 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 import TableOfContents from "@/components/TableOfContents";
 import MobileTableOfContents from "@/components/MobileTableOfContents";
 import FaqSection from "@/components/FaqSection";
 import RelatedPosts from "@/components/RelatedPosts";
 import References from "@/components/References";
-import { getPostBySlug, getAllSlugs, getHeadings, splitFaq, splitReferences, getRelatedPosts } from "@/lib/blogs";
+import { getPostBySlug, getAllSlugs, getHeadings, splitFaq, splitReferences, getRelatedPosts, splitTakeaways, lastModified } from "@/lib/blogs";
 import BlogCTA from "@/components/BlogCTA";
 
 // Shared MDX element styling, reused for the prose before and after the FAQ.
@@ -37,6 +38,22 @@ function makeMdxComponents(refMap: Map<string, { num: number; label: string }>) 
         <span className="text-[#38B6C9] mt-0.5 shrink-0">&#10003;</span>
         <span>{children}</span>
       </li>
+    ),
+    // GFM tables. The wrapper scrolls sideways on narrow screens so a wide
+    // table never pushes the page wider than the viewport.
+    table: ({ children }: { children?: React.ReactNode }) => (
+      <div className="not-prose my-8 overflow-x-auto rounded-xl border border-[#0A2A4F]/10 bg-white">
+        <table className="w-full min-w-[480px] border-collapse text-sm text-left">{children}</table>
+      </div>
+    ),
+    thead: ({ children }: { children?: React.ReactNode }) => (
+      <thead className="bg-[#0A2A4F]/[0.04] text-[#0A2A4F]">{children}</thead>
+    ),
+    th: ({ children }: { children?: React.ReactNode }) => (
+      <th className="px-4 py-3 font-semibold align-bottom border-b border-[#0A2A4F]/10">{children}</th>
+    ),
+    td: ({ children }: { children?: React.ReactNode }) => (
+      <td className="px-4 py-3 align-top border-b border-[#0A2A4F]/[0.06] text-[#0A2A4F]/75">{children}</td>
     ),
     a: ({ href, children }: { href?: string; children?: React.ReactNode }) => {
       // A citation: keep the phrase as plain text and append a numbered marker
@@ -114,7 +131,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
   // Pull the References section out first so it renders as a styled citation
   // footer (and doesn't appear in the TOC), then split the FAQ from the rest.
-  const { body: contentBody, references } = splitReferences(post.content);
+  const { body: withoutRefs, references } = splitReferences(post.content);
+  // Key takeaways move to a summary box at the top of the post.
+  const { body: contentBody, takeaways } = splitTakeaways(withoutRefs);
+  const modified = lastModified(post);
+  const wasUpdated = !!post.updated && post.updated !== post.date;
 
   // Maps each source URL to its number + label in the References list so inline
   // citation links render as "[n]" markers that open the source in a new tab.
@@ -151,7 +172,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     datePublished: new Date(post.date).toISOString(),
     mainEntityOfPage: `https://www.tryautoquote.com/blogs/${post.slug}`,
     url: `https://www.tryautoquote.com/blogs/${post.slug}`,
-    dateModified: new Date(post.date).toISOString(),
+    dateModified: new Date(modified).toISOString(),
     author: {
       "@type": "Organization",
       name: "TryAutoQuote Editorial Team",
@@ -168,6 +189,16 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         : undefined,
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
+      { "@type": "ListItem", position: 2, name: "Blogs", item: "https://www.tryautoquote.com/blogs" },
+      { "@type": "ListItem", position: 3, name: post.title, item: `https://www.tryautoquote.com/blogs/${post.slug}` },
+    ],
+  };
+
   const relatedPosts = getRelatedPosts(slug);
 
   return (
@@ -175,6 +206,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {faqSchema && (
         <script
@@ -212,19 +247,50 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   </Link>
                 </span>
                 <span>·</span>
-                <span>Updated {post.date}</span>
+                {wasUpdated ? (
+                  <>
+                    <span>
+                      Updated <time dateTime={new Date(modified).toISOString().slice(0, 10)}>{post.updated}</time>
+                    </span>
+                    <span>·</span>
+                    <span>Published {post.date}</span>
+                  </>
+                ) : (
+                  <span>
+                    Published <time dateTime={new Date(post.date).toISOString().slice(0, 10)}>{post.date}</time>
+                  </span>
+                )}
                 <span>·</span>
                 <span>{post.readTime}</span>
               </div>
               <hr className="mt-7 border-[#0A2A4F]/10" />
             </div>
 
+            {takeaways.length > 0 && (
+              <section
+                aria-labelledby="key-takeaways"
+                className="mb-10 rounded-2xl border border-[#38B6C9]/30 bg-white px-6 py-6 md:px-7"
+              >
+                <h2 id="key-takeaways" className="text-xs font-bold uppercase tracking-[0.14em] text-[#2B5BA8] mb-4">
+                  Key takeaways
+                </h2>
+                <ul className="space-y-3 text-[0.97rem] leading-relaxed text-[#0A2A4F]/80">
+                  {takeaways.map((t, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="text-[#38B6C9] mt-0.5 shrink-0" aria-hidden="true">&#10003;</span>
+                      <span>{t.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*([^*]+)\*\*/g, "$1")}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
             <MobileTableOfContents headings={headings} />
 
             <article className="text-[#0A2A4F]/75 leading-[1.85] text-[1.02rem] space-y-6 mdx-content">
               <MDXRemote
                 source={before}
-                options={{ mdxOptions: { rehypePlugins: [rehypeSlug] } }}
+                options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeSlug] } }}
                 components={mdxComponents}
               />
 
@@ -233,7 +299,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               {after && (
                 <MDXRemote
                   source={after}
-                  options={{ mdxOptions: { rehypePlugins: [rehypeSlug] } }}
+                  options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeSlug] } }}
                   components={mdxComponents}
                 />
               )}

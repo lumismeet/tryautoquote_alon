@@ -12,8 +12,16 @@ export type BlogFrontmatter = {
   tag: string;
   description: string;
   date: string;
+  // Optional. Set only when the post's content was materially revised; drives
+  // the visible "Updated" date, Article dateModified, and sitemap lastmod.
+  updated?: string;
   readTime: string;
 };
+
+// The date a post was last materially changed (updated, else published).
+export function lastModified(post: { date: string; updated?: string }): string {
+  return post.updated || post.date;
+}
 
 export type BlogPost = BlogFrontmatter & {
   slug: string;
@@ -203,4 +211,33 @@ export function getHeadings(content: string): Heading[] {
 
     return { id, text };
   });
+}
+// Splits the "## Key takeaways" section out of the MDX body so it can render
+// as a summary box at the top of the post, where readers, Google and AI
+// answer engines look first. Returns the bullet text and the body without it.
+export function splitTakeaways(content: string): {
+  body: string;
+  takeaways: string[];
+} {
+  const lines = content.split("\n");
+  const startIdx = lines.findIndex((l) => /^##\s+key takeaways\s*$/i.test(l.trim()));
+  if (startIdx === -1) return { body: content, takeaways: [] };
+
+  let endIdx = lines.length;
+  for (let i = startIdx + 1; i < lines.length; i++) {
+    if (/^##\s+/.test(lines[i])) {
+      endIdx = i;
+      break;
+    }
+  }
+
+  const takeaways = lines
+    .slice(startIdx + 1, endIdx)
+    .map((l) => l.trim())
+    .filter((l) => /^[-*]\s+/.test(l))
+    .map((l) => l.replace(/^[-*]\s+/, "").trim())
+    .filter(Boolean);
+
+  const body = [...lines.slice(0, startIdx), ...lines.slice(endIdx)].join("\n").trim();
+  return { body, takeaways };
 }
