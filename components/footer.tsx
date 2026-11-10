@@ -6,7 +6,7 @@ import { HUBS, hubHref } from "@/lib/hubs";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#06203D] text-white">
+    <footer className="bg-[#06203D] text-white pb-20 md:pb-0">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14">
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
 
