@@ -42,6 +42,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { FormProvider } from "@/context/FormContext";
 import SourceTracker from "@/components/SourceTracker";
+import { organizationSchema } from "@/lib/agent/schema";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -92,28 +93,6 @@ export const metadata: Metadata = {
 /* These describe the brand/site as a whole, so they live in the root   */
 /* layout and therefore appear on every page.                           */
 /* ------------------------------------------------------------------ */
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://www.tryautoquote.com/#organization",
-  name: "TryAutoQuote",
-  url: "https://www.tryautoquote.com/",
-  logo: {
-    "@type": "ImageObject",
-    url: "https://www.tryautoquote.com/logo-test1.png",
-  },
-  description:
-    "TryAutoQuote is an independent, advertising-supported comparison website that helps drivers compare personalized auto insurance quotes from third-party carriers.",
-  parentOrganization: { "@type": "Organization", name: "StarTech Media" },
-  contactPoint: {
-    "@type": "ContactPoint",
-    email: "info@tryautoquote.com",
-    contactType: "customer support",
-  },
-  disambiguatingDescription:
-    "TryAutoQuote.com is not a licensed insurance provider or broker. It is an advertising-supported comparison service.",
-};
-
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",

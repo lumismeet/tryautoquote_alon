@@ -92,6 +92,21 @@ export default function AboutPage() {
           </p>
         </Section>
 
+        <Section id="company" title="Company information">
+          <p>
+            TryAutoQuote is owned and operated by StarTech Media Ltd., a digital media company registered in Cyprus.
+            StarTech Media builds and runs consumer information websites and works with advertising partners in the
+            insurance industry. TryAutoQuote serves drivers in the United States.
+          </p>
+          <p>
+            For questions about the site, partnerships, corrections, or privacy, email{" "}
+            <a href="mailto:info@tryautoquote.com" className="text-[#2B5BA8] underline">info@tryautoquote.com</a> or use
+            our <Link href="/contact" className="text-[#2B5BA8] underline">contact page</Link>. You can read how we handle
+            data in our <Link href="/privacy-policy" className="text-[#2B5BA8] underline">privacy policy</Link> and the
+            rules for using the site in our <Link href="/terms-of-use" className="text-[#2B5BA8] underline">terms of use</Link>.
+          </p>
+        </Section>
+
         <Section title="Contact">
           <p>
             <a href="mailto:info@tryautoquote.com" className="text-[#2B5BA8] underline">info@tryautoquote.com</a>
