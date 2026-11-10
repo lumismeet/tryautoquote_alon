@@ -28,14 +28,6 @@ const guides = [
     readTime: "5 mins read",
   },
   {
-    href: "/guides/how-much-car-insurance-do-i-need",
-    tag: "Coverage Basics",
-    title: "How Much Car Insurance Do You Actually Need?",
-    description:
-      "State minimums leave most drivers underprotected. Learn what coverage types exist, what limits to carry, and how to avoid overpaying.",
-    readTime: "5 mins read",
-  },
-  {
     href: "/guides/cheapest-car-insurance-for-young-drivers",
     tag: "Young Drivers",
     title: "Cheapest Car Insurance for Young Drivers",

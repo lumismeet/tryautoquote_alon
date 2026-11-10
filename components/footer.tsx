@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { Mail } from "lucide-react";
+import { HUBS, hubHref } from "@/lib/hubs";
 
 export default function Footer() {
   return (
     <footer className="bg-[#06203D] text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
 
           <div>
             <p className="text-xl font-extrabold tracking-tight mb-4">
@@ -31,11 +32,21 @@ export default function Footer() {
           </div>
 
           <div>
+            <h3 className="font-semibold mb-4">Car insurance topics</h3>
+            <ul className="space-y-3 text-sm text-white/55">
+              {HUBS.map((h) => (
+                <li key={h.slug}><Link href={hubHref(h.slug)} className="hover:text-white transition">{h.name}</Link></li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
             <h3 className="font-semibold mb-4">Explore</h3>
             <ul className="space-y-3 text-sm text-white/55">
-              <li><Link href="/blogs" className="hover:text-white transition">Blogs</Link></li>
+              <li><Link href="/car-insurance" className="hover:text-white transition">Car insurance guide</Link></li>
+              <li><Link href="/car-insurance#states" className="hover:text-white transition">Rules by state</Link></li>
               <li><Link href="/guides" className="hover:text-white transition">Guides</Link></li>
-              <li><Link href="/car-insurance" className="hover:text-white transition">States</Link></li>
+              <li><Link href="/blogs" className="hover:text-white transition">All articles</Link></li>
             </ul>
           </div>
 

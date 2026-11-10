@@ -71,16 +71,20 @@ export function getPostBySlug(slug: string): BlogPost | null {
 // Returns up to `limit` posts related to the given slug: same tag first
 // (newest first), backfilled with the most recent other posts so the
 // "Read next" section is never sparse. Excludes the current post.
-export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
+export function getRelatedPosts(slug: string, limit = 3, preferred: string[] = []): BlogPost[] {
   const all = getAllPosts();
   const current = all.find((p) => p.slug === slug);
   if (!current) return [];
 
   const others = all.filter((p) => p.slug !== slug);
-  const sameTag = others.filter((p) => p.tag === current.tag);
-  const rest = others.filter((p) => p.tag !== current.tag);
+  // Same-hub posts first (in hub order), then same tag, then the rest.
+  const bySlug = new Map(others.map((p) => [p.slug, p]));
+  const sameHub = preferred.filter((s) => s !== slug).map((s) => bySlug.get(s)).filter((p): p is BlogPost => !!p);
+  const seen = new Set(sameHub.map((p) => p.slug));
+  const sameTag = others.filter((p) => !seen.has(p.slug) && p.tag === current.tag);
+  const rest = others.filter((p) => !seen.has(p.slug) && p.tag !== current.tag);
 
-  return [...sameTag, ...rest].slice(0, limit);
+  return [...sameHub, ...sameTag, ...rest].slice(0, limit);
 }
 
 export function getAllSlugs(): string[] {

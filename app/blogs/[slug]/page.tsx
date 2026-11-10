@@ -10,6 +10,7 @@ import TableOfContents from "@/components/TableOfContents";
 import MobileTableOfContents from "@/components/MobileTableOfContents";
 import FaqSection from "@/components/FaqSection";
 import RelatedPosts from "@/components/RelatedPosts";
+import { hubForPost, hubHref } from "@/lib/hubs";
 import References from "@/components/References";
 import { getPostBySlug, getAllSlugs, getHeadings, splitFaq, splitReferences, getRelatedPosts, splitTakeaways, lastModified } from "@/lib/blogs";
 import BlogCTA from "@/components/BlogCTA";
@@ -189,17 +190,22 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         : undefined,
   };
 
+  const hub = hubForPost(post.slug);
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
-      { "@type": "ListItem", position: 2, name: "Blogs", item: "https://www.tryautoquote.com/blogs" },
-      { "@type": "ListItem", position: 3, name: post.title, item: `https://www.tryautoquote.com/blogs/${post.slug}` },
+      { "@type": "ListItem", position: 2, name: "Car insurance", item: "https://www.tryautoquote.com/car-insurance" },
+      ...(hub
+        ? [{ "@type": "ListItem", position: 3, name: hub.name, item: `https://www.tryautoquote.com${hubHref(hub.slug)}` }]
+        : []),
+      { "@type": "ListItem", position: hub ? 4 : 3, name: post.title, item: `https://www.tryautoquote.com/blogs/${post.slug}` },
     ],
   };
 
-  const relatedPosts = getRelatedPosts(slug);
+  const relatedPosts = getRelatedPosts(slug, 3, hub?.posts ?? []);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F4F7FB] text-[#0A2A4F]">
@@ -224,18 +230,30 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <TableOfContents headings={headings} />
           <div className="w-full max-w-2xl min-w-0">
 
-            <nav className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
+            <nav aria-label="Breadcrumb" className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5 flex-wrap">
               <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
               <span>/</span>
-              <Link href="/blogs" className="hover:text-[#2B5BA8] transition">Blogs</Link>
+              <Link href="/car-insurance" className="hover:text-[#2B5BA8] transition">Car insurance</Link>
+              {hub && (
+                <>
+                  <span>/</span>
+                  <Link href={hubHref(hub.slug)} className="hover:text-[#2B5BA8] transition">{hub.name}</Link>
+                </>
+              )}
               <span>/</span>
-              <span className="text-[#0A2A4F]/70">{post.title}</span>
+              <span className="text-[#0A2A4F]/70 line-clamp-1">{post.title}</span>
             </nav>
 
             <div className="mb-10">
-              <span className="inline-block text-xs font-semibold text-[#2B5BA8] bg-[#2B5BA8]/10 rounded-full px-3 py-1 mb-4">
-                {post.tag}
-              </span>
+              {hub ? (
+                <Link href={hubHref(hub.slug)} className="inline-block text-xs font-semibold text-[#2B5BA8] bg-[#2B5BA8]/10 rounded-full px-3 py-1 mb-4 hover:bg-[#2B5BA8]/15 transition">
+                  {hub.name}
+                </Link>
+              ) : (
+                <span className="inline-block text-xs font-semibold text-[#2B5BA8] bg-[#2B5BA8]/10 rounded-full px-3 py-1 mb-4">
+                  {post.tag}
+                </span>
+              )}
               <h1 className="text-3xl md:text-[2.15rem] font-bold text-[#0A2A4F] leading-tight mb-5">
                 {post.title}
               </h1>
@@ -316,7 +334,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               <p className="mt-1 text-sm text-[#0A2A4F]/70">
                 See minimum coverage requirements, average costs, and local tips for your state.
               </p>
-              <Link href="/car-insurance" className="mt-3 inline-block text-sm font-semibold text-[#2B5BA8] hover:underline">
+              <Link href="/car-insurance#states" className="mt-3 inline-block text-sm font-semibold text-[#2B5BA8] hover:underline">
                 Browse car insurance by state →
               </Link>
             </div>
@@ -326,9 +344,15 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             <RelatedPosts posts={relatedPosts} />
 
             <div className="mt-10 text-center">
-              <Link href="/blogs" className="text-sm text-[#2B5BA8] hover:underline">
-                Back to Blogs
-              </Link>
+              {hub ? (
+                <Link href={hubHref(hub.slug)} className="text-sm text-[#2B5BA8] hover:underline">
+                  More {hub.name.toLowerCase()} articles
+                </Link>
+              ) : (
+                <Link href="/blogs" className="text-sm text-[#2B5BA8] hover:underline">
+                  Back to Blogs
+                </Link>
+              )}
             </div>
 
           </div>

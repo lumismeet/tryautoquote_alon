@@ -45,8 +45,9 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "What to Do After a Car Accident", item: "https://www.tryautoquote.com/guides/what-to-do-after-a-car-accident" },
+    { "@type": "ListItem", position: 2, name: "Car insurance", item: "https://www.tryautoquote.com/car-insurance" },
+    { "@type": "ListItem", position: 3, name: "Claims", item: "https://www.tryautoquote.com/car-insurance/claims" },
+    { "@type": "ListItem", position: 4, name: "What to Do After a Car Accident", item: "https://www.tryautoquote.com/guides/what-to-do-after-a-car-accident" },
   ],
 };
 
@@ -62,7 +63,9 @@ export default function GuideWhatToDoAfterAccident() {
         <nav className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
-          <Link href="/guides" className="hover:text-[#2B5BA8] transition">Guides</Link>
+          <Link href="/car-insurance" className="hover:text-[#2B5BA8] transition">Car insurance</Link>
+          <span>/</span>
+          <Link href="/car-insurance/claims" className="hover:text-[#2B5BA8] transition">Claims</Link>
           <span>/</span>
           <span className="text-[#0A2A4F]/70">What to do after an accident</span>
         </nav>

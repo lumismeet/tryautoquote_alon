@@ -45,8 +45,9 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "Liability Only vs Full Coverage", item: "https://www.tryautoquote.com/guides/liability-only-vs-full-coverage" },
+    { "@type": "ListItem", position: 2, name: "Car insurance", item: "https://www.tryautoquote.com/car-insurance" },
+    { "@type": "ListItem", position: 3, name: "Coverage", item: "https://www.tryautoquote.com/car-insurance/coverage" },
+    { "@type": "ListItem", position: 4, name: "Liability Only vs Full Coverage", item: "https://www.tryautoquote.com/guides/liability-only-vs-full-coverage" },
   ],
 };
 
@@ -62,7 +63,9 @@ export default function GuideLiabilityVsFullCoverage() {
         <nav className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
-          <Link href="/guides" className="hover:text-[#2B5BA8] transition">Guides</Link>
+          <Link href="/car-insurance" className="hover:text-[#2B5BA8] transition">Car insurance</Link>
+          <span>/</span>
+          <Link href="/car-insurance/coverage" className="hover:text-[#2B5BA8] transition">Coverage</Link>
           <span>/</span>
           <span className="text-[#0A2A4F]/70">Liability only vs full coverage</span>
         </nav>
@@ -113,6 +116,12 @@ export default function GuideLiabilityVsFullCoverage() {
             <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">The 10 percent rule</h2>
             <p>
               A widely used financial guideline: if the annual premium for collision and comprehensive combined exceeds 10 percent of your car&apos;s current market value, you are likely paying more each year than the coverage would realistically pay out.
+            </p>
+            <p>
+              For the full math, including how your deductible changes it, see{" "}
+              <Link href="/blogs/when-to-drop-full-coverage" className="text-[#2B5BA8] hover:underline">when to drop full coverage</Link>.
+              If you are deciding what the law requires versus what you should carry, read{" "}
+              <Link href="/blogs/state-minimum-vs-full-coverage" className="text-[#2B5BA8] hover:underline">state minimum vs. full coverage</Link>.
             </p>
             <p className="mt-3">
               Here is a concrete example. Your car is worth $4,500. Your annual collision and comprehensive premium is $650 with a $500 deductible. If the car is totaled, the maximum your insurer pays is $4,000 after the deductible. You would pay $650 per year for a maximum payout of $4,000. That is a break-even point of about six years, and that assumes a total loss scenario rather than a partial claim that pays out even less. In that situation, liability only is likely the better financial decision.

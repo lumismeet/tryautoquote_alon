@@ -45,8 +45,9 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "Does Getting a Quote Affect Your Credit Score?", item: "https://www.tryautoquote.com/guides/does-getting-a-quote-affect-credit-score" },
+    { "@type": "ListItem", position: 2, name: "Car insurance", item: "https://www.tryautoquote.com/car-insurance" },
+    { "@type": "ListItem", position: 3, name: "Buying and switching", item: "https://www.tryautoquote.com/car-insurance/buying" },
+    { "@type": "ListItem", position: 4, name: "Does Getting a Quote Affect Your Credit Score?", item: "https://www.tryautoquote.com/guides/does-getting-a-quote-affect-credit-score" },
   ],
 };
 
@@ -62,7 +63,9 @@ export default function GuideQuoteAndCreditScore() {
         <nav className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
-          <Link href="/guides" className="hover:text-[#2B5BA8] transition">Guides</Link>
+          <Link href="/car-insurance" className="hover:text-[#2B5BA8] transition">Car insurance</Link>
+          <span>/</span>
+          <Link href="/car-insurance/buying" className="hover:text-[#2B5BA8] transition">Buying and switching</Link>
           <span>/</span>
           <span className="text-[#0A2A4F]/70">Quote and credit score</span>
         </nav>
@@ -129,6 +132,10 @@ export default function GuideQuoteAndCreditScore() {
             <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">Why do insurers check your credit at all?</h2>
             <p>
               Insurers are ultimately trying to predict how likely you are to file a claim and how much that claim might cost. Your driving record tells them part of the story, but actuarial research has shown that certain credit behaviors correlate statistically with claim frequency and severity. Drivers with lower credit-based insurance scores tend, as a group, to file more claims than those with higher scores, even when controlling for age, vehicle type, and location.
+            </p>
+            <p>
+              How much your credit actually moves your premium is a separate question, covered in{" "}
+              <Link href="/blogs/credit-score-insurance" className="text-[#2B5BA8] hover:underline">does your credit score affect your car insurance rate</Link>.
             </p>
             <p className="mt-3">
               This does not mean that a low credit score makes you a bad driver. It means that at the population level, certain financial patterns are associated with higher claim rates. Insurers are permitted by law to use this correlation as one pricing factor in most states, and they do so through a soft inquiry because they are not making a lending decision and have no reason to use a hard pull.

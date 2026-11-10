@@ -1,10 +1,10 @@
 import { SITE } from "./site";
+import { HUBS, hubHref } from "@/lib/hubs";
 
 export type LinkItem = { title: string; url: string; description?: string };
 
 export const GUIDES: LinkItem[] = [
   { title: "Does getting a quote affect your credit score?", url: "/guides/does-getting-a-quote-affect-credit-score" },
-  { title: "How much car insurance do I need?", url: "/guides/how-much-car-insurance-do-i-need" },
   { title: "Cheapest car insurance for young drivers", url: "/guides/cheapest-car-insurance-for-young-drivers" },
   { title: "Liability only vs. full coverage", url: "/guides/liability-only-vs-full-coverage" },
   { title: "How to lower your car insurance premium", url: "/guides/how-to-lower-your-car-insurance-premium" },
@@ -55,6 +55,10 @@ ${SITE.name} is operated by ${SITE.legalName} Contact: ${SITE.email}. Every page
 ## Guides
 
 ${GUIDES.map(line).join("\n")}
+
+## Topics
+
+${HUBS.map((h) => line({ title: h.title, url: hubHref(h.slug), description: h.metaDescription })).join("\n")}
 
 ## State car insurance requirements
 

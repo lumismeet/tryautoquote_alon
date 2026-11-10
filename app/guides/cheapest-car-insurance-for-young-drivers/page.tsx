@@ -45,8 +45,9 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "Cheapest Car Insurance for Young Drivers", item: "https://www.tryautoquote.com/guides/cheapest-car-insurance-for-young-drivers" },
+    { "@type": "ListItem", position: 2, name: "Car insurance", item: "https://www.tryautoquote.com/car-insurance" },
+    { "@type": "ListItem", position: 3, name: "Drivers", item: "https://www.tryautoquote.com/car-insurance/drivers" },
+    { "@type": "ListItem", position: 4, name: "Cheapest Car Insurance for Young Drivers", item: "https://www.tryautoquote.com/guides/cheapest-car-insurance-for-young-drivers" },
   ],
 };
 
@@ -62,7 +63,9 @@ export default function GuideCheapInsuranceYoungDrivers() {
         <nav className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
-          <Link href="/guides" className="hover:text-[#2B5BA8] transition">Guides</Link>
+          <Link href="/car-insurance" className="hover:text-[#2B5BA8] transition">Car insurance</Link>
+          <span>/</span>
+          <Link href="/car-insurance/drivers" className="hover:text-[#2B5BA8] transition">Drivers</Link>
           <span>/</span>
           <span className="text-[#0A2A4F]/70">Cheapest insurance for young drivers</span>
         </nav>

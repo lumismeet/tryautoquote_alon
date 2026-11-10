@@ -45,8 +45,9 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tryautoquote.com/" },
-    { "@type": "ListItem", position: 2, name: "Guides", item: "https://www.tryautoquote.com/guides" },
-    { "@type": "ListItem", position: 3, name: "How to Lower Your Car Insurance Premium", item: "https://www.tryautoquote.com/guides/how-to-lower-your-car-insurance-premium" },
+    { "@type": "ListItem", position: 2, name: "Car insurance", item: "https://www.tryautoquote.com/car-insurance" },
+    { "@type": "ListItem", position: 3, name: "Cost and saving", item: "https://www.tryautoquote.com/car-insurance/cost" },
+    { "@type": "ListItem", position: 4, name: "How to Lower Your Car Insurance Premium", item: "https://www.tryautoquote.com/guides/how-to-lower-your-car-insurance-premium" },
   ],
 };
 
@@ -62,7 +63,9 @@ export default function GuideHowToLowerPremium() {
         <nav className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
-          <Link href="/guides" className="hover:text-[#2B5BA8] transition">Guides</Link>
+          <Link href="/car-insurance" className="hover:text-[#2B5BA8] transition">Car insurance</Link>
+          <span>/</span>
+          <Link href="/car-insurance/cost" className="hover:text-[#2B5BA8] transition">Cost and saving</Link>
           <span>/</span>
           <span className="text-[#0A2A4F]/70">How to lower your premium</span>
         </nav>

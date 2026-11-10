@@ -206,7 +206,7 @@ export default async function StateCarInsurance({ params }: Props) {
           <h2 className="text-xl font-bold text-[#0A2A4F] mb-4">Helpful guides for {s.name} drivers</h2>
           <ul className="grid sm:grid-cols-2 gap-3">
             {[
-              { href: "/guides/how-much-car-insurance-do-i-need", label: "How much car insurance do I need?" },
+              { href: "/blogs/how-much-car-insurance-do-you-need", label: "How much car insurance do I need?" },
               { href: "/guides/liability-only-vs-full-coverage", label: "Liability only vs. full coverage" },
               { href: "/guides/how-to-lower-your-car-insurance-premium", label: "How to lower your car insurance premium" },
               { href: "/blogs/when-to-drop-full-coverage", label: "When to drop full coverage on your car" },

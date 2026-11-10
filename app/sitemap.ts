@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { states } from "@/lib/states";
 import { getAllPosts, lastModified } from "@/lib/blogs";
+import { HUBS, hubHref } from "@/lib/hubs";
 
 /* ------------------------------------------------------------------
    app/sitemap.ts  →  Next.js serves this automatically at /sitemap.xml
@@ -64,12 +65,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${BASE}/guides/how-much-car-insurance-do-i-need`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${BASE}/guides/cheapest-car-insurance-for-young-drivers`,
       lastModified: now,
       changeFrequency: "monthly",
@@ -99,6 +94,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    ...HUBS.map((h) => ({
+      url: `${BASE}${hubHref(h.slug)}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     ...getAllPosts().map((post) => ({
       url: `${BASE}/blogs/${post.slug}`,
       lastModified: new Date(lastModified(post)),

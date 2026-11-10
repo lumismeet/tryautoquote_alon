@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Car Insurance by State", href: "/car-insurance" },
+  { label: "Car Insurance", href: "/car-insurance" },
   { label: "Guides", href: "/guides" },
   { label: "Blog", href: "/blogs" },
 ];
