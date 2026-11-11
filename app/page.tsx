@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { track } from "@/lib/analytics";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -379,6 +380,7 @@ function ZipForm({
     }
 
     updateForm({ zipcode: trimmedZip });
+    track("quote_start", { entry: "home_hero" });
     router.push("/quote/1");
   };
 
@@ -948,6 +950,7 @@ function GradientZip() {
       return;
     }
     updateForm({ zipcode: trimmedZip });
+    track("quote_start", { entry: "home_bottom" });
     router.push("/quote/1");
   };
 

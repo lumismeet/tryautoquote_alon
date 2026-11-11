@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { track } from "@/lib/analytics";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "@/context/FormContext";
@@ -42,6 +43,13 @@ export default function Results() {
   }), [formData]);
 
   const offers = matchingOffers(answers);
+
+  // Once per results view: how many offers this visitor was shown.
+  useEffect(() => {
+    if (!formData.zipcode) return;
+    track("results_view", { offers_count: offers.length, state: answers.state ?? "unknown" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   // One unique click id per offer per results view (sub2 / reconciliation with GA)
   const clickIds = useMemo(
     () => Object.fromEntries(offers.map((o) => [o.id, crypto.randomUUID().replace(/-/g, "").slice(0, 20)])),

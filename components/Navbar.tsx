@@ -129,6 +129,8 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
 
           <button
             onClick={handleQuote}
+            data-track="cta"
+            data-location="nav_desktop"
             className="hidden md:inline-flex bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] hover:opacity-90 transition text-white text-sm font-semibold px-7 py-2.5 rounded-full cursor-pointer"
           >
             Compare quotes
@@ -165,6 +167,8 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
           </ul>
           <button
             onClick={handleQuote}
+            data-track="cta"
+            data-location="nav_mobile_menu"
             className="w-full bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] text-white font-semibold px-6 py-3 rounded-full cursor-pointer"
           >
             Compare quotes
@@ -177,6 +181,8 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
         <div className="md:hidden fixed inset-x-0 bottom-0 z-40 bg-white/95 backdrop-blur border-t border-[#0A2A4F]/10 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
           <button
             onClick={handleQuote}
+            data-track="cta"
+            data-location="mobile_sticky_bar"
             className="w-full bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] text-white font-semibold py-3 rounded-full cursor-pointer"
           >
             Compare quotes in your area

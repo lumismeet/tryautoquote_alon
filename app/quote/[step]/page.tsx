@@ -5,6 +5,7 @@ import StepVehicles from "@/components/quick/StepVehicles";
 import StepHome from "@/components/quick/StepHome";
 import StepAge from "@/components/quick/StepAge";
 import Results from "@/components/quick/Results";
+import QuoteStepTracker from "@/components/quick/QuoteStepTracker";
 
 const STEPS: Record<string, () => React.ReactElement> = {
   "1_map": StepZip,
@@ -19,5 +20,10 @@ export default async function QuoteStep({ params }: { params: Promise<{ step: st
   const { step } = await params;
   const Step = STEPS[step];
   if (!Step) notFound();
-  return <Step />;
+  return (
+    <>
+      <QuoteStepTracker step={step} />
+      <Step />
+    </>
+  );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@/lib/analytics";
 import { useRouter } from "next/navigation";
 import { useForm } from "@/context/FormContext";
 
@@ -24,6 +25,7 @@ export default function BlogCTA() {
     }
 
     updateForm({ zipcode: trimmedZip });
+    track("quote_start", { entry: "blog_sidebar" });
     router.push("/quote/1");
   };
 

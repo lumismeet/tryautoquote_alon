@@ -105,7 +105,7 @@ export default function CarInsurancePillar() {
           <p className="text-white/70 mb-6 max-w-md mx-auto">
             Enter your ZIP code and answer a few quick questions. No name, phone number or email needed.
           </p>
-          <Link href="/quote/1_map"
+          <Link href="/quote/1_map" data-location="pillar_bottom"
             className="inline-block bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] text-white font-semibold px-8 py-3.5 rounded-full hover:opacity-90 transition">
             Start comparing
           </Link>

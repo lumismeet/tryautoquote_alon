@@ -1,4 +1,5 @@
 // import type { Metadata } from "next";
+import { GA_IDS } from "@/lib/analytics";
 // import { Geist, Geist_Mono } from "next/font/google";
 // import "./globals.css";
 // import { FormProvider } from "@/context/FormContext";
@@ -112,10 +113,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-SNTTKK995J" />
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_IDS[0]}`} />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-SNTTKK995J');`,
+            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());${GA_IDS.map((id) => `gtag('config', '${id}');`).join('')}`,
           }}
         />
         <script

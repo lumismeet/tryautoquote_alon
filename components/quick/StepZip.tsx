@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "@/context/FormContext";
+import { track } from "@/lib/analytics";
 import QuestionShell from "./QuestionShell";
 
 export default function StepZip() {
@@ -14,6 +15,7 @@ export default function StepZip() {
   const submit = () => {
     if (!/^\d{5}$/.test(zip)) return setError("Please enter a valid 5-digit ZIP code");
     updateForm({ zipcode: zip });
+    track("quote_start", { entry: "quote_page" });
     router.push("/quote/1");
   };
 

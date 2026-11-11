@@ -170,7 +170,7 @@ export default function DropCoverageCalculator() {
         <p className="text-xs text-[#0A2A4F]/50 leading-relaxed max-w-md">
           General guidance based on the 10% rule, not insurance advice. Your insurer&rsquo;s actual cash value may differ from pricing guides.
         </p>
-        <Link href="/quote/1_map" className="shrink-0 text-center text-sm font-semibold text-white bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] rounded-full px-5 py-2.5 hover:opacity-90 transition">
+        <Link href="/quote/1_map" data-location="calculator_drop_coverage" className="shrink-0 text-center text-sm font-semibold text-white bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] rounded-full px-5 py-2.5 hover:opacity-90 transition">
           Compare prices for your coverage
         </Link>
       </div>

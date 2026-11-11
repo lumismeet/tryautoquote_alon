@@ -3,10 +3,8 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { aiSourceFromReferrer, aiSourceFromUtm } from "@/lib/ai-referrers";
+import { installCtaTracking } from "@/lib/analytics";
 
-declare global {
-  interface Window { gtag?: (...args: unknown[]) => void }
-}
 
 // Remembers the last content page a visitor viewed before entering the quote
 // flow, so outbound offer clicks can be attributed (utm_campaign) to that page.
@@ -14,6 +12,8 @@ declare global {
 // with an "ai_referral" GA4 event, once per session.
 export default function SourceTracker() {
   const pathname = usePathname();
+
+  useEffect(() => installCtaTracking(), []);
 
   useEffect(() => {
     try {
