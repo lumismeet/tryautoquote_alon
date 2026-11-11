@@ -152,7 +152,9 @@ export default function GuideHowToLowerPremium() {
           <section>
             <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">6. Drop collision and comprehensive on older vehicles</h2>
             <p>
-              If your car is fully paid off and worth less than $5,000, you may be paying more in collision and comprehensive premiums annually than you would ever receive in a payout. The calculation is simple: apply the 10 percent rule. If the combined annual premium for those two coverages exceeds 10 percent of your car&apos;s current private party value, consider dropping them.
+              If your car is fully paid off and worth less than $5,000, you may be paying more in collision and comprehensive premiums annually than you would ever receive in a payout. The calculation is simple: apply the 10 percent rule. If the combined annual premium for those two coverages exceeds 10 percent of your car&apos;s current private party value, consider dropping them. Our{" "}
+              <Link href="/blogs/when-to-drop-full-coverage#calc-title" className="text-[#2B5BA8] hover:underline">drop full coverage calculator</Link>{" "}
+              runs the numbers for your car.
             </p>
             <p className="mt-3">
               Keep in mind that if the car is worth very little, even a total loss payout would be small after your deductible. If your car is worth $3,500 and you have a $1,000 deductible, the maximum you could receive in a total loss is $2,500, and that assumes a perfect claim scenario. Carrying coverage for a $2,500 benefit may not make financial sense. Check your car&apos;s value at Kelley Blue Book or NADA and do the math.

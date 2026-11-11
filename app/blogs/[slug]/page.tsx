@@ -10,6 +10,7 @@ import TableOfContents from "@/components/TableOfContents";
 import MobileTableOfContents from "@/components/MobileTableOfContents";
 import FaqSection from "@/components/FaqSection";
 import RelatedPosts from "@/components/RelatedPosts";
+import DropCoverageCalculator from "@/components/tools/DropCoverageCalculator";
 import { hubForPost, hubHref } from "@/lib/hubs";
 import { pageTitle } from "@/lib/seo";
 import References from "@/components/References";
@@ -24,6 +25,8 @@ import BlogCTA from "@/components/BlogCTA";
 // instead of a plain inline hyperlink.
 function makeMdxComponents(refMap: Map<string, { num: number; label: string }>) {
   return {
+    // Interactive tools that posts can embed as <ComponentName />.
+    DropCoverageCalculator,
     h2: ({ children, id }: { children?: React.ReactNode; id?: string }) =>
       children === "Key takeaways" ? (
         <p id={id} className="font-semibold text-[#0A2A4F] text-sm border-t border-[#0A2A4F]/10 pt-8 mt-4 scroll-mt-28">
@@ -45,17 +48,17 @@ function makeMdxComponents(refMap: Map<string, { num: number; label: string }>) 
     // table never pushes the page wider than the viewport.
     table: ({ children }: { children?: React.ReactNode }) => (
       <div className="not-prose my-8 overflow-x-auto rounded-xl border border-[#0A2A4F]/10 bg-white">
-        <table className="w-full min-w-[480px] border-collapse text-sm text-left">{children}</table>
+        <table className="w-full border-collapse text-[13px] sm:text-sm text-left">{children}</table>
       </div>
     ),
     thead: ({ children }: { children?: React.ReactNode }) => (
       <thead className="bg-[#0A2A4F]/[0.04] text-[#0A2A4F]">{children}</thead>
     ),
     th: ({ children }: { children?: React.ReactNode }) => (
-      <th className="px-4 py-3 font-semibold align-bottom border-b border-[#0A2A4F]/10">{children}</th>
+      <th className="px-2.5 sm:px-4 py-3 font-semibold align-bottom border-b border-[#0A2A4F]/10">{children}</th>
     ),
     td: ({ children }: { children?: React.ReactNode }) => (
-      <td className="px-4 py-3 align-top border-b border-[#0A2A4F]/[0.06] text-[#0A2A4F]/75">{children}</td>
+      <td className="px-2.5 sm:px-4 py-3 align-top border-b border-[#0A2A4F]/[0.06] text-[#0A2A4F]/75">{children}</td>
     ),
     a: ({ href, children }: { href?: string; children?: React.ReactNode }) => {
       // A citation: keep the phrase as plain text and append a numbered marker

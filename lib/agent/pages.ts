@@ -87,6 +87,8 @@ export function blogMarkdown(post: {
     : "";
   const body = (summary + rest)
     .trim()
+    // Embedded interactive components (e.g. <DropCoverageCalculator />) only work on the web page.
+    .replace(/^<([A-Z][A-Za-z]+)\s*\/>\s*$/gm, `_(Interactive tool available on the web page: ${SITE.baseUrl}/blogs/${post.slug})_`)
     .replace(/\]\(\/(?!\/)/g, `](${SITE.baseUrl}/`); // absolute internal links
   return `# ${post.title}\n\n${meta.join("\n\n")}\n\n${body}\n`;
 }
