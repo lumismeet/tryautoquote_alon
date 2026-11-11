@@ -5,14 +5,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Cheapest Car Insurance for Young Drivers | TryAutoQuote Guide",
+  title: "Cheapest Car Insurance for Young Drivers | TryAutoQuote",
   description:
-    "Young drivers pay the highest rates, but there are real ways to bring them down. Discounts, coverage choices, and comparison tips that actually make a difference.",
+    "Young drivers pay the highest rates, but there are real ways to bring them down: the discounts, coverage choices and comparison tips that make a difference.",
   alternates: { canonical: "/guides/cheapest-car-insurance-for-young-drivers" },
   openGraph: {
-    title: "Cheapest Car Insurance for Young Drivers | TryAutoQuote Guide",
+    title: "Cheapest Car Insurance for Young Drivers | TryAutoQuote",
     description:
-      "Young drivers pay the highest rates, but there are real ways to bring them down. Discounts, coverage choices, and comparison tips that actually make a difference.",
+      "Young drivers pay the highest rates, but there are real ways to bring them down: the discounts, coverage choices and comparison tips that make a difference.",
     url: "https://www.tryautoquote.com/guides/cheapest-car-insurance-for-young-drivers",
     siteName: "TryAutoQuote",
     type: "article",
@@ -24,7 +24,7 @@ const articleSchema = {
   "@type": "Article",
   headline: "Cheapest Car Insurance for Young Drivers",
   description:
-    "Young drivers pay the highest rates, but there are real ways to bring them down. Discounts, coverage choices, and comparison tips that actually make a difference.",
+    "Young drivers pay the highest rates, but there are real ways to bring them down: the discounts, coverage choices and comparison tips that make a difference.",
   author: { "@type": "Organization", name: "TryAutoQuote", url: "https://www.tryautoquote.com" },
   publisher: {
     "@type": "Organization",

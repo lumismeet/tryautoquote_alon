@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import StateStats from "@/components/states/StateStats";
+import { stateSearchTitle, stateSearchDescription } from "@/lib/states/meta";
+import { pageTitle } from "@/lib/seo";
 import { STATE_LAWS_VERIFIED, LAWS_BY_STATE_PATH } from "@/lib/states/verification";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
@@ -18,13 +20,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { state: slug } = await params;
   const s = getStateBySlug(slug);
   if (!s) return {};
+  const title = stateSearchTitle(s);
+  const description = stateSearchDescription(s);
   return {
-    title: s.metaTitle,
-    description: s.metaDescription,
+    title: pageTitle(title),
+    description,
     alternates: { canonical: `/car-insurance/${s.slug}` },
     openGraph: {
-      title: s.metaTitle,
-      description: s.metaDescription,
+      title,
+      description,
       url: `https://www.tryautoquote.com/car-insurance/${s.slug}`,
       siteName: "TryAutoQuote",
       type: "article",

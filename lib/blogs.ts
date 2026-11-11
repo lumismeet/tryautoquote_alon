@@ -12,6 +12,10 @@ export type BlogFrontmatter = {
   tag: string;
   description: string;
   date: string;
+  // Optional search-result title and description. The on-page H1 keeps
+  // `title`; Google gets the shorter, query-matched version.
+  seoTitle?: string;
+  seoDescription?: string;
   // Optional. Set only when the post's content was materially revised; drives
   // the visible "Updated" date, Article dateModified, and sitemap lastmod.
   updated?: string;

@@ -5,12 +5,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "What to Do After a Car Accident: Step-by-Step Guide | TryAutoQuote",
+  title: "What to Do After a Car Accident: Step-by-Step Guide",
   description:
     "A clear step-by-step guide for what to do immediately after a car accident, from the scene to the claim, so you protect yourself and your coverage.",
   alternates: { canonical: "/guides/what-to-do-after-a-car-accident" },
   openGraph: {
-    title: "What to Do After a Car Accident: Step-by-Step Guide | TryAutoQuote",
+    title: "What to Do After a Car Accident: Step-by-Step Guide",
     description:
       "A clear step-by-step guide for what to do immediately after a car accident, from the scene to the claim, so you protect yourself and your coverage.",
     url: "https://www.tryautoquote.com/guides/what-to-do-after-a-car-accident",

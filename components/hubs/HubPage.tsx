@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { getAllPosts } from "@/lib/blogs";
 import { HUBS, getHub, hubHref, type HubSlug } from "@/lib/hubs";
+import { pageTitle } from "@/lib/seo";
 
 const BASE = "https://www.tryautoquote.com";
 
@@ -11,7 +12,7 @@ export function hubMetadata(slug: HubSlug): Metadata {
   const hub = getHub(slug);
   const url = `${BASE}${hubHref(slug)}`;
   return {
-    title: `${hub.metaTitle} | TryAutoQuote`,
+    title: pageTitle(hub.metaTitle),
     description: hub.metaDescription,
     alternates: { canonical: hubHref(slug) },
     openGraph: { title: hub.metaTitle, description: hub.metaDescription, url, siteName: "TryAutoQuote", type: "website" },

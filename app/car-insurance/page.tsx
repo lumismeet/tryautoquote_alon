@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { pageTitle } from "@/lib/seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { states } from "@/lib/states";
@@ -12,7 +13,7 @@ const DESCRIPTION =
   "Plain-English car insurance guides: what each coverage does, what sets your rate, how claims work, and the minimum requirements in every U.S. state.";
 
 export const metadata: Metadata = {
-  title: `${TITLE} | TryAutoQuote`,
+  title: pageTitle(TITLE),
   description: DESCRIPTION,
   alternates: { canonical: "/car-insurance" },
   openGraph: { title: TITLE, description: DESCRIPTION, url: "https://www.tryautoquote.com/car-insurance", siteName: "TryAutoQuote", type: "website" },

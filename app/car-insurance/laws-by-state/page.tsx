@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { pageTitle } from "@/lib/seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { states } from "@/lib/states";
@@ -8,12 +9,12 @@ import { METRICS, SOURCES, formatStat, getStateStats, type MetricId } from "@/li
 
 const BASE = "https://www.tryautoquote.com";
 const PATH = "/car-insurance/laws-by-state";
-const TITLE = "Car Insurance Laws by State: Minimums, No-Fault and Credit Rules";
+const TITLE = "Car Insurance Laws by State: Minimums and Key Rules";
 const DESCRIPTION =
-  "Compare car insurance requirements in all 50 states and DC: minimum liability limits, no-fault states, where uninsured motorist coverage is required, and where credit-based pricing is banned.";
+  "Compare car insurance requirements in all 50 states and DC: minimum liability limits, no-fault rules, uninsured motorist and credit-pricing rules.";
 
 export const metadata: Metadata = {
-  title: `${TITLE} | TryAutoQuote`,
+  title: pageTitle(TITLE),
   description: DESCRIPTION,
   alternates: { canonical: PATH },
   // Hidden from search until the aggregated state data is verified (lib/states/verification.ts).

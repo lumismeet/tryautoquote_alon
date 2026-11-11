@@ -22,7 +22,7 @@ export const HUBS: Hub[] = [
     slug: "coverage",
     name: "Coverage",
     title: "Car insurance coverage, explained",
-    metaTitle: "Car Insurance Coverage Explained: Types, Limits and Deductibles",
+    metaTitle: "Car Insurance Coverage: Types, Limits and Deductibles",
     metaDescription:
       "What each type of car insurance covers, how liability limits and deductibles work, and how to decide between state minimum and full coverage.",
     intro: [
@@ -77,7 +77,7 @@ export const HUBS: Hub[] = [
     slug: "claims",
     name: "Claims",
     title: "Car insurance claims and accidents",
-    metaTitle: "Car Insurance Claims: What to Do After an Accident and How to File",
+    metaTitle: "Car Insurance Claims: After an Accident and How to File",
     metaDescription:
       "What to do after a car accident, how to file a claim, what to say and not say to your insurer, and how to appeal if your claim is denied.",
     intro: [
@@ -99,7 +99,7 @@ export const HUBS: Hub[] = [
     slug: "drivers",
     name: "Drivers",
     title: "Car insurance for specific drivers",
-    metaTitle: "Car Insurance for Teens, Young Drivers, SR-22 and Rideshare Drivers",
+    metaTitle: "Car Insurance for Teens, SR-22, Rideshare and New Drivers",
     metaDescription:
       "How car insurance works for teen and young drivers, high-risk drivers who need an SR-22, rideshare and delivery drivers, and drivers new to the U.S.",
     intro: [

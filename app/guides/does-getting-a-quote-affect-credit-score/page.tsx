@@ -5,12 +5,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Does Getting an Auto Insurance Quote Affect Your Credit Score?",
+  title: "Does Getting a Car Insurance Quote Affect Your Credit?",
   description:
     "Comparing auto insurance quotes does not hurt your credit score. Learn the difference between soft and hard credit inquiries and what insurers actually check.",
   alternates: { canonical: "/guides/does-getting-a-quote-affect-credit-score" },
   openGraph: {
-    title: "Does Getting an Auto Insurance Quote Affect Your Credit Score?",
+    title: "Does Getting a Car Insurance Quote Affect Your Credit?",
     description:
       "Comparing auto insurance quotes does not hurt your credit score. Learn the difference between soft and hard credit inquiries and what insurers actually check.",
     url: "https://www.tryautoquote.com/guides/does-getting-a-quote-affect-credit-score",

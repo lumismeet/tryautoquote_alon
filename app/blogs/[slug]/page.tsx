@@ -11,6 +11,7 @@ import MobileTableOfContents from "@/components/MobileTableOfContents";
 import FaqSection from "@/components/FaqSection";
 import RelatedPosts from "@/components/RelatedPosts";
 import { hubForPost, hubHref } from "@/lib/hubs";
+import { pageTitle } from "@/lib/seo";
 import References from "@/components/References";
 import { getPostBySlug, getAllSlugs, getHeadings, splitFaq, splitReferences, getRelatedPosts, splitTakeaways, lastModified } from "@/lib/blogs";
 import BlogCTA from "@/components/BlogCTA";
@@ -111,13 +112,15 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
   if (!post) return {};
 
+  const searchTitle = post.seoTitle ?? post.title;
+  const searchDescription = post.seoDescription ?? post.description;
   return {
-    title: `${post.title} | TryAutoQuote Blog`,
-    description: post.description,
+    title: pageTitle(searchTitle),
+    description: searchDescription,
     alternates: { canonical: `/blogs/${post.slug}` },
     openGraph: {
-      title: `${post.title} | TryAutoQuote Blog`,
-      description: post.description,
+      title: searchTitle,
+      description: searchDescription,
       url: `https://www.tryautoquote.com/blogs/${post.slug}`,
       siteName: "TryAutoQuote",
       type: "article",
