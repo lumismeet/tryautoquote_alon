@@ -5,14 +5,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Liability Only vs Full Coverage Car Insurance | TryAutoQuote",
+  title: "Liability Only vs. Full Coverage: What Each Covers",
   description:
-    "Should you carry liability only or full coverage? Learn what each covers, when the switch makes financial sense, and how to decide based on your car's value.",
+    "Liability only pays for damage you cause to others. Full coverage adds collision and comprehensive for your own car. What each covers and when full is required.",
   alternates: { canonical: "/guides/liability-only-vs-full-coverage" },
   openGraph: {
-    title: "Liability Only vs Full Coverage Car Insurance | TryAutoQuote",
+    title: "Liability Only vs. Full Coverage: What Each Covers",
     description:
-      "Should you carry liability only or full coverage? Learn what each covers, when the switch makes financial sense, and how to decide based on your car's value.",
+      "Liability only pays for damage you cause to others. Full coverage adds collision and comprehensive for your own car. What each covers and when full is required.",
     url: "https://www.tryautoquote.com/guides/liability-only-vs-full-coverage",
     siteName: "TryAutoQuote",
     type: "article",
@@ -24,7 +24,7 @@ const articleSchema = {
   "@type": "Article",
   headline: "Liability Only vs Full Coverage Car Insurance",
   description:
-    "Should you carry liability only or full coverage? Learn what each covers, when the switch makes financial sense, and how to decide based on your car's value.",
+    "Liability only pays for damage you cause to others. Full coverage adds collision and comprehensive for your own car. What each covers and when full is required.",
   author: { "@type": "Organization", name: "TryAutoQuote", url: "https://www.tryautoquote.com" },
   publisher: {
     "@type": "Organization",
@@ -33,7 +33,7 @@ const articleSchema = {
     logo: { "@type": "ImageObject", url: "https://www.tryautoquote.com/logo-test1.png" },
   },
   datePublished: "2026-06-17",
-  dateModified: "2026-06-17",
+  dateModified: "2026-11-11",
   mainEntityOfPage: {
     "@type": "WebPage",
     "@id": "https://www.tryautoquote.com/guides/liability-only-vs-full-coverage",
@@ -77,7 +77,7 @@ export default function GuideLiabilityVsFullCoverage() {
           <h1 className="text-3xl md:text-4xl font-bold text-[#0A2A4F] leading-tight mb-4">
             Liability Only vs Full Coverage Car Insurance
           </h1>
-          <p className="text-[#0A2A4F]/60 text-sm">Updated June 17, 2026 &middot; 5 mins read</p>
+          <p className="text-[#0A2A4F]/60 text-sm">Updated November 11, 2026 &middot; 4 mins read</p>
         </div>
 
         <div className="flex justify-center mb-10">
@@ -93,7 +93,7 @@ export default function GuideLiabilityVsFullCoverage() {
         <div className="bg-[#2B5BA8]/8 border-l-4 border-[#2B5BA8] rounded-r-xl px-6 py-5 mb-10">
           <p className="font-semibold text-[#0A2A4F] mb-1">The short answer</p>
           <p className="text-[#0A2A4F]/80 leading-relaxed">
-            If your car is worth less than $5,000 or the annual cost of collision and comprehensive exceeds 10 percent of your car&apos;s value, liability only is likely the smarter financial choice. If your car is financed, leased, or worth more than that, full coverage is the right call.
+            Liability only pays for injuries and damage you cause to other people. Full coverage adds collision and comprehensive, which pay to repair or replace your own car. If your car is financed or leased, full coverage is required. If it is paid off, whether full coverage is worth it depends mostly on what the car is worth.
           </p>
         </div>
 
@@ -110,26 +110,37 @@ export default function GuideLiabilityVsFullCoverage() {
             <p className="mt-3">
               It is worth knowing that &ldquo;full coverage&rdquo; is not an official insurance term. No policy covers every possible loss. The phrase simply refers to a policy combining liability, collision, and comprehensive. You can still have gaps, such as no uninsured motorist coverage or no rental reimbursement, even with what is commonly called full coverage.
             </p>
+            <div className="mt-6 overflow-x-auto rounded-xl border border-[#0A2A4F]/10 bg-white">
+              <table className="w-full border-collapse text-[13px] sm:text-sm text-left">
+                <caption className="sr-only">Liability only vs. full coverage</caption>
+                <thead className="bg-[#0A2A4F]/[0.04] text-[#0A2A4F]">
+                  <tr>
+                    <th scope="col" className="px-3 sm:px-4 py-3 font-semibold">What it pays for</th>
+                    <th scope="col" className="px-3 sm:px-4 py-3 font-semibold">Liability only</th>
+                    <th scope="col" className="px-3 sm:px-4 py-3 font-semibold">Full coverage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ["Injuries you cause to others", "Yes", "Yes"],
+                    ["Damage you cause to others' property", "Yes", "Yes"],
+                    ["Your car after a crash, whoever is at fault", "No", "Yes (collision)"],
+                    ["Theft, vandalism, fire, hail, flood, animal strikes", "No", "Yes (comprehensive)"],
+                    ["Meets a lender or lease requirement", "No", "Yes"],
+                    ["Cost", "Lower", "Higher"],
+                  ].map(([what, liab, full]) => (
+                    <tr key={what} className="border-t border-[#0A2A4F]/[0.06]">
+                      <th scope="row" className="px-3 sm:px-4 py-3 font-medium text-[#0A2A4F] align-top">{what}</th>
+                      <td className="px-3 sm:px-4 py-3 align-top">{liab}</td>
+                      <td className="px-3 sm:px-4 py-3 align-top">{full}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
 
-          <section>
-            <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">The 10 percent rule</h2>
-            <p>
-              A widely used financial guideline: if the annual premium for collision and comprehensive combined exceeds 10 percent of your car&apos;s current market value, you are likely paying more each year than the coverage would realistically pay out.
-            </p>
-            <p>
-              For the full math, including how your deductible changes it, see{" "}
-              <Link href="/blogs/when-to-drop-full-coverage" className="text-[#2B5BA8] hover:underline">when to drop full coverage</Link>.
-              If you are deciding what the law requires versus what you should carry, read{" "}
-              <Link href="/blogs/state-minimum-vs-full-coverage" className="text-[#2B5BA8] hover:underline">state minimum vs. full coverage</Link>.
-            </p>
-            <p className="mt-3">
-              Here is a concrete example. Your car is worth $4,500. Your annual collision and comprehensive premium is $650 with a $500 deductible. If the car is totaled, the maximum your insurer pays is $4,000 after the deductible. You would pay $650 per year for a maximum payout of $4,000. That is a break-even point of about six years, and that assumes a total loss scenario rather than a partial claim that pays out even less. In that situation, liability only is likely the better financial decision.
-            </p>
-            <p className="mt-3">
-              You can check your vehicle&apos;s current value at Kelley Blue Book or NADA Guides. Use the private party value, not the dealer retail price or trade-in estimate, as your baseline. Private party value most accurately reflects what an insurer would pay you if your car were totaled.
-            </p>
-          </section>
+          
 
           <section>
             <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">When you must carry full coverage</h2>
@@ -142,22 +153,18 @@ export default function GuideLiabilityVsFullCoverage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">When liability only makes financial sense</h2>
+            <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">Which one should you carry?</h2>
             <p>
-              Liability only tends to be the right choice when your car is fully paid off and worth less than $5,000. At that value, the math rarely works in favor of collision and comprehensive. It also makes sense when the combined annual premium for those coverages exceeds ten percent of the car&apos;s market value, when you have enough savings to replace the car out of pocket if it were totaled tomorrow, or when the car has high mileage and significant wear that has brought its actual cash value below a level where comprehensive coverage makes sense.
+              Once a car is paid off, the choice comes down to whether collision and comprehensive still pay for themselves. The quick test is the 10 percent rule: if those two coverages cost more each year than about 10 percent of the car&apos;s value, liability only may make more sense, as long as you could replace the car from savings. Our{" "}
+              <Link href="/blogs/when-to-drop-full-coverage" className="text-[#2B5BA8] hover:underline">when to drop full coverage</Link>{" "}
+              guide walks through the math and has a calculator for your own car.
             </p>
             <p className="mt-3">
-              A note of caution here: even if you drop collision and comprehensive, never drop your liability below a level that provides real protection. A common mistake is switching to liability only and simultaneously reducing liability limits to the state minimum. The liability portion of your coverage is what protects you from personal financial ruin if you cause a serious accident, and that risk does not go down just because your car is old. Keep strong liability limits regardless of the vehicle&apos;s age.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">When full coverage makes sense</h2>
-            <p>
-              Full coverage is the right call when your car is financed or leased, when your vehicle is worth more than $10,000 and replacing it would create real financial strain, when you live in an area with high rates of vehicle theft, flooding, or hail, when you drive frequently in dense urban traffic where collision risk is elevated, or when you simply could not afford to repair or replace your vehicle without an insurance payout to help.
+              Full coverage stays worth it when the car is worth more than you could comfortably replace, or when theft, flooding or hail are common where you live.
             </p>
             <p className="mt-3">
-              If any of these situations apply, the premium for collision and comprehensive is buying you something meaningful: the ability to recover from a loss that would otherwise set you back significantly. That is what insurance is for.
+              One mistake to avoid: when you drop collision and comprehensive, don&apos;t also cut your liability limits to the state minimum. Liability protects your savings if you cause a serious accident, and that risk doesn&apos;t shrink as your car gets older. If you&apos;re weighing the legal minimum against full coverage, see{" "}
+              <Link href="/blogs/state-minimum-vs-full-coverage" className="text-[#2B5BA8] hover:underline">state minimum vs. full coverage</Link>.
             </p>
           </section>
 
@@ -174,13 +181,9 @@ export default function GuideLiabilityVsFullCoverage() {
           <section>
             <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">Choosing the right deductible</h2>
             <p>
-              If you decide to keep full coverage, your deductible choice significantly affects both what you pay monthly and what you receive in a claim. Raising your deductible from $500 to $1,000 typically reduces your collision and comprehensive premium by 15 to 30 percent. The exact savings depend on your carrier, vehicle, and location, but the general direction is consistent.
-            </p>
-            <p className="mt-3">
-              If your car is worth $8,000 and you can comfortably absorb a $1,000 expense without financial stress, the higher deductible is usually the better trade-off. You save on premium each month, and you self-insure the first $1,000 of any claim. Over three or four years without a claim, the premium savings often exceed the higher deductible cost.
-            </p>
-            <p className="mt-3">
-              On the other hand, if a $1,000 unexpected expense would genuinely put you in a difficult financial position, the lower deductible with higher premium may be the right choice. The goal is a deductible you could pay without hardship on a day when something has already gone wrong.
+              If you keep full coverage, a higher deductible lowers what you pay for collision and comprehensive, in exchange for paying more yourself when you claim. The right number is one you could pay without hardship on a bad day. See{" "}
+              <Link href="/blogs/500-vs-1000-deductible" className="text-[#2B5BA8] hover:underline">$500 vs. $1,000 deductible</Link>{" "}
+              for the breakeven math.
             </p>
           </section>
 

@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
       { source: "/blogs/how-to-lower-your-car-insurance-premiums", destination: "/guides/how-to-lower-your-car-insurance-premium", permanent: true },
       // Old slug still showing in Search Console.
       { source: "/blogs/state-minimum-vs-high-coverage", destination: "/blogs/state-minimum-vs-full-coverage", permanent: true },
+      { source: "/blogs/can-you-switch-car-insurance-companies-mid-policy", destination: "/blogs/can-you-switch-car-insurance-mid-policy", permanent: true },
+      { source: "/blogs/how-to-file-a-car-insurance-claim-for-theft-or-vandalism", destination: "/blogs/how-to-file-a-theft-or-vandalism-claim", permanent: true },
+      { source: "/blogs/why-your-insurance-went-up", destination: "/blogs/why-your-car-insurance-went-up", permanent: true },
     ];
   },
 };

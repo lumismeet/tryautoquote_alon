@@ -172,6 +172,9 @@ export default function GuideWhatToDoAfterAccident() {
             </p>
             <p className="mt-3">
               Be accurate and factual when you describe the accident to your insurer. Give them the basic facts: when and where the accident occurred, who was involved, what damage resulted, whether anyone was injured, and the police report number if you have it. Your insurer will guide you through the next steps of the claims process, including arranging a vehicle inspection, assigning a claims adjuster, and handling communication with the other party&apos;s insurer. You do not need to speak directly with the other driver&apos;s insurance company if your own insurer is handling the claim.
+             Once the claim is open, our guide on{" "}
+              <Link href="/blogs/what-documents-to-file-a-car-insurance-claim" className="text-[#2B5BA8] hover:underline">how to file a car insurance claim</Link>{" "}
+              covers the documents you will need and each step that follows.
             </p>
           </section>
 
