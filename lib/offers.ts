@@ -14,7 +14,11 @@ export type Offer = {
   logo?: string;            // path under /public, e.g. "/offers/acme.png"
   headline: string;
   bullets: string[];
-  url: string;              // client landing page (may already include query params)
+  url: string;              // client landing page (may already include query params); "" = link pending
+  // Partner review: an inactive offer with a previewKey is shown, with a
+  // "Preview" label, to anyone who starts the quote flow from a link with
+  // ?preview=<previewKey>. Regular visitors never see it.
+  previewKey?: string;
   buttonLabel?: string;     // default: "View Rates"
   disclaimer?: string;      // small print shown under the listing (required by some advertisers)
   // Rename parameters if a client expects different names, e.g. { zip: "zipcode" }.
@@ -86,6 +90,7 @@ export const OFFERS: Offer[] = [
   {
     id: "ni-bestmoney-auto",
     active: false,
+    previewKey: "bestmoney",
     name: "BestMoney",
     headline: "Compare Car Insurance Providers",
     bullets: [
@@ -114,6 +119,21 @@ export const OFFERS: Offer[] = [
       aff_source_join: "Google",
     }),
   },
+  // BestQuotes (PX). IO signed Oct 12, 2026. Waiting on Steve Salta (VP, O&O) to approve
+  // tryautoquote.com as an owned-and-operated organic source and send the tracking link,
+  // sub-ID parameters, brand rules and targeting. Copy below is neutral placeholder text
+  // until their compliance team approves it.
+  {
+    id: "bestquotes-auto",
+    active: false,
+    previewKey: "bestquotes",
+    name: "BestQuotes",
+    headline: "Compare car insurance options",
+    bullets: [],
+    url: "",
+    buttonLabel: "View Options",
+    disclaimer: "Advertisement. Copy pending BestQuotes approval.",
+  },
   // Example template (inactive). Replace with real clients.
   {
     id: "example-client",
@@ -141,7 +161,19 @@ function weekendRoll(id: string): number {
   } catch { return Math.random(); }
 }
 
-export function matchingOffers(answers: Answers): Offer[] {
+export type ShownOffer = Offer & { preview?: boolean };
+
+// Active offers that match the visitor, plus (for partner review only) the
+// inactive offer whose previewKey matches. Preview offers skip the filters so
+// a reviewer can see the placement any time of day, for any answers.
+export function matchingOffers(answers: Answers, opts: { preview?: string | null } = {}): ShownOffer[] {
+  const preview: ShownOffer[] = opts.preview
+    ? OFFERS.filter((o) => !o.active && o.previewKey && o.previewKey === opts.preview).map((o) => ({ ...o, preview: true }))
+    : [];
+  return [...preview, ...liveOffers(answers)];
+}
+
+function liveOffers(answers: Answers): Offer[] {
   return OFFERS.filter((o) => {
     if (!o.active) return false;
     const f = o.filter;

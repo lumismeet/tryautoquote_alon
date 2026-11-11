@@ -27,9 +27,13 @@ export default function Results() {
   useZipGuard();
   const { formData } = useForm();
   const [source, setSource] = useState("direct");
+  const [preview, setPreview] = useState<string | null>(null);
 
   useEffect(() => {
-    try { setSource(sessionStorage.getItem("tq_source") || "direct"); } catch { /* ignore */ }
+    try {
+      setSource(sessionStorage.getItem("tq_source") || "direct");
+      setPreview(sessionStorage.getItem("tq_preview"));
+    } catch { /* ignore */ }
   }, []);
 
   const answers: Answers = useMemo(() => ({
@@ -42,7 +46,7 @@ export default function Results() {
     age: formData.ageRange,
   }), [formData]);
 
-  const offers = matchingOffers(answers);
+  const offers = matchingOffers(answers, { preview });
 
   // Once per results view: how many offers this visitor was shown.
   useEffect(() => {
@@ -91,15 +95,20 @@ export default function Results() {
           <ul className="space-y-4">
             {offers.map((offer, i) => {
               const clickId = clickIds[offer.id];
-              const href = buildOfferUrl(offer, answers, {
+              const href = offer.url && buildOfferUrl(offer, answers, {
                 medium,
                 campaign,
                 content: `${offer.id}_pos${i + 1}`,
                 clickId,
               });
               return (
-                <li key={offer.id} className="bg-white rounded-2xl border border-[#0A2A4F]/10 shadow-sm p-6 flex flex-col sm:flex-row sm:items-center gap-5">
+                <li key={offer.id} className={`bg-white rounded-2xl border shadow-sm p-6 flex flex-col sm:flex-row sm:items-center gap-5 ${offer.preview ? "border-dashed border-[#C98A1B]" : "border-[#0A2A4F]/10"}`}>
                   <div className="flex-1">
+                    {offer.preview && (
+                      <span className="inline-block mb-3 text-[11px] font-bold uppercase tracking-wider text-[#8A5B0B] bg-[#C98A1B]/15 rounded-full px-2.5 py-1">
+                        Partner preview: not visible to regular visitors
+                      </span>
+                    )}
                     {offer.logo ? (
                       <h2 className="mb-4">
                         {/* Partner logo: unaltered, on white, with clear space of at least half its height */}
@@ -118,15 +127,21 @@ export default function Results() {
                       <p className="mt-3 text-xs text-[#0A2A4F]/50">{offer.disclaimer}</p>
                     )}
                   </div>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener sponsored"
-                    onClick={() => window.gtag?.("event", "offer_click", { offer_id: offer.id, position: i + 1, source_page: source, click_id: clickId })}
-                    className="text-center bg-[#2B5BA8] hover:bg-[#E8732A] transition text-white px-7 py-3 rounded-xl font-semibold shrink-0"
-                  >
-                    {offer.buttonLabel ?? "View Rates"}
-                  </a>
+                  {href ? (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener sponsored"
+                      onClick={() => window.gtag?.("event", "offer_click", { offer_id: offer.id, position: i + 1, source_page: source, click_id: clickId, preview: !!offer.preview })}
+                      className="text-center bg-[#2B5BA8] hover:bg-[#E8732A] transition text-white px-7 py-3 rounded-xl font-semibold shrink-0"
+                    >
+                      {offer.buttonLabel ?? "View Rates"}
+                    </a>
+                  ) : (
+                    <span className="text-center bg-[#0A2A4F]/10 text-[#0A2A4F]/50 px-7 py-3 rounded-xl font-semibold shrink-0 cursor-not-allowed">
+                      Tracking link pending
+                    </span>
+                  )}
                 </li>
               );
             })}

@@ -15,6 +15,14 @@ export default function SourceTracker() {
 
   useEffect(() => installCtaTracking(), []);
 
+  // Partner preview links (?preview=bestquotes) carry through the quote flow.
+  useEffect(() => {
+    try {
+      const p = new URLSearchParams(window.location.search).get("preview");
+      if (p && /^[a-z0-9-]{2,30}$/.test(p)) sessionStorage.setItem("tq_preview", p);
+    } catch { /* ignore */ }
+  }, []);
+
   useEffect(() => {
     try {
       if (sessionStorage.getItem("tq_ai_checked")) return;
