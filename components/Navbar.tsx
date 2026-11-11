@@ -60,7 +60,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
     setMobileOpen(false);
     if (onQuoteClick) onQuoteClick();
     else if (isQuotePage) window.dispatchEvent(new CustomEvent("highlight-quote-input"));
-    else router.push("/?quote=1");
+    else router.push("/quote/1_map");
   };
 
   const linkCls = (active: boolean) =>

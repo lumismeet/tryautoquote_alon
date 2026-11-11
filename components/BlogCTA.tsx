@@ -25,7 +25,7 @@ export default function BlogCTA() {
     }
 
     updateForm({ zipcode: trimmedZip });
-    track("quote_start", { entry: "blog_sidebar" });
+    track("quote_start", { entry: "blog_cta_card" });
     router.push("/quote/1");
   };
 
@@ -46,17 +46,17 @@ export default function BlogCTA() {
         </div>
 
         <h3 className="text-[1.35rem] font-bold leading-tight mb-2">
-          Find the best rate in your area
+          Compare car insurance options in your area
         </h3>
         <p className="text-white/60 text-xs mb-6 leading-relaxed">
-          Review quotes from top providers in a few minutes. No spam, no obligation.
+          Enter your ZIP code and answer a few quick questions. No name, phone number or email needed.
         </p>
 
         <ul className="space-y-2.5 mb-6">
           {[
-            "Quotes from top providers in your area",
-            "No spam calls or emails",
-            "Takes just a few minutes",
+            "See options for your ZIP code",
+            "No name, phone number or email",
+            "Free to use",
           ].map((item) => (
             <li key={item} className="flex items-center gap-2.5 text-sm text-white/85">
               <span className="w-4 h-4 rounded-full bg-[#38B6C9]/20 flex items-center justify-center shrink-0">
@@ -90,7 +90,7 @@ export default function BlogCTA() {
             onClick={handleSubmit}
             className="group w-full bg-[#38B6C9] hover:bg-[#2fa3b5] text-white font-semibold py-3.5 rounded-xl text-sm transition shadow-lg shadow-[#38B6C9]/25 flex items-center justify-center gap-1.5"
           >
-            Get Free Quotes
+            See options
             <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </button>
         </div>
@@ -99,7 +99,7 @@ export default function BlogCTA() {
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
-          No credit card needed. We never sell your info.
+          No personal info needed. We never sell your info.
         </div>
       </div>
     </div>

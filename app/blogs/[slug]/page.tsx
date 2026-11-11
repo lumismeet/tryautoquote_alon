@@ -16,6 +16,7 @@ import { pageTitle } from "@/lib/seo";
 import References from "@/components/References";
 import { getPostBySlug, getAllSlugs, getHeadings, splitFaq, splitReferences, getRelatedPosts, splitTakeaways, lastModified } from "@/lib/blogs";
 import BlogCTA from "@/components/BlogCTA";
+import InlineQuoteBox from "@/components/InlineQuoteBox";
 
 // Shared MDX element styling, reused for the prose before and after the FAQ.
 // Built per-post so the `a` handler can turn citation links into numbered
@@ -308,6 +309,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 </ul>
               </section>
             )}
+
+            <div className="xl:hidden">
+              <InlineQuoteBox entry="blog_inline" />
+            </div>
 
             <MobileTableOfContents headings={headings} />
 

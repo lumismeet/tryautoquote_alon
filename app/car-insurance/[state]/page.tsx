@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import StateStats from "@/components/states/StateStats";
+import InlineQuoteBox from "@/components/InlineQuoteBox";
 import { stateSearchTitle, stateSearchDescription } from "@/lib/states/meta";
 import { pageTitle } from "@/lib/seo";
 import { STATE_LAWS_VERIFIED, LAWS_BY_STATE_PATH } from "@/lib/states/verification";
@@ -112,6 +113,8 @@ export default async function StateCarInsurance({ params }: Props) {
           <p className="font-semibold text-[#0A2A4F] mb-1">{s.name} minimum requirements at a glance</p>
           <p className="text-[#0A2A4F]/80 leading-relaxed">{s.callout}</p>
         </div>
+
+        <InlineQuoteBox entry="state_inline" stateName={s.name} />
 
         <div className="space-y-8 text-[#0A2A4F]/80 leading-relaxed">
 
