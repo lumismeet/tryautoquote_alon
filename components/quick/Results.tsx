@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { track } from "@/lib/analytics";
+import NoOffersHelp from "./NoOffersHelp";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "@/context/FormContext";
@@ -51,7 +52,7 @@ export default function Results() {
   // Once per results view: how many offers this visitor was shown.
   useEffect(() => {
     if (!formData.zipcode) return;
-    track("results_view", { offers_count: offers.length, state: answers.state ?? "unknown" });
+    track("results_view", { offers_count: offers.length, state: answers.state ?? "unknown", age_range: answers.age ?? "unknown" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // One unique click id per offer per results view (sub2 / reconciliation with GA)
@@ -79,7 +80,9 @@ export default function Results() {
           Compare car insurance rates{answers.state ? ` in ${answers.state}` : ""}
         </h1>
         <p className="text-center text-[#0A2A4F]/60 mb-6">
-          Choose a provider below to see your options. Reviewing more than one quote is a good way to see how much you could save.
+          {offers.length > 0
+            ? "Choose a provider below to see your options. Reviewing more than one quote is a good way to see how much you could save."
+            : "Here are practical ways to bring your price down."}
         </p>
 
         {summary.length > 0 && (
@@ -147,12 +150,7 @@ export default function Results() {
             })}
           </ul>
         ) : (
-          <div className="bg-white rounded-2xl border border-[#0A2A4F]/10 p-8 text-center">
-            <p className="text-[#0A2A4F]/70 mb-4">
-              We are updating our list of providers{answers.state ? ` in ${answers.state}` : ""}. In the meantime, our guides can help you understand your options.
-            </p>
-            <Link href="/guides" className="inline-block bg-[#2B5BA8] text-white px-6 py-3 rounded-xl font-semibold">Browse guides</Link>
-          </div>
+          <NoOffersHelp age={answers.age} state={answers.state} />
         )}
 
         <p className="mt-10 text-xs text-[#0A2A4F]/45 leading-relaxed">
