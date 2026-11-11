@@ -29,3 +29,14 @@ describe("partner preview", () => {
     for (const o of matchingOffers({ ...young, age: "35-44" }, { preview: "bestquotes" }).slice(1)) expect(o.preview).toBeFalsy();
   });
 });
+
+describe("multiple partner previews", () => {
+  it("shows both partners, in the order given, before live offers", () => {
+    const shown = matchingOffers(young, { preview: "bestquotes,bestmoney" });
+    expect(shown.slice(0, 2).map((o) => o.id)).toEqual(["bestquotes-auto", "ni-bestmoney-auto"]);
+    expect(shown.slice(0, 2).every((o) => o.preview)).toBe(true);
+  });
+  it("ignores unknown keys in the list", () => {
+    expect(matchingOffers(young, { preview: "nope,bestmoney" })[0].id).toBe("ni-bestmoney-auto");
+  });
+});

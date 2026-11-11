@@ -19,7 +19,7 @@ export default function SourceTracker() {
   useEffect(() => {
     try {
       const p = new URLSearchParams(window.location.search).get("preview");
-      if (p && /^[a-z0-9-]{2,30}$/.test(p)) sessionStorage.setItem("tq_preview", p);
+      if (p && /^[a-z0-9-]{2,30}(,[a-z0-9-]{2,30}){0,4}$/.test(p)) sessionStorage.setItem("tq_preview", p);
     } catch { /* ignore */ }
   }, []);
 

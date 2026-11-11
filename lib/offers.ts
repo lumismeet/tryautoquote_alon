@@ -164,12 +164,15 @@ function weekendRoll(id: string): number {
 export type ShownOffer = Offer & { preview?: boolean };
 
 // Active offers that match the visitor, plus (for partner review only) the
-// inactive offer whose previewKey matches. Preview offers skip the filters so
-// a reviewer can see the placement any time of day, for any answers.
+// inactive offers whose previewKey is listed in the preview param, in the order
+// given: "bestquotes" or "bestquotes,bestmoney". Preview offers skip the filters
+// so a reviewer can see the placement any time of day, for any answers.
 export function matchingOffers(answers: Answers, opts: { preview?: string | null } = {}): ShownOffer[] {
-  const preview: ShownOffer[] = opts.preview
-    ? OFFERS.filter((o) => !o.active && o.previewKey && o.previewKey === opts.preview).map((o) => ({ ...o, preview: true }))
-    : [];
+  const keys = (opts.preview ?? "").split(",").map((k) => k.trim()).filter(Boolean);
+  const preview: ShownOffer[] = keys
+    .map((k) => OFFERS.find((o) => !o.active && o.previewKey === k))
+    .filter((o): o is Offer => !!o)
+    .map((o) => ({ ...o, preview: true }));
   return [...preview, ...liveOffers(answers)];
 }
 
