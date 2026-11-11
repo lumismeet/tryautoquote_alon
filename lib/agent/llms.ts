@@ -1,5 +1,6 @@
 import { SITE } from "./site";
 import { HUBS, hubHref } from "@/lib/hubs";
+import { STATE_LAWS_VERIFIED, LAWS_BY_STATE_PATH } from "@/lib/states/verification";
 
 export type LinkItem = { title: string; url: string; description?: string };
 
@@ -61,6 +62,8 @@ ${GUIDES.map(line).join("\n")}
 ${HUBS.map((h) => line({ title: h.title, url: hubHref(h.slug), description: h.metaDescription })).join("\n")}
 
 ## State car insurance requirements
+
+${STATE_LAWS_VERIFIED ? line({ title: "Car insurance laws by state", url: LAWS_BY_STATE_PATH, description: "Side-by-side comparison of minimum liability limits, fault systems, uninsured motorist and credit rules in every state" }) : ""}
 
 - [All states](${SITE.baseUrl}/car-insurance): Minimum coverage and rules for every U.S. state and DC
 ${input.states.map(line).join("\n")}

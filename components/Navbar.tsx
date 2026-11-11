@@ -7,6 +7,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { HUBS, hubHref } from "@/lib/hubs";
+import { STATE_LAWS_VERIFIED, LAWS_BY_STATE_PATH } from "@/lib/states/verification";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ const HUB_BLURBS: Record<string, string> = {
 };
 
 // Top-level items after "Learn". Add Tools and Glossary here once those pages exist.
-const TOP_LINKS = [{ label: "States", href: "/car-insurance#states", match: /^\/car-insurance\/(?!coverage|cost|claims|drivers|buying)[a-z-]+$/ }];
+const TOP_LINKS = [{ label: "States", href: STATE_LAWS_VERIFIED ? LAWS_BY_STATE_PATH : "/car-insurance#states", match: /^\/car-insurance\/(?!coverage|cost|claims|drivers|buying)[a-z-]+$/ }];
 
 const LEARN_EXTRA = [
   { label: "Guides", href: "/guides" },

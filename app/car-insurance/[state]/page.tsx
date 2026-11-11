@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import StateStats from "@/components/states/StateStats";
+import { STATE_LAWS_VERIFIED, LAWS_BY_STATE_PATH } from "@/lib/states/verification";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
@@ -123,6 +125,8 @@ export default async function StateCarInsurance({ params }: Props) {
             <p className="mt-3">{s.penaltyNote}</p>
           </section>
 
+          <StateStats slug={s.slug} stateName={s.name} />
+
           {/* Fault system */}
           <section>
             <h2 className="text-xl font-bold text-[#0A2A4F] mb-3">
@@ -206,6 +210,7 @@ export default async function StateCarInsurance({ params }: Props) {
           <h2 className="text-xl font-bold text-[#0A2A4F] mb-4">Helpful guides for {s.name} drivers</h2>
           <ul className="grid sm:grid-cols-2 gap-3">
             {[
+              ...(STATE_LAWS_VERIFIED ? [{ href: LAWS_BY_STATE_PATH, label: "Compare car insurance laws in every state" }] : []),
               { href: "/blogs/how-much-car-insurance-do-you-need", label: "How much car insurance do I need?" },
               { href: "/guides/liability-only-vs-full-coverage", label: "Liability only vs. full coverage" },
               { href: "/guides/how-to-lower-your-car-insurance-premium", label: "How to lower your car insurance premium" },

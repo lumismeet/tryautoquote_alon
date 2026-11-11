@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import { states } from "@/lib/states";
 import { getAllPosts } from "@/lib/blogs";
 import { HUBS, hubHref } from "@/lib/hubs";
+import { STATE_LAWS_VERIFIED, LAWS_BY_STATE_PATH } from "@/lib/states/verification";
 
 const TITLE = "Car Insurance Guide: Coverage, Cost, Claims and State Rules";
 const DESCRIPTION =
@@ -76,7 +77,15 @@ export default function CarInsurancePillar() {
           <h2 className="text-2xl font-bold mb-3">Car insurance requirements by state</h2>
           <p className="text-[#0A2A4F]/60 leading-relaxed max-w-2xl mb-8">
             Minimum coverage is set by state law and varies widely. Some states require no-fault PIP coverage,
-            some limit credit-based pricing, and minimum liability limits differ. Select your state for the exact rules.
+            some limit credit-based pricing, and minimum liability limits differ. Select your state for the exact rules
+            {STATE_LAWS_VERIFIED ? (
+              <>
+                , or{" "}
+                <Link href={LAWS_BY_STATE_PATH} className="text-[#2B5BA8] font-semibold hover:underline">compare every state side by side</Link>.
+              </>
+            ) : (
+              "."
+            )}
           </p>
           {/* Plain server-rendered links: every state page is one click from the pillar. */}
           <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6 gap-y-1 bg-white rounded-2xl border border-[#0A2A4F]/8 px-6 py-6">
