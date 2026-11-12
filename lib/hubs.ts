@@ -132,6 +132,7 @@ export const HUBS: Hub[] = [
       "car-insurance-without-an-agent",
       "car-insurance-quote-without-personal-information",
       "can-you-switch-car-insurance-mid-policy",
+      "can-car-insurance-company-cancel-your-policy",
     ],
     guides: [{ href: "/guides/does-getting-a-quote-affect-credit-score", title: "Does getting a quote affect your credit score?" }],
   },
