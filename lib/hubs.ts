@@ -66,6 +66,7 @@ export const HUBS: Hub[] = [
       "how-zip-code-affects-your-insurance-rate",
       "credit-score-insurance",
       "how-an-accident-affects-your-insurance-rate",
+      "do-i-have-to-tell-insurance-about-speeding-ticket",
       "ev-insurance-cost",
       "telematics-usage-based-insurance",
       "bundle-home-and-auto-insurance",
@@ -126,6 +127,7 @@ export const HUBS: Hub[] = [
       "These articles cover getting quotes, choosing an insurer, buying online without an agent, and switching mid-policy without a gap in coverage.",
     ],
     posts: [
+      "things-your-car-insurance-company-wont-tell-you",
       "how-to-compare-auto-insurance",
       "questions-to-ask-before-buying-car-insurance",
       "red-flags-choosing-insurance-company",
@@ -133,6 +135,7 @@ export const HUBS: Hub[] = [
       "car-insurance-quote-without-personal-information",
       "can-you-switch-car-insurance-mid-policy",
       "can-car-insurance-company-cancel-your-policy",
+      "car-insurance-when-moving-to-another-state",
     ],
     guides: [{ href: "/guides/does-getting-a-quote-affect-credit-score", title: "Does getting a quote affect your credit score?" }],
   },
