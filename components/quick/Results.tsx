@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { track } from "@/lib/analytics";
 import NoOffersHelp from "./NoOffersHelp";
+import { sourceSubId } from "@/lib/source-subid";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "@/context/FormContext";
@@ -103,6 +104,7 @@ export default function Results() {
                 campaign,
                 content: `${offer.id}_pos${i + 1}`,
                 clickId,
+                subId: sourceSubId(source),
               });
               return (
                 <li key={offer.id} className={`bg-white rounded-2xl border shadow-sm p-6 flex flex-col sm:flex-row sm:items-center gap-5 ${offer.preview ? "border-dashed border-[#C98A1B]" : "border-[#0A2A4F]/10"}`}>

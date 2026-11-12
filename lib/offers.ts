@@ -92,6 +92,9 @@ export const OFFERS: Offer[] = [
     active: false,
     previewKey: "bestmoney",
     name: "BestMoney",
+    // Official logo from NI's BestMoney brand book (Nov 12, 2026). Brand rules: never
+    // recolor, stretch, add effects, rearrange or place inside a shape.
+    logo: "/offers/bestmoney.png",
     headline: "Compare Car Insurance Providers",
     bullets: [
       "Answer a few quick questions and compare providers",
@@ -111,7 +114,7 @@ export const OFFERS: Offer[] = [
       excludeAges: ["18-24", "55-64", "65+"],
     },
     customParams: (answers, ctx) => ({
-      pub_param_1: "tryautoquote_seo",            // our source ID
+      pub_param_1: ctx.subId,                      // our sub ID: site section the visitor came from (lib/source-subid.ts)
       pub_param_2: ctx.clickId,                   // unique click ID, returned in postback
       external_campaign_id: ctx.campaign.slice(0, 100) || "auto_insurance_seo",
       // TODO: confirm SEO values with Josh (Meta = Paid_Social / Facebook)
@@ -145,7 +148,7 @@ export const OFFERS: Offer[] = [
   },
 ];
 
-export type ClickContext = { medium: string; campaign: string; content: string; clickId: string };
+export type ClickContext = { medium: string; campaign: string; content: string; clickId: string; subId: string };
 
 // One stable random number per offer per browser session, so a visitor
 // doesn't see an offer flicker in and out between page views.
