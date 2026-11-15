@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { STATE_LIST } from "@/lib/state-list";
 import { isValidUsZip, INVALID_ZIP_MESSAGE } from "@/lib/zipToState";
 import { track } from "@/lib/analytics";
 import Link from "next/link";
@@ -883,25 +884,33 @@ function MapSection() {
 /* ------------------------------------------------------------------ */
 
 function BrowseByState() {
+  // Real links to every state page, so visitors and search engines can reach
+  // each one directly from the homepage.
   return (
-    <section className="bg-white py-10 md:py-12">
+    <section className="bg-white py-10 md:py-14">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-        <Link
-          href="/car-insurance"
-          className="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#F4F7FB] hover:bg-[#EBF2FB] border border-[#0A2A4F]/8 rounded-2xl px-8 py-6 transition"
-        >
-          <div>
-            <p className="font-semibold text-[#0A2A4F] text-lg mb-1">
-              Car Insurance by State
-            </p>
-            <p className="text-sm text-[#0A2A4F]/70">
-              Requirements vary by state. See the minimum coverage for your state and what it actually covers.
-            </p>
+        <div className="bg-[#F4F7FB] border border-[#0A2A4F]/8 rounded-2xl px-6 py-7 md:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
+            <div>
+              <h2 className="font-semibold text-[#0A2A4F] text-lg mb-1">Car insurance by state</h2>
+              <p className="text-sm text-[#0A2A4F]/70">
+                Requirements vary by state. See the minimum coverage for your state and what it actually covers.
+              </p>
+            </div>
+            <Link href="/car-insurance" className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-[#2B5BA8] hover:gap-2.5 transition-all">
+              Car insurance guide <ChevronRight className="w-4 h-4" />
+            </Link>
           </div>
-          <span className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-[#2B5BA8] group-hover:gap-2.5 transition-all">
-            Browse all states <ChevronRight className="w-4 h-4" />
-          </span>
-        </Link>
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-2">
+            {STATE_LIST.map((st) => (
+              <li key={st.slug}>
+                <Link href={`/car-insurance/${st.slug}`} className="text-sm text-[#0A2A4F]/80 hover:text-[#2B5BA8] hover:underline">
+                  {st.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
