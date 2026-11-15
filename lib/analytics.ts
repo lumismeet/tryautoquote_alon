@@ -1,7 +1,10 @@
 // Google Analytics 4. Every ID here receives the same data, so a second
 // property can be added (e.g. one owned by StarTech Media) without breaking
 // the existing one. IDs are public by design.
-export const GA_IDS = ["G-SNTTKK995J"];
+export const GA_IDS = [
+  "G-SNTTKK995J", // existing property (set up by the site's original developer)
+  "G-K5FVW258GE", // StarTech Media > TryAutoQuote property (owned by Alon), added Nov 2026
+];
 
 declare global {
   interface Window { gtag?: (...args: unknown[]) => void }
