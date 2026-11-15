@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { isValidUsZip, INVALID_ZIP_MESSAGE } from "@/lib/zipToState";
 import { track } from "@/lib/analytics";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -374,8 +375,8 @@ function ZipForm({
       setError("Please enter a zipcode");
       return;
     }
-    if (!/^[0-9]{5}$/.test(trimmedZip)) {
-      setError("Invalid zip");
+    if (!isValidUsZip(trimmedZip)) {
+      setError(INVALID_ZIP_MESSAGE);
       return;
     }
 
@@ -440,7 +441,7 @@ function HeroSection({
               Your one-stop shop for auto-insurance.
             </h1>
 
-            <p className="mt-6 text-[#0A2A4F]/60 max-w-md leading-relaxed">
+            <p className="mt-6 text-[#0A2A4F]/70 max-w-md leading-relaxed">
               Answer a few quick questions and we&apos;ll show you quote
               providers in your area, so you can compare rates and see how much
               you could save. No commitment required.
@@ -470,7 +471,7 @@ function HeroSection({
                   <dd className="[font-family:var(--font-display)] text-2xl md:text-3xl font-bold text-[#0A2A4F]">
                     {s.stat}
                   </dd>
-                  <dd className="mt-1 text-xs text-[#0A2A4F]/55">{s.label}</dd>
+                  <dd className="mt-1 text-xs text-[#0A2A4F]/70">{s.label}</dd>
                 </div>
               ))}
             </dl>
@@ -553,7 +554,7 @@ function WhyBetter() {
                   <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="font-semibold text-[#0A2A4F] mb-2">{f.title}</h3>
-                <p className="text-sm leading-relaxed text-[#0A2A4F]/60">
+                <p className="text-sm leading-relaxed text-[#0A2A4F]/70">
                   {f.text}
                 </p>
               </div>
@@ -615,7 +616,7 @@ function StrategySection() {
             <h2 className="[font-family:var(--font-display)] text-3xl md:text-4xl font-bold text-[#0A2A4F] leading-tight mb-6">
               Options matched to you, no contact info required
             </h2>
-            <p className="text-[#0A2A4F]/60 leading-relaxed mb-8">
+            <p className="text-[#0A2A4F]/70 leading-relaxed mb-8">
               We use your ZIP code and a few basics, like insurance status and
               how many vehicles you have, to show quote providers that fit your
               situation. You never share your name, phone number, or email
@@ -650,7 +651,7 @@ function StepsSection() {
         <h2 className="[font-family:var(--font-display)] text-3xl md:text-4xl font-bold text-[#0A2A4F] mb-4">
           How does TryAutoQuote work?
         </h2>
-        <p className="text-[#0A2A4F]/60 max-w-2xl mx-auto mb-14">
+        <p className="text-[#0A2A4F]/70 max-w-2xl mx-auto mb-14">
           Three simple steps. The whole thing takes just a few minutes.
         </p>
 
@@ -674,7 +675,7 @@ function StepsSection() {
                   <h3 className="font-semibold text-[#0A2A4F] mb-3">
                     {s.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-[#0A2A4F]/60">
+                  <p className="text-sm leading-relaxed text-[#0A2A4F]/70">
                     {s.text}
                   </p>
                 </div>
@@ -797,7 +798,7 @@ function TestimonialsDark() {
                             <h3 className="font-semibold text-[#0A2A4F] text-sm">
                               {t.name}
                             </h3>
-                            <p className="text-xs text-[#0A2A4F]/50">
+                            <p className="text-xs text-[#0A2A4F]/70">
                               {t.location}
                             </p>
                           </div>
@@ -893,7 +894,7 @@ function BrowseByState() {
             <p className="font-semibold text-[#0A2A4F] text-lg mb-1">
               Car Insurance by State
             </p>
-            <p className="text-sm text-[#0A2A4F]/55">
+            <p className="text-sm text-[#0A2A4F]/70">
               Requirements vary by state. See the minimum coverage for your state and what it actually covers.
             </p>
           </div>
@@ -945,8 +946,8 @@ function GradientZip() {
       setError("Please enter a zipcode");
       return;
     }
-    if (!/^[0-9]{5}$/.test(trimmedZip)) {
-      setError("Invalid zip");
+    if (!isValidUsZip(trimmedZip)) {
+      setError(INVALID_ZIP_MESSAGE);
       return;
     }
     updateForm({ zipcode: trimmedZip });
@@ -1038,7 +1039,7 @@ function FooterV3() {
                   info@tryautoquote.com
                 </a>
               </li>
-              <li className="text-white/40">
+              <li className="text-white/70">
                 Questions about our content or the site? We usually reply within
                 one business day.
               </li>
@@ -1048,7 +1049,7 @@ function FooterV3() {
 
         <hr className="my-10 border-white/10" />
 
-        <p className="text-xs leading-relaxed text-white/40 max-w-5xl">
+        <p className="text-xs leading-relaxed text-white/70 max-w-5xl">
           TryAutoQuote.com is an independent, advertising-supported comparison
           website. The products and offers that appear on this website are from
           third-party insurance partners and advertisers from which
@@ -1062,7 +1063,7 @@ function FooterV3() {
           products or offers are available in all states.
         </p>
 
-        <p className="mt-8 text-xs text-white/35 text-center">
+        <p className="mt-8 text-xs text-white/60 text-center">
           © {new Date().getFullYear()} TryAutoQuote, operated by StarTech Media. All Rights Reserved.
         </p>
       </div>

@@ -8,17 +8,17 @@ export default function References({ references }: { references: Reference[] }) 
 
   return (
     <section id="references" className="mt-14 border-t border-[#0A2A4F]/10 pt-8">
-      <h2 className="text-sm font-bold uppercase tracking-widest text-[#0A2A4F]/50 mb-5">
+      <h2 className="text-sm font-bold uppercase tracking-widest text-[#0A2A4F]/70 mb-5">
         References
       </h2>
-      <ol className="space-y-1 text-sm text-[#0A2A4F]/55">
+      <ol className="space-y-1 text-sm text-[#0A2A4F]/70">
         {references.map((ref, i) => (
           <li
             key={ref.url}
             id={`ref-${i + 1}`}
             className="flex gap-3 leading-relaxed scroll-mt-28"
           >
-            <span className="text-[#0A2A4F]/35 tabular-nums shrink-0">{i + 1}.</span>
+            <span className="text-[#0A2A4F]/70 tabular-nums shrink-0">{i + 1}.</span>
             <a
               href={ref.url}
               target="_blank"

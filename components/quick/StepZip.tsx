@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { isValidUsZip, INVALID_ZIP_MESSAGE } from "@/lib/zipToState";
 import { useRouter } from "next/navigation";
 import { useForm } from "@/context/FormContext";
 import { track } from "@/lib/analytics";
@@ -13,7 +14,7 @@ export default function StepZip() {
   const [error, setError] = useState("");
 
   const submit = () => {
-    if (!/^\d{5}$/.test(zip)) return setError("Please enter a valid 5-digit ZIP code");
+    if (!isValidUsZip(zip)) return setError(INVALID_ZIP_MESSAGE);
     updateForm({ zipcode: zip });
     track("quote_start", { entry: "quote_page" });
     router.push("/quote/1");
@@ -25,6 +26,7 @@ export default function StepZip() {
         <input
           type="text"
           inputMode="numeric"
+          autoComplete="postal-code"
           autoFocus
           placeholder="Enter ZIP code"
           value={zip}

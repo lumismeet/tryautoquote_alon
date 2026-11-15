@@ -38,8 +38,8 @@ function PostCards({ posts }: { posts: Post[] }) {
               <h2 className="text-lg font-bold text-[#0A2A4F] group-hover:text-[#2B5BA8] transition mb-2 leading-snug">
                 {post.title}
               </h2>
-              <p className="text-sm text-[#0A2A4F]/60 leading-relaxed">{post.description}</p>
-              <div className="mt-3 flex items-center gap-3 text-xs text-[#0A2A4F]/40">
+              <p className="text-sm text-[#0A2A4F]/70 leading-relaxed">{post.description}</p>
+              <div className="mt-3 flex items-center gap-3 text-xs text-[#0A2A4F]/70">
                 <span>{post.date}</span>
                 <span>·</span>
                 <span>{post.readTime}</span>
@@ -167,7 +167,7 @@ function BlogsListInner({ posts }: { posts: Post[] }) {
       </div>
 
       {/* Result count */}
-      <p className="text-xs text-[#0A2A4F]/45 mb-5">
+      <p className="text-xs text-[#0A2A4F]/70 mb-5">
         {filtered.length === posts.length
           ? `${posts.length} articles`
           : `Showing ${filtered.length} of ${posts.length} articles`}
@@ -175,7 +175,7 @@ function BlogsListInner({ posts }: { posts: Post[] }) {
 
       {/* Empty state */}
       {filtered.length === 0 && (
-        <p className="text-center py-10 text-sm text-[#0A2A4F]/40">
+        <p className="text-center py-10 text-sm text-[#0A2A4F]/70">
           No articles match your search.
         </p>
       )}
@@ -187,7 +187,7 @@ function BlogsListInner({ posts }: { posts: Post[] }) {
           <button
             onClick={() => goTo(safePage - 1)}
             disabled={safePage === 1}
-            className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-[#0A2A4F]/50 hover:text-[#2B5BA8] hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed transition"
+            className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-[#0A2A4F]/70 hover:text-[#2B5BA8] hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed transition"
           >
             <ChevronLeft className="w-4 h-4" /> Prev
           </button>
@@ -199,7 +199,7 @@ function BlogsListInner({ posts }: { posts: Post[] }) {
               className={`w-9 h-9 rounded-lg text-sm font-semibold transition ${
                 n === safePage
                   ? "bg-[#2B5BA8] text-white"
-                  : "text-[#0A2A4F]/60 hover:text-[#2B5BA8] hover:bg-white"
+                  : "text-[#0A2A4F]/70 hover:text-[#2B5BA8] hover:bg-white"
               }`}
             >
               {n}
@@ -209,7 +209,7 @@ function BlogsListInner({ posts }: { posts: Post[] }) {
           <button
             onClick={() => goTo(safePage + 1)}
             disabled={safePage === totalPages}
-            className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-[#0A2A4F]/50 hover:text-[#2B5BA8] hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed transition"
+            className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-[#0A2A4F]/70 hover:text-[#2B5BA8] hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed transition"
           >
             Next <ChevronRight className="w-4 h-4" />
           </button>
@@ -229,7 +229,7 @@ export default function BlogsList({ posts }: { posts: Post[] }) {
     <Suspense
       fallback={
         <div>
-          <p className="text-xs text-[#0A2A4F]/45 mb-5">{posts.length} articles</p>
+          <p className="text-xs text-[#0A2A4F]/70 mb-5">{posts.length} articles</p>
           <PostCards posts={posts} />
         </div>
       }

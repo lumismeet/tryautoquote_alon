@@ -6,7 +6,7 @@ export default function RelatedPosts({ posts }: { posts: BlogPost[] }) {
 
   return (
     <section className="mt-16 border-t border-[#0A2A4F]/10 pt-10">
-      <h2 className="text-sm font-bold uppercase tracking-widest text-[#0A2A4F]/50 mb-6">
+      <h2 className="text-sm font-bold uppercase tracking-widest text-[#0A2A4F]/70 mb-6">
         Read next
       </h2>
 
@@ -23,7 +23,7 @@ export default function RelatedPosts({ posts }: { posts: BlogPost[] }) {
             <h3 className="text-sm font-bold text-[#0A2A4F] group-hover:text-[#2B5BA8] transition leading-snug mb-2">
               {post.title}
             </h3>
-            <p className="text-xs text-[#0A2A4F]/45">{post.readTime}</p>
+            <p className="text-xs text-[#0A2A4F]/70">{post.readTime}</p>
           </Link>
         ))}
       </div>

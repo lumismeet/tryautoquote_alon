@@ -39,7 +39,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
               className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium leading-snug transition-all ${
                 activeId === heading.id
                   ? "bg-[#2B5BA8]/8 text-[#2B5BA8] font-semibold"
-                  : "text-[#0A2A4F]/50 hover:text-[#0A2A4F] hover:bg-[#0A2A4F]/5"
+                  : "text-[#0A2A4F]/70 hover:text-[#0A2A4F] hover:bg-[#0A2A4F]/5"
               }`}
             >
               {activeId === heading.id && (

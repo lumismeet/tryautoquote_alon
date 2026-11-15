@@ -103,12 +103,12 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                 <div className="rounded-2xl bg-white shadow-xl border border-[#0A2A4F]/8 p-3 grid grid-cols-2 gap-1">
                   <Link href="/car-insurance" className="col-span-2 rounded-xl px-4 py-3 hover:bg-[#0A2A4F]/[0.04] transition">
                     <span className="block text-sm font-semibold text-[#0A2A4F]">Car insurance, explained</span>
-                    <span className="block text-xs text-[#0A2A4F]/55 mt-0.5">Start here: every topic in one place</span>
+                    <span className="block text-xs text-[#0A2A4F]/70 mt-0.5">Start here: every topic in one place</span>
                   </Link>
                   {HUBS.map((h) => (
                     <Link key={h.slug} href={hubHref(h.slug)} className="rounded-xl px-4 py-3 hover:bg-[#0A2A4F]/[0.04] transition">
                       <span className="block text-sm font-semibold text-[#0A2A4F]">{h.name}</span>
-                      <span className="block text-xs text-[#0A2A4F]/55 mt-0.5">{HUB_BLURBS[h.slug]}</span>
+                      <span className="block text-xs text-[#0A2A4F]/70 mt-0.5">{HUB_BLURBS[h.slug]}</span>
                     </Link>
                   ))}
                   <div className="rounded-xl px-4 py-3 flex flex-col justify-center gap-1.5">
@@ -148,7 +148,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
         </nav>
 
         <div id="mobile-menu" className={`md:hidden border-t border-[#0A2A4F]/10 bg-white px-6 py-5 max-h-[calc(100dvh-4rem)] overflow-y-auto ${mobileOpen ? "" : "hidden"}`}>
-          <p className="text-xs font-semibold text-[#0A2A4F]/45 mb-2">Learn</p>
+          <p className="text-xs font-semibold text-[#0A2A4F]/70 mb-2">Learn</p>
           <ul className="flex flex-col mb-5">
             <li><Link href="/car-insurance" className="block py-2.5 text-base font-medium text-[#0A2A4F]">Car insurance, explained</Link></li>
             {HUBS.map((h) => (

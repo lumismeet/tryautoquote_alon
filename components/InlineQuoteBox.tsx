@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { isValidUsZip, INVALID_ZIP_MESSAGE } from "@/lib/zipToState";
 import { useRouter } from "next/navigation";
 import { useForm } from "@/context/FormContext";
 import { track } from "@/lib/analytics";
@@ -15,14 +16,14 @@ export default function InlineQuoteBox({ entry, stateName }: { entry: string; st
   const [error, setError] = useState("");
 
   const submit = () => {
-    if (!/^\d{5}$/.test(zip)) return setError("Please enter a valid 5-digit ZIP code");
+    if (!isValidUsZip(zip)) return setError(INVALID_ZIP_MESSAGE);
     updateForm({ zipcode: zip });
     track("quote_start", { entry });
     router.push("/quote/1");
   };
 
   return (
-    <section aria-label="Compare car insurance options" className="not-prose mb-10 rounded-2xl bg-[#0A2A4F] px-5 py-5 md:px-6 text-white">
+    <section aria-label="Compare car insurance options" className="not-prose w-full min-w-0 mb-10 rounded-2xl bg-[#0A2A4F] px-5 py-5 md:px-6 text-white">
       <p className="text-base font-bold leading-snug">
         Compare car insurance options{stateName ? ` in ${stateName}` : " in your area"}
       </p>
@@ -38,7 +39,7 @@ export default function InlineQuoteBox({ entry, stateName }: { entry: string; st
           value={zip}
           onChange={(e) => { setZip(e.target.value.replace(/\D/g, "").slice(0, 5)); setError(""); }}
           onKeyDown={(e) => e.key === "Enter" && submit()}
-          className="min-w-0 flex-1 rounded-xl bg-white px-4 py-3 text-base text-[#0A2A4F] placeholder:text-[#0A2A4F]/40 focus:outline-none focus:ring-2 focus:ring-[#38B6C9]"
+          className="w-0 min-w-0 flex-1 rounded-xl bg-white px-4 py-3 text-base text-[#0A2A4F] placeholder:text-[#0A2A4F]/40 focus:outline-none focus:ring-2 focus:ring-[#38B6C9]"
         />
         <button
           onClick={submit}

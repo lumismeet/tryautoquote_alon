@@ -27,6 +27,7 @@ export default function Footer() {
               <li><Link href="/#how-it-works" className="hover:text-white transition">How it works</Link></li>
               <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link></li>
+              <li><Link href="/editorial-policy" className="hover:text-white transition">Editorial Policy</Link></li>
               <li><Link href="/terms-of-use" className="hover:text-white transition">Terms of Use</Link></li>
             </ul>
           </div>
@@ -59,7 +60,7 @@ export default function Footer() {
                   info@tryautoquote.com
                 </a>
               </li>
-              <li className="text-white/40">
+              <li className="text-white/70">
                 Questions about our content or the site? We usually reply within one business day.
               </li>
             </ul>
@@ -69,11 +70,11 @@ export default function Footer() {
 
         <hr className="my-10 border-white/10" />
 
-        <p className="text-xs leading-relaxed text-white/40 max-w-5xl">
+        <p className="text-xs leading-relaxed text-white/70 max-w-5xl">
           TryAutoQuote.com is an independent, advertising-supported comparison website. The products and offers that appear on this website are from third-party insurance partners and advertisers from which TryAutoQuote.com may receive compensation. This compensation may influence which products we feature, how they are presented, and where they appear on the page. TryAutoQuote.com is not an insurance company, agent, or broker. Content on this site is provided for informational purposes only and does not constitute insurance advice. Available rates and offers vary by location, driving history, and other factors and are subject to change without notice. Not all products or offers are available in all states.
         </p>
 
-        <p className="mt-8 text-xs text-white/35 text-center">
+        <p className="mt-8 text-xs text-white/60 text-center">
           © {new Date().getFullYear()} TryAutoQuote, operated by StarTech Media. All Rights Reserved.
         </p>
       </div>

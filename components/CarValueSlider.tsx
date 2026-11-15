@@ -50,7 +50,7 @@ export default function CarValueSlider({ onCtaClick }: CarValueSliderProps) {
               What&apos;s Your Car Worth?
             </h2>
 
-            <p className="text-[#0A2A4F]/60 text-base">
+            <p className="text-[#0A2A4F]/70 text-base">
               Vehicle value plays a big role in your insurance rate.
             </p>
 
@@ -61,6 +61,7 @@ export default function CarValueSlider({ onCtaClick }: CarValueSliderProps) {
             <div className="relative px-2">
               <input
                 type="range"
+                aria-label="Your car's approximate value"
                 min={5000}
                 max={100000}
                 step={1000}
@@ -71,7 +72,7 @@ export default function CarValueSlider({ onCtaClick }: CarValueSliderProps) {
                   background: `linear-gradient(to right, #2B5BA8 ${percent}%, #DDE9F7 ${percent}%)`,
                 }}
               />
-              <div className="flex justify-between text-xs text-[#0A2A4F]/40 mt-2">
+              <div className="flex justify-between text-xs text-[#0A2A4F]/70 mt-2">
                 <span>$5k</span>
                 <span>$100k+</span>
               </div>
@@ -85,7 +86,7 @@ export default function CarValueSlider({ onCtaClick }: CarValueSliderProps) {
               <p className="text-base font-semibold mb-1 text-[#0A2A4F]">
                 Based on a ${value.toLocaleString()} vehicle:
               </p>
-              <p className="text-[#0A2A4F]/60 text-base">
+              <p className="text-[#0A2A4F]/70 text-base">
                 Insurance rates can vary significantly depending on your ZIP code.
                 Let&apos;s see which quote providers serve your area.
               </p>
@@ -98,7 +99,7 @@ export default function CarValueSlider({ onCtaClick }: CarValueSliderProps) {
               {checking ? "Loading..." : "See My Options →"}
             </button>
 
-            <p className="text-xs text-[#0A2A4F]/40">
+            <p className="text-xs text-[#0A2A4F]/70">
               Free • No obligation • No spam calls
             </p>
           </div>

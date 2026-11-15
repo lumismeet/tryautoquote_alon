@@ -37,7 +37,7 @@ export default function CarInsurancePillar() {
       <Navbar />
 
       <main className="flex-1 max-w-5xl mx-auto px-6 pt-10 pb-20 md:pt-14 md:pb-28 w-full">
-        <nav aria-label="Breadcrumb" className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
+        <nav aria-label="Breadcrumb" className="text-xs text-[#0A2A4F]/70 mb-8 flex items-center gap-1.5">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
           <span className="text-[#0A2A4F]/70">Car insurance</span>
@@ -57,7 +57,7 @@ export default function CarInsurancePillar() {
                 <h2 className="text-xl font-bold mb-2">
                   <Link href={hubHref(hub.slug)} className="hover:text-[#2B5BA8] transition">{hub.title}</Link>
                 </h2>
-                <p className="text-sm text-[#0A2A4F]/60 leading-relaxed mb-4">{hub.metaDescription}</p>
+                <p className="text-sm text-[#0A2A4F]/70 leading-relaxed mb-4">{hub.metaDescription}</p>
                 <ul className="space-y-2 text-sm mb-5">
                   {hub.guides.map((g) => (
                     <li key={g.href}><Link href={g.href} className="text-[#0A2A4F]/80 hover:text-[#2B5BA8]">{g.title}</Link></li>
@@ -76,7 +76,7 @@ export default function CarInsurancePillar() {
 
         <section id="states" className="scroll-mt-24">
           <h2 className="text-2xl font-bold mb-3">Car insurance requirements by state</h2>
-          <p className="text-[#0A2A4F]/60 leading-relaxed max-w-2xl mb-8">
+          <p className="text-[#0A2A4F]/70 leading-relaxed max-w-2xl mb-8">
             Minimum coverage is set by state law and varies widely. Some states require no-fault PIP coverage,
             some limit credit-based pricing, and minimum liability limits differ. Select your state for the exact rules
             {STATE_LAWS_VERIFIED ? (

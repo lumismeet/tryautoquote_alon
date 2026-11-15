@@ -49,7 +49,7 @@ export default function TermsOfUse() {
       <main className="flex-1 max-w-4xl mx-auto px-6 py-32 space-y-10">
         <div>
           <h1 className="text-3xl font-bold text-[#0A2A4F] mb-2">Terms of Use</h1>
-          <p className="text-sm text-[#0A2A4F]/50">Last Updated: March 11, 2026</p>
+          <p className="text-sm text-[#0A2A4F]/70">Last Updated: March 11, 2026</p>
         </div>
 
         <p className="text-gray-700 leading-relaxed">

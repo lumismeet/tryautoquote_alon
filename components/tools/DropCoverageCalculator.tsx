@@ -120,7 +120,7 @@ export default function DropCoverageCalculator() {
           <label key={f.id} htmlFor={f.id} className="block">
             <span className="block text-sm font-medium text-[#0A2A4F] mb-1.5">{f.label}</span>
             <span className="relative block">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#0A2A4F]/45" aria-hidden="true">$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#0A2A4F]/70" aria-hidden="true">$</span>
               <input id={f.id} inputMode="numeric" autoComplete="off" placeholder={f.ph} value={f.value}
                 onChange={(e) => f.set(e.target.value)} className={field} />
             </span>
@@ -146,28 +146,28 @@ export default function DropCoverageCalculator() {
             <p className="text-sm text-[#0A2A4F]/75 leading-relaxed mt-1.5">{result.verdict.body}</p>
             <dl className="grid grid-cols-3 gap-3 mt-5 text-center">
               <div className="rounded-lg bg-white/70 px-2 py-3">
-                <dt className="text-[11px] text-[#0A2A4F]/55 leading-tight">Most it could pay</dt>
+                <dt className="text-[11px] text-[#0A2A4F]/70 leading-tight">Most it could pay</dt>
                 <dd className="text-base md:text-lg font-bold text-[#0A2A4F] mt-1">{money(result.maxPayout)}</dd>
               </div>
               <div className="rounded-lg bg-white/70 px-2 py-3">
-                <dt className="text-[11px] text-[#0A2A4F]/55 leading-tight">Cost vs. car value</dt>
+                <dt className="text-[11px] text-[#0A2A4F]/70 leading-tight">Cost vs. car value</dt>
                 <dd className="text-base md:text-lg font-bold text-[#0A2A4F] mt-1">{result.pct.toFixed(1)}%</dd>
               </div>
               <div className="rounded-lg bg-white/70 px-2 py-3">
-                <dt className="text-[11px] text-[#0A2A4F]/55 leading-tight">Years of premiums to match it</dt>
+                <dt className="text-[11px] text-[#0A2A4F]/70 leading-tight">Years of premiums to match it</dt>
                 <dd className="text-base md:text-lg font-bold text-[#0A2A4F] mt-1">{result.years > 0 ? result.years.toFixed(1) : "n/a"}</dd>
               </div>
             </dl>
           </div>
         ) : (
-          <p className="rounded-xl border border-dashed border-[#0A2A4F]/15 px-5 py-5 text-sm text-[#0A2A4F]/55">
+          <p className="rounded-xl border border-dashed border-[#0A2A4F]/15 px-5 py-5 text-sm text-[#0A2A4F]/70">
             Enter the car&rsquo;s value and what you pay for collision and comprehensive to see the result.
           </p>
         )}
       </div>
 
       <div className="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <p className="text-xs text-[#0A2A4F]/50 leading-relaxed max-w-md">
+        <p className="text-xs text-[#0A2A4F]/70 leading-relaxed max-w-md">
           General guidance based on the 10% rule, not insurance advice. Your insurer&rsquo;s actual cash value may differ from pricing guides.
         </p>
         <Link href="/quote/1_map" data-location="calculator_drop_coverage" className="shrink-0 text-center text-sm font-semibold text-white bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] rounded-full px-5 py-2.5 hover:opacity-90 transition">

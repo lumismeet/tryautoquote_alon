@@ -237,7 +237,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <TableOfContents headings={headings} />
           <div className="w-full max-w-2xl min-w-0">
 
-            <nav aria-label="Breadcrumb" className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5 flex-wrap">
+            <nav aria-label="Breadcrumb" className="text-xs text-[#0A2A4F]/70 mb-8 flex items-center gap-1.5 flex-wrap">
               <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
               <span>/</span>
               <Link href="/car-insurance" className="hover:text-[#2B5BA8] transition">Car insurance</Link>
@@ -264,7 +264,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               <h1 className="text-3xl md:text-[2.15rem] font-bold text-[#0A2A4F] leading-tight mb-5">
                 {post.title}
               </h1>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#0A2A4F]/45">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#0A2A4F]/70">
                 <span>
                   By{" "}
                   <Link href="/about#editorial" className="text-[#2B5BA8] hover:underline">

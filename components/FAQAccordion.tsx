@@ -15,7 +15,7 @@ export default function FAQAccordion() {
         <h2 className="[font-family:var(--font-display)] text-3xl md:text-4xl font-bold text-[#0A2A4F] mb-3">
           Frequently asked questions
         </h2>
-        <p className="text-[#0A2A4F]/60 mb-10">
+        <p className="text-[#0A2A4F]/70 mb-10">
           Quick answers before you compare.
         </p>
 

@@ -91,7 +91,7 @@ export default async function StateCarInsurance({ params }: Props) {
 
       <main className="flex-1 max-w-3xl mx-auto px-6 pt-10 pb-20 md:pt-14 md:pb-28">
 
-        <nav className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
+        <nav className="text-xs text-[#0A2A4F]/70 mb-8 flex items-center gap-1.5">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
           <Link href="/car-insurance" className="hover:text-[#2B5BA8] transition">Car Insurance by State</Link>
@@ -106,7 +106,7 @@ export default async function StateCarInsurance({ params }: Props) {
           <h1 className="text-3xl md:text-4xl font-bold text-[#0A2A4F] leading-tight mb-4">
             Car Insurance in {s.name}
           </h1>
-          <p className="text-[#0A2A4F]/60 text-sm">Updated {new Date(s.datePublished).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} &middot; 5 min read</p>
+          <p className="text-[#0A2A4F]/70 text-sm">Updated {new Date(s.datePublished).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} &middot; 5 min read</p>
         </div>
 
         <div className="bg-[#2B5BA8]/8 border-l-4 border-[#2B5BA8] rounded-r-xl px-6 py-5 mb-10">

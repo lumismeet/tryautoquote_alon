@@ -80,7 +80,7 @@ export default function Results() {
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0A2A4F] mb-3 text-center">
           Compare car insurance rates{answers.state ? ` in ${answers.state}` : ""}
         </h1>
-        <p className="text-center text-[#0A2A4F]/60 mb-6">
+        <p className="text-center text-[#0A2A4F]/70 mb-6">
           {offers.length > 0
             ? "Choose a provider below to see your options. Reviewing more than one quote is a good way to see how much you could save."
             : "Here are practical ways to bring your price down."}
@@ -125,11 +125,11 @@ export default function Results() {
                       <h2 className="text-lg font-bold text-[#042C53]">{offer.name}</h2>
                     )}
                     <p className="text-[#0A2A4F]/70 mb-2">{offer.headline}</p>
-                    <ul className="text-sm text-[#0A2A4F]/60 space-y-0.5">
+                    <ul className="text-sm text-[#0A2A4F]/70 space-y-0.5">
                       {offer.bullets.map((b) => <li key={b}>✓ {b}</li>)}
                     </ul>
                     {offer.disclaimer && (
-                      <p className="mt-3 text-xs text-[#0A2A4F]/50">{offer.disclaimer}</p>
+                      <p className="mt-3 text-xs text-[#0A2A4F]/70">{offer.disclaimer}</p>
                     )}
                   </div>
                   {href ? (
@@ -143,7 +143,7 @@ export default function Results() {
                       {offer.buttonLabel ?? "View Rates"}
                     </a>
                   ) : (
-                    <span className="text-center bg-[#0A2A4F]/10 text-[#0A2A4F]/50 px-7 py-3 rounded-xl font-semibold shrink-0 cursor-not-allowed">
+                    <span className="text-center bg-[#0A2A4F]/10 text-[#0A2A4F]/70 px-7 py-3 rounded-xl font-semibold shrink-0 cursor-not-allowed">
                       Tracking link pending
                     </span>
                   )}
@@ -155,7 +155,7 @@ export default function Results() {
           <NoOffersHelp age={answers.age} state={answers.state} />
         )}
 
-        <p className="mt-10 text-xs text-[#0A2A4F]/45 leading-relaxed">
+        <p className="mt-10 text-xs text-[#0A2A4F]/70 leading-relaxed">
           Advertising disclosure: TryAutoQuote is not an insurance company or agent. The providers listed are advertisers, and we may receive compensation when you click a link or request a quote. Rates, coverage, and eligibility are determined by each provider.
         </p>
       </main>

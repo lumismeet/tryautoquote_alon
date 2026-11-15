@@ -19,3 +19,11 @@ export function zipToState(zip?: string): string | undefined {
   const p = parseInt(zip.slice(0, 3), 10);
   return RANGES.find(([lo, hi]) => p >= lo && p <= hi)?.[2];
 }
+
+// A ZIP we can actually use: 5 digits and inside a known US ZIP range.
+// Rejects made-up codes like "00000" or "99999" before the visitor reaches offers.
+export function isValidUsZip(zip?: string): boolean {
+  return zipToState(zip) !== undefined;
+}
+
+export const INVALID_ZIP_MESSAGE = "Please enter a valid U.S. ZIP code";

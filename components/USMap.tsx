@@ -35,7 +35,7 @@ export default function USMap({ onMapClick }: USMapProps) {
         <h3 className="text-3xl font-black mb-2 my-8 text-[#0A2A4F]">
                     Check Availability in Your State
                   </h3>
-                  <p className="text-[#0A2A4F]/60 text-lg mb-8">
+                  <p className="text-[#0A2A4F]/70 text-lg mb-8">
                     Click your state to start comparing rates in your area.
                   </p>
           <svg

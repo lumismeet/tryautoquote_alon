@@ -68,7 +68,7 @@ export default function GuidesIndex() {
 
       <main className="flex-1 max-w-4xl mx-auto px-6 pt-10 pb-20 md:pt-14 md:pb-28">
 
-        <nav className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
+        <nav className="text-xs text-[#0A2A4F]/70 mb-8 flex items-center gap-1.5">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
           <span className="text-[#0A2A4F]/70">Guides</span>
@@ -78,7 +78,7 @@ export default function GuidesIndex() {
           <h1 className="text-3xl md:text-4xl font-bold text-[#0A2A4F] leading-tight mb-4">
             Auto Insurance Guides
           </h1>
-          <p className="text-[#0A2A4F]/60 max-w-xl leading-relaxed">
+          <p className="text-[#0A2A4F]/70 max-w-xl leading-relaxed">
             Straightforward answers to the questions drivers actually have about coverage, cost, and how auto insurance works.
           </p>
         </div>
@@ -98,8 +98,8 @@ export default function GuidesIndex() {
                   <h2 className="text-lg font-bold text-[#0A2A4F] group-hover:text-[#2B5BA8] transition mb-2 leading-snug">
                     {g.title}
                   </h2>
-                  <p className="text-sm text-[#0A2A4F]/60 leading-relaxed">{g.description}</p>
-                  <p className="mt-3 text-xs text-[#0A2A4F]/40">{g.readTime}</p>
+                  <p className="text-sm text-[#0A2A4F]/70 leading-relaxed">{g.description}</p>
+                  <p className="mt-3 text-xs text-[#0A2A4F]/70">{g.readTime}</p>
                 </div>
                 <span className="text-[#0A2A4F]/25 group-hover:text-[#2B5BA8] transition text-2xl shrink-0 mt-1">
                   &#8594;

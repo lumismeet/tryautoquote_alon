@@ -33,7 +33,7 @@ export default function ContactPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-[#0A2A4F] mb-4">
             Get in Touch
           </h1>
-          <p className="text-[#0A2A4F]/60 text-lg max-w-xl mx-auto">
+          <p className="text-[#0A2A4F]/70 text-lg max-w-xl mx-auto">
             Have a question or need help finding the right policy? Send us a message and we will get back to you as soon as possible.
           </p>
         </div>
@@ -88,7 +88,7 @@ export default function ContactPage() {
                   <h3 className="text-2xl font-bold text-[#0A2A4F] mb-3">
                     Message Sent
                   </h3>
-                  <p className="text-[#0A2A4F]/55 leading-relaxed">
+                  <p className="text-[#0A2A4F]/70 leading-relaxed">
                     Thanks for reaching out. We will get back to you at your email address within one business day.
                   </p>
                 </div>

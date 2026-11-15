@@ -60,7 +60,7 @@ export default function HubPage({ slug }: { slug: HubSlug }) {
       <Navbar />
 
       <main className="flex-1 max-w-4xl mx-auto px-6 pt-10 pb-20 md:pt-14 md:pb-28 w-full">
-        <nav aria-label="Breadcrumb" className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5 flex-wrap">
+        <nav aria-label="Breadcrumb" className="text-xs text-[#0A2A4F]/70 mb-8 flex items-center gap-1.5 flex-wrap">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
           <Link href="/car-insurance" className="hover:text-[#2B5BA8] transition">Car insurance</Link>
@@ -95,7 +95,7 @@ export default function HubPage({ slug }: { slug: HubSlug }) {
               <li key={p.slug}>
                 <Link href={p.href} className="group block px-6 py-5 hover:bg-[#0A2A4F]/[0.02] transition">
                   <span className="block font-semibold group-hover:text-[#2B5BA8] transition leading-snug">{p.title}</span>
-                  <span className="block text-sm text-[#0A2A4F]/55 mt-1.5 line-clamp-2">{p.description}</span>
+                  <span className="block text-sm text-[#0A2A4F]/70 mt-1.5 line-clamp-2">{p.description}</span>
                 </Link>
               </li>
             ))}

@@ -17,16 +17,16 @@ export default function StateStats({ slug, stateName }: { slug: string; stateNam
       <dl className="grid gap-4 sm:grid-cols-2">
         {rows.map(({ id, meta, stat, rank }) => (
           <div key={id} className="rounded-2xl bg-white border border-[#0A2A4F]/8 px-5 py-5">
-            <dt className="text-sm text-[#0A2A4F]/60">{meta.label}</dt>
+            <dt className="text-sm text-[#0A2A4F]/70">{meta.label}</dt>
             <dd className="mt-1">
               <span className="block text-2xl font-bold text-[#0A2A4F]">{formatStat(id, stat.value)}</span>
               {rank && (
-                <span className="block text-xs text-[#0A2A4F]/55 mt-1">
+                <span className="block text-xs text-[#0A2A4F]/70 mt-1">
                   {rank.rank === 1 ? "Highest" : `${rank.rank}${ordinal(rank.rank)} highest`} of {rank.of} states
                 </span>
               )}
               <span className="block text-sm text-[#0A2A4F]/70 leading-relaxed mt-2">{meta.explain}</span>
-              <span className="block text-xs text-[#0A2A4F]/45 mt-2">
+              <span className="block text-xs text-[#0A2A4F]/70 mt-2">
                 Source:{" "}
                 <a href={stat.url} target="_blank" rel="noopener" className="underline hover:text-[#2B5BA8]">
                   {SOURCES[stat.source].name}

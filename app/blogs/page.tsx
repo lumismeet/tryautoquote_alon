@@ -72,7 +72,7 @@ export default function BlogsIndex() {
 
       <main className="flex-1 max-w-4xl mx-auto px-6 pt-10 pb-20 md:pt-14 md:pb-28 w-full">
 
-        <nav className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
+        <nav className="text-xs text-[#0A2A4F]/70 mb-8 flex items-center gap-1.5">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
           <span className="text-[#0A2A4F]/70">Blogs</span>
@@ -85,7 +85,7 @@ export default function BlogsIndex() {
           <h1 className="text-3xl md:text-4xl font-bold text-[#0A2A4F] leading-tight mb-4">
             Real Talk on Auto Insurance
           </h1>
-          <p className="text-[#0A2A4F]/60 max-w-xl leading-relaxed">
+          <p className="text-[#0A2A4F]/70 max-w-xl leading-relaxed">
             Conversations, comparisons, and no-nonsense advice to help you understand your coverage and find the best rate available to you.
           </p>
         </div>

@@ -69,7 +69,7 @@ function StatesGridInner({ states }: { states: typeof StatesType }) {
       </div>
 
       {filtered.length === 0 && (
-        <p className="text-center py-10 text-sm text-[#0A2A4F]/40">No states match &quot;{query}&quot;</p>
+        <p className="text-center py-10 text-sm text-[#0A2A4F]/70">No states match &quot;{query}&quot;</p>
       )}
 
       <div className="space-y-4 mb-8">
@@ -97,7 +97,7 @@ function StatesGridInner({ states }: { states: typeof StatesType }) {
                   </span>
                 )}
               </div>
-              <p className="text-sm text-[#0A2A4F]/55">
+              <p className="text-sm text-[#0A2A4F]/70">
                 Min. <span className="font-medium text-[#0A2A4F]/70">{state.minDisplay}</span>
                 <span className="mx-2 text-[#0A2A4F]/25">·</span>
                 {state.indexNote}
@@ -113,7 +113,7 @@ function StatesGridInner({ states }: { states: typeof StatesType }) {
           <button
             onClick={() => goTo(safePage - 1)}
             disabled={safePage === 1}
-            className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-[#0A2A4F]/50 hover:text-[#2B5BA8] hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed transition"
+            className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-[#0A2A4F]/70 hover:text-[#2B5BA8] hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed transition"
           >
             <ChevronLeft className="w-4 h-4" /> Prev
           </button>
@@ -125,7 +125,7 @@ function StatesGridInner({ states }: { states: typeof StatesType }) {
               className={`w-9 h-9 rounded-lg text-sm font-semibold transition ${
                 n === safePage
                   ? "bg-[#2B5BA8] text-white"
-                  : "text-[#0A2A4F]/60 hover:text-[#2B5BA8] hover:bg-white"
+                  : "text-[#0A2A4F]/70 hover:text-[#2B5BA8] hover:bg-white"
               }`}
             >
               {n}
@@ -135,7 +135,7 @@ function StatesGridInner({ states }: { states: typeof StatesType }) {
           <button
             onClick={() => goTo(safePage + 1)}
             disabled={safePage === totalPages}
-            className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-[#0A2A4F]/50 hover:text-[#2B5BA8] hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed transition"
+            className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-[#0A2A4F]/70 hover:text-[#2B5BA8] hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed transition"
           >
             Next <ChevronRight className="w-4 h-4" />
           </button>
@@ -143,7 +143,7 @@ function StatesGridInner({ states }: { states: typeof StatesType }) {
       )}
 
       {safePage === totalPages && !query && (
-        <p className="text-center mt-6 text-sm text-[#0A2A4F]/40 tracking-wide">
+        <p className="text-center mt-6 text-sm text-[#0A2A4F]/70 tracking-wide">
           More states coming soon
         </p>
       )}

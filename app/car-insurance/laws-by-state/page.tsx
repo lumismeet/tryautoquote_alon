@@ -90,7 +90,7 @@ export default function LawsByStatePage() {
       <Navbar />
 
       <main className="flex-1 max-w-6xl mx-auto px-6 pt-10 pb-20 md:pt-14 md:pb-28 w-full">
-        <nav aria-label="Breadcrumb" className="text-xs text-[#0A2A4F]/50 mb-8 flex items-center gap-1.5">
+        <nav aria-label="Breadcrumb" className="text-xs text-[#0A2A4F]/70 mb-8 flex items-center gap-1.5">
           <Link href="/" className="hover:text-[#2B5BA8] transition">Home</Link>
           <span>/</span>
           <Link href="/car-insurance" className="hover:text-[#2B5BA8] transition">Car insurance</Link>
@@ -114,7 +114,7 @@ export default function LawsByStatePage() {
           ].map((c) => (
             <div key={c.label} className="rounded-2xl bg-white border border-[#0A2A4F]/8 px-5 py-5">
               <span className="block text-3xl font-bold">{c.n}</span>
-              <span className="block text-sm text-[#0A2A4F]/60 mt-1">{c.label}</span>
+              <span className="block text-sm text-[#0A2A4F]/70 mt-1">{c.label}</span>
             </div>
           ))}
         </section>
@@ -155,7 +155,7 @@ export default function LawsByStatePage() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-[#0A2A4F]/50 mb-14 max-w-3xl">
+        <p className="text-xs text-[#0A2A4F]/70 mb-14 max-w-3xl">
           Liability limits are shown as bodily injury per person / per accident / property damage, in thousands of dollars.
           {metricCols.length > 0 &&
             ` Statistics: ${[...new Set(metricCols.flatMap((m) => METRICS[m].sources))].map((id) => SOURCES[id].name).join("; ")}.`}{" "}

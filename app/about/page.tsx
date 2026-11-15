@@ -103,7 +103,8 @@ export default function AboutPage() {
             <a href="mailto:info@tryautoquote.com" className="text-[#2B5BA8] underline">info@tryautoquote.com</a> or use
             our <Link href="/contact" className="text-[#2B5BA8] underline">contact page</Link>. You can read how we handle
             data in our <Link href="/privacy-policy" className="text-[#2B5BA8] underline">privacy policy</Link> and the
-            rules for using the site in our <Link href="/terms-of-use" className="text-[#2B5BA8] underline">terms of use</Link>.
+            rules for using the site in our <Link href="/terms-of-use" className="text-[#2B5BA8] underline">terms of use</Link>. Our{" "}
+            <Link href="/editorial-policy" className="text-[#2B5BA8] underline">editorial policy</Link> explains how we research, write and update our content.
           </p>
         </Section>
 

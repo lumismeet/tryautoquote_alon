@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { isValidUsZip, INVALID_ZIP_MESSAGE } from "@/lib/zipToState";
 import { track } from "@/lib/analytics";
 import { useRouter } from "next/navigation";
 import { useForm } from "@/context/FormContext";
@@ -19,8 +20,8 @@ export default function BlogCTA() {
       setError("Please enter a zipcode");
       return;
     }
-    if (!/^[0-9]{5}$/.test(trimmedZip)) {
-      setError("Invalid zip");
+    if (!isValidUsZip(trimmedZip)) {
+      setError(INVALID_ZIP_MESSAGE);
       return;
     }
 
@@ -88,14 +89,14 @@ export default function BlogCTA() {
           </div>
           <button
             onClick={handleSubmit}
-            className="group w-full bg-[#38B6C9] hover:bg-[#2fa3b5] text-white font-semibold py-3.5 rounded-xl text-sm transition shadow-lg shadow-[#38B6C9]/25 flex items-center justify-center gap-1.5"
+            className="group w-full bg-[#1E7F90] hover:bg-[#186B79] text-white font-semibold py-3.5 rounded-xl text-sm transition shadow-lg shadow-[#38B6C9]/25 flex items-center justify-center gap-1.5"
           >
             See options
             <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </button>
         </div>
 
-        <div className="flex items-center justify-center gap-1.5 mt-4 text-white/40 text-[10px]">
+        <div className="flex items-center justify-center gap-1.5 mt-4 text-white/70 text-[10px]">
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>

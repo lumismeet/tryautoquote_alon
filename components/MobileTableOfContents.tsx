@@ -21,7 +21,7 @@ export default function MobileTableOfContents({ headings }: { headings: Heading[
       <summary className="flex items-center justify-between cursor-pointer list-none px-4 py-3 text-sm font-bold text-[#0A2A4F] select-none">
         Jump to
         <svg
-          className="w-4 h-4 text-[#0A2A4F]/50 transition-transform group-open:rotate-180"
+          className="w-4 h-4 text-[#0A2A4F]/70 transition-transform group-open:rotate-180"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -36,7 +36,7 @@ export default function MobileTableOfContents({ headings }: { headings: Heading[
             <a
               href={`#${heading.id}`}
               onClick={handleJump}
-              className="block px-3 py-2 rounded-lg text-xs font-medium leading-snug text-[#0A2A4F]/60 hover:text-[#0A2A4F] hover:bg-[#0A2A4F]/5 transition-colors"
+              className="block px-3 py-2 rounded-lg text-xs font-medium leading-snug text-[#0A2A4F]/70 hover:text-[#0A2A4F] hover:bg-[#0A2A4F]/5 transition-colors"
             >
               {heading.text}
             </a>
