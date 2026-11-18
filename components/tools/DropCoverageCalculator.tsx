@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { SITE } from "@/lib/tools";
 import { useEffect, useMemo, useState } from "react";
 
 declare global {
@@ -80,7 +81,7 @@ const TONE: Record<Verdict["tone"], string> = {
   required: "border-[#0A2A4F]/20 bg-[#0A2A4F]/[0.04]",
 };
 
-export default function DropCoverageCalculator() {
+export default function DropCoverageCalculator({ embedded = false }: { embedded?: boolean } = {}) {
   const [carValue, setCarValue] = useState("");
   const [premium, setPremium] = useState("");
   const [deductible, setDeductible] = useState("500");
@@ -104,7 +105,7 @@ export default function DropCoverageCalculator() {
   const field = "w-full rounded-xl border border-[#0A2A4F]/15 bg-white pl-8 pr-3 py-3 text-base text-[#0A2A4F] focus:outline-none focus:border-[#2B5BA8] focus:ring-2 focus:ring-[#2B5BA8]/15";
 
   return (
-    <section aria-labelledby="calc-title" className="not-prose my-10 rounded-2xl border border-[#0A2A4F]/10 bg-white px-5 py-6 md:px-7 md:py-7">
+    <section aria-labelledby="calc-title" className="mdx-tool not-prose my-10 rounded-2xl border border-[#0A2A4F]/10 bg-white px-5 py-6 md:px-7 md:py-7">
       <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#2B5BA8] mb-2">Calculator</p>
       <h2 id="calc-title" className="text-xl md:text-2xl font-bold text-[#0A2A4F] mb-2">Should you drop full coverage?</h2>
       <p className="text-sm text-[#0A2A4F]/65 leading-relaxed mb-6">
@@ -170,10 +171,13 @@ export default function DropCoverageCalculator() {
         <p className="text-xs text-[#0A2A4F]/70 leading-relaxed max-w-md">
           General guidance based on the 10% rule, not insurance advice. Your insurer&rsquo;s actual cash value may differ from pricing guides.
         </p>
-        <Link href="/quote/1_map" data-location="calculator_drop_coverage" className="shrink-0 text-center text-sm font-semibold text-white bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] rounded-full px-5 py-2.5 hover:opacity-90 transition">
+        <Link href={embedded ? `${SITE}/quote/1_map?utm_source=embed&utm_medium=calculator&utm_campaign=drop-full-coverage` : "/quote/1_map"} target={embedded ? "_blank" : undefined} rel={embedded ? "noopener" : undefined} data-location="calculator_drop_coverage" className="shrink-0 text-center text-sm font-semibold text-white bg-gradient-to-r from-[#2B5BA8] to-[#38B6C9] rounded-full px-5 py-2.5 hover:opacity-90 transition">
           Compare prices for your coverage
         </Link>
       </div>
+      {!embedded && (
+        <p className="mt-4 text-right text-xs"><Link href="/tools#embed-drop-full-coverage" className="text-[#2B5BA8] underline underline-offset-2">Add this calculator to your site</Link></p>
+      )}
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import { SITE } from "./site";
 import { HUBS, hubHref } from "@/lib/hubs";
+import { TOOLS } from "@/lib/tools";
 import { STATE_LAWS_VERIFIED, LAWS_BY_STATE_PATH } from "@/lib/states/verification";
 
 export type LinkItem = { title: string; url: string; description?: string };
@@ -56,6 +57,10 @@ ${SITE.name} is operated by ${SITE.legalName} Contact: ${SITE.email}. Every page
 ## Guides
 
 ${GUIDES.map(line).join("\n")}
+
+## Calculators
+
+${TOOLS.map((t) => line({ title: t.name, url: t.href, description: t.description })).join("\n")}
 
 ## Topics
 

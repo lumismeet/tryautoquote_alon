@@ -47,6 +47,7 @@ export default function Footer() {
               <li><Link href="/car-insurance" className="hover:text-white transition">Car insurance guide</Link></li>
               <li><Link href="/car-insurance#states" className="hover:text-white transition">Rules by state</Link></li>
               <li><Link href="/guides" className="hover:text-white transition">Guides</Link></li>
+              <li><Link href="/tools" className="hover:text-white transition">Calculators</Link></li>
               <li><Link href="/blogs" className="hover:text-white transition">All articles</Link></li>
             </ul>
           </div>

@@ -104,6 +104,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...(STATE_LAWS_VERIFIED
       ? [{ url: `${BASE}${LAWS_BY_STATE_PATH}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 }]
       : []),
+    { url: `${BASE}/tools`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 },
     ...HUBS.map((h) => ({
       url: `${BASE}${hubHref(h.slug)}`,
       lastModified: now,

@@ -11,6 +11,7 @@ import MobileTableOfContents from "@/components/MobileTableOfContents";
 import FaqSection from "@/components/FaqSection";
 import RelatedPosts from "@/components/RelatedPosts";
 import DropCoverageCalculator from "@/components/tools/DropCoverageCalculator";
+import DeductibleCalculator from "@/components/tools/DeductibleCalculator";
 import { hubForPost, hubHref } from "@/lib/hubs";
 import { pageTitle } from "@/lib/seo";
 import References from "@/components/References";
@@ -28,6 +29,7 @@ function makeMdxComponents(refMap: Map<string, { num: number; label: string }>) 
   return {
     // Interactive tools that posts can embed as <ComponentName />.
     DropCoverageCalculator,
+    DeductibleCalculator,
     h2: ({ children, id }: { children?: React.ReactNode; id?: string }) =>
       children === "Key takeaways" ? (
         <p id={id} className="font-semibold text-[#0A2A4F] text-sm border-t border-[#0A2A4F]/10 pt-8 mt-4 scroll-mt-28">

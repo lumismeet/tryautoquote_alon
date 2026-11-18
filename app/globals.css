@@ -61,6 +61,12 @@ body {
   text-decoration: underline;
 }
 
+/* Embedded tools (calculators, quote boxes) style their own links and buttons. */
+.mdx-content .mdx-tool a {
+  color: revert-layer;
+  text-decoration: none;
+}
+
 .mdx-content ul {
   list-style: disc;
   padding-left: 1.25rem;
