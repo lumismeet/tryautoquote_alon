@@ -104,6 +104,9 @@ function makeMdxComponents(refMap: Map<string, { num: number; label: string }>) 
 }
 
 // Pre-builds every blog page at build time (static, same as before)
+// Only published pages exist; any other address is a plain 404 without running server code.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }

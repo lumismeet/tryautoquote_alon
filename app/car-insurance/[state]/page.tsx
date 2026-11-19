@@ -13,6 +13,9 @@ import { states, getStateBySlug } from "@/lib/states";
 
 type Props = { params: Promise<{ state: string }> };
 
+// Only published pages exist; any other address is a plain 404 without running server code.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return states.map((s) => ({ state: s.slug }));
 }

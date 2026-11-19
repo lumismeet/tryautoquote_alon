@@ -16,6 +16,12 @@ const STEPS: Record<string, () => React.ReactElement> = {
   results: Results,
 };
 
+// Pre-built at deploy time (no server function per visit); unknown steps are a plain 404.
+export const dynamicParams = false;
+export function generateStaticParams() {
+  return Object.keys(STEPS).map((step) => ({ step }));
+}
+
 export default async function QuoteStep({ params }: { params: Promise<{ step: string }> }) {
   const { step } = await params;
   const Step = STEPS[step];
