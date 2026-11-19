@@ -9,23 +9,22 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { HUBS, hubHref } from "@/lib/hubs";
 import { STATE_LAWS_VERIFIED, LAWS_BY_STATE_PATH } from "@/lib/states/verification";
 
+import { STATE_LIST } from "@/lib/state-list";
+
 const inter = Inter({ subsets: ["latin"] });
 
-// One-line descriptions for the Learn menu (short enough for a dropdown).
-const HUB_BLURBS: Record<string, string> = {
-  coverage: "Types, limits, deductibles",
-  cost: "What sets your rate, how to pay less",
-  claims: "Accidents, filing, what to say",
-  drivers: "Teens, SR-22, rideshare, new to the U.S.",
-  buying: "Comparing, buying and switching",
-};
-
-// Top-level items after "Learn". Add Tools and Glossary here once those pages exist.
-const TOP_LINKS = [{ label: "States", href: STATE_LAWS_VERIFIED ? LAWS_BY_STATE_PATH : "/car-insurance#states", match: /^\/car-insurance\/(?!coverage|cost|claims|drivers|buying)[a-z-]+$/ }];
-
-const LEARN_EXTRA = [
+// "Car Insurance" menu, organized like the big comparison sites:
+// Compare / By State / By Topic (add "By Company" once review pages exist).
+const STATES_OVERVIEW = STATE_LAWS_VERIFIED ? LAWS_BY_STATE_PATH : "/car-insurance#states";
+const TOP_STATE_SLUGS = ["california","texas","florida","new-york","pennsylvania","illinois","ohio","georgia","north-carolina","michigan"];
+const TOP_STATES = TOP_STATE_SLUGS.map((slug) => STATE_LIST.find((s) => s.slug === slug)!).filter(Boolean);
+const TOPIC_EXTRA = [
   { label: "Guides", href: "/guides" },
   { label: "All articles", href: "/blogs" },
+];
+const TOP_LINKS = [
+  { label: "Tools", href: "/tools" },
+  { label: "About", href: "/about" },
 ];
 
 type NavbarProps = { onQuoteClick?: () => void };
@@ -39,10 +38,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
   const learnRef = useRef<HTMLLIElement>(null);
 
   const learnActive =
-    pathname === "/car-insurance" ||
-    HUBS.some((h) => pathname.startsWith(hubHref(h.slug))) ||
-    pathname.startsWith("/blogs") ||
-    pathname.startsWith("/guides");
+    pathname.startsWith("/car-insurance") || pathname.startsWith("/blogs") || pathname.startsWith("/guides");
 
   // Close menus on navigation, outside click and Escape.
   useEffect(() => { setLearnOpen(false); setMobileOpen(false); }, [pathname]);
@@ -78,51 +74,72 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
           </Link>
 
           <ul className="hidden md:flex items-center gap-8 mx-auto">
+            {/* Not "relative": the panel centers on the full-width header so it always fits the screen. */}
             <li
               ref={learnRef}
-              className="relative"
               onMouseEnter={() => setLearnOpen(true)}
               onMouseLeave={() => setLearnOpen(false)}
             >
               <button
                 type="button"
                 aria-expanded={learnOpen}
-                aria-controls="learn-menu"
+                aria-controls="car-menu"
                 onClick={() => setLearnOpen((v) => !v)}
                 className={`${linkCls(learnActive)} inline-flex items-center gap-1 cursor-pointer`}
               >
-                Learn
+                Car Insurance
                 <ChevronDown className={`w-4 h-4 transition-transform ${learnOpen ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
 
-              {/* Always in the DOM so crawlers see the links; shown on hover, click or focus. */}
+              {/* Always in the DOM so crawlers see every link; shown on hover, click or focus. */}
               <div
-                id="learn-menu"
-                className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[560px] transition ${learnOpen ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"}`}
+                id="car-menu"
+                className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[min(880px,calc(100vw-2rem))] transition ${learnOpen ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"}`}
               >
-                <div className="rounded-2xl bg-white shadow-xl border border-[#0A2A4F]/8 p-3 grid grid-cols-2 gap-1">
-                  <Link href="/car-insurance" className="col-span-2 rounded-xl px-4 py-3 hover:bg-[#0A2A4F]/[0.04] transition">
-                    <span className="block text-sm font-semibold text-[#0A2A4F]">Car insurance, explained</span>
-                    <span className="block text-xs text-[#0A2A4F]/70 mt-0.5">Start here: every topic in one place</span>
-                  </Link>
-                  {HUBS.map((h) => (
-                    <Link key={h.slug} href={hubHref(h.slug)} className="rounded-xl px-4 py-3 hover:bg-[#0A2A4F]/[0.04] transition">
-                      <span className="block text-sm font-semibold text-[#0A2A4F]">{h.name}</span>
-                      <span className="block text-xs text-[#0A2A4F]/70 mt-0.5">{HUB_BLURBS[h.slug]}</span>
-                    </Link>
-                  ))}
-                  <div className="rounded-xl px-4 py-3 flex flex-col justify-center gap-1.5">
-                    {LEARN_EXTRA.map((l) => (
-                      <Link key={l.href} href={l.href} className="text-sm text-[#2B5BA8] hover:underline">{l.label}</Link>
-                    ))}
+                <div className="rounded-2xl bg-white shadow-xl border border-[#0A2A4F]/8 p-5 max-h-[75vh] overflow-y-auto">
+                  <div className="grid grid-cols-[1fr_1.6fr_1.3fr] gap-6">
+                    <div>
+                      <span className="block text-xs font-bold uppercase tracking-wider text-[#0A2A4F]/70 mb-2 px-2">Compare</span>
+                      <Link href="/quote/1_map" className="block rounded-lg px-2 py-1.5 text-sm text-[#0A2A4F]/85 hover:bg-[#0A2A4F]/[0.04] hover:text-[#2B5BA8] font-semibold text-[#2B5BA8]">Compare quotes</Link>
+                      <Link href="/car-insurance" className="block rounded-lg px-2 py-1.5 text-sm text-[#0A2A4F]/85 hover:bg-[#0A2A4F]/[0.04] hover:text-[#2B5BA8]">Car insurance, explained</Link>
+                      <Link href="/tools" className="block rounded-lg px-2 py-1.5 text-sm text-[#0A2A4F]/85 hover:bg-[#0A2A4F]/[0.04] hover:text-[#2B5BA8]">Calculators</Link>
+                    </div>
+                    <div>
+                      <span className="block text-xs font-bold uppercase tracking-wider text-[#0A2A4F]/70 mb-2 px-2">By State</span>
+                      <div className="grid grid-cols-2 gap-x-2">
+                        {TOP_STATES.map((st) => (
+                          <Link key={st.slug} href={`/car-insurance/${st.slug}`} className="block rounded-lg px-2 py-1.5 text-sm text-[#0A2A4F]/85 hover:bg-[#0A2A4F]/[0.04] hover:text-[#2B5BA8]">{st.name}</Link>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <span className="block text-xs font-bold uppercase tracking-wider text-[#0A2A4F]/70 mb-2 px-2">By Topic</span>
+                      {HUBS.map((h) => (
+                        <Link key={h.slug} href={hubHref(h.slug)} className="block rounded-lg px-2 py-1.5 text-sm text-[#0A2A4F]/85 hover:bg-[#0A2A4F]/[0.04] hover:text-[#2B5BA8]">{h.name}</Link>
+                      ))}
+                      {TOPIC_EXTRA.map((l) => (
+                        <Link key={l.href} href={l.href} className="block rounded-lg px-2 py-1.5 text-sm text-[#0A2A4F]/85 hover:bg-[#0A2A4F]/[0.04] hover:text-[#2B5BA8]">{l.label}</Link>
+                      ))}
+                    </div>
                   </div>
+                  <details className="group mt-4 border-t border-[#0A2A4F]/8 pt-3">
+                    <summary className="flex items-center gap-1.5 px-2 text-sm font-semibold text-[#2B5BA8] cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                      All 51 states <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" aria-hidden="true" />
+                    </summary>
+                    <div className="grid grid-cols-4 lg:grid-cols-5 gap-x-2 mt-2">
+                      {STATE_LIST.map((st) => (
+                        <Link key={st.slug} href={`/car-insurance/${st.slug}`} className="block rounded-lg px-2 py-1.5 text-sm text-[#0A2A4F]/85 hover:bg-[#0A2A4F]/[0.04] hover:text-[#2B5BA8]">{st.name}</Link>
+                      ))}
+                    </div>
+                    <Link href={STATES_OVERVIEW} className="inline-block mt-2 px-2 text-xs font-semibold text-[#2B5BA8] hover:underline">How states differ</Link>
+                  </details>
                 </div>
               </div>
             </li>
 
             {TOP_LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className={linkCls(l.match.test(pathname))}>{l.label}</Link>
+                <Link href={l.href} className={linkCls(pathname.startsWith(l.href))}>{l.label}</Link>
               </li>
             ))}
           </ul>
@@ -147,22 +164,45 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
           </button>
         </nav>
 
-        <div id="mobile-menu" className={`md:hidden border-t border-[#0A2A4F]/10 bg-white px-6 py-5 max-h-[calc(100dvh-4rem)] overflow-y-auto ${mobileOpen ? "" : "hidden"}`}>
-          <p className="text-xs font-semibold text-[#0A2A4F]/70 mb-2">Learn</p>
+        <div id="mobile-menu" className={`md:hidden border-t border-[#0A2A4F]/10 bg-white px-6 py-4 max-h-[calc(100dvh-4rem)] overflow-y-auto ${mobileOpen ? "" : "hidden"}`}>
+          {/* Same structure as desktop: Car Insurance (Compare / By State / By Topic), then Tools and About. */}
+          <details className="group border-b border-[#0A2A4F]/8">
+            <summary className="flex items-center justify-between py-3.5 text-base font-semibold text-[#0A2A4F] cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+              Car Insurance
+              <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" aria-hidden="true" />
+            </summary>
+            <div className="pb-3">
+              <span className="block text-xs font-bold uppercase tracking-wider text-[#0A2A4F]/70 mt-3 mb-1">Compare</span>
+              <Link href="/car-insurance" className="block py-2 text-[15px] text-[#0A2A4F]/85">Car insurance, explained</Link>
+              <Link href="/tools" className="block py-2 text-[15px] text-[#0A2A4F]/85">Calculators</Link>
+              <span className="block text-xs font-bold uppercase tracking-wider text-[#0A2A4F]/70 mt-3 mb-1">By State</span>
+              <div className="grid grid-cols-2 gap-x-4">
+                {TOP_STATES.map((st) => (
+                  <Link key={st.slug} href={`/car-insurance/${st.slug}`} className="block py-2 text-[15px] text-[#0A2A4F]/85">{st.name}</Link>
+                ))}
+              </div>
+              <details className="group/all">
+                <summary className="flex items-center gap-1.5 py-2 text-[15px] font-semibold text-[#2B5BA8] cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  All 51 states <ChevronDown className="w-4 h-4 transition-transform group-open/all:rotate-180" aria-hidden="true" />
+                </summary>
+                <div className="grid grid-cols-2 gap-x-4">
+                  {STATE_LIST.map((st) => (
+                    <Link key={st.slug} href={`/car-insurance/${st.slug}`} className="block py-2 text-[15px] text-[#0A2A4F]/85">{st.name}</Link>
+                  ))}
+                </div>
+              </details>
+              <span className="block text-xs font-bold uppercase tracking-wider text-[#0A2A4F]/70 mt-3 mb-1">By Topic</span>
+              {HUBS.map((h) => (
+                <Link key={h.slug} href={hubHref(h.slug)} className="block py-2 text-[15px] text-[#0A2A4F]/85">{h.name}</Link>
+              ))}
+              {TOPIC_EXTRA.map((l) => (
+                <Link key={l.href} href={l.href} className="block py-2 text-[15px] text-[#0A2A4F]/85">{l.label}</Link>
+              ))}
+            </div>
+          </details>
           <ul className="flex flex-col mb-5">
-            <li><Link href="/car-insurance" className="block py-2.5 text-base font-medium text-[#0A2A4F]">Car insurance, explained</Link></li>
-            {HUBS.map((h) => (
-              <li key={h.slug}>
-                <Link href={hubHref(h.slug)} className="block py-2.5 text-base font-medium text-[#0A2A4F]/80">{h.name}</Link>
-              </li>
-            ))}
-          </ul>
-          <ul className="flex flex-col border-t border-[#0A2A4F]/8 pt-3 mb-5">
             {TOP_LINKS.map((l) => (
-              <li key={l.href}><Link href={l.href} className="block py-2.5 text-base font-medium text-[#0A2A4F]/80">{l.label}</Link></li>
-            ))}
-            {LEARN_EXTRA.map((l) => (
-              <li key={l.href}><Link href={l.href} className="block py-2.5 text-base font-medium text-[#0A2A4F]/80">{l.label}</Link></li>
+              <li key={l.href} className="border-b border-[#0A2A4F]/8"><Link href={l.href} className="block py-3.5 text-base font-semibold text-[#0A2A4F]">{l.label}</Link></li>
             ))}
           </ul>
           <button
